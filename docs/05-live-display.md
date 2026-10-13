@@ -1,0 +1,32 @@
+# 05 — Same-Device Live Display
+**Status: Draft V1**
+
+## Purpose
+A read-only screen suitable for a church projector, TV, or second monitor. The operator enters pledges privately on a laptop; the public display automatically shows aggregate **Projected Commitments**.
+
+## Screen content
+Campaign title, prominent currency-formatted projected total, optional “Commitment Entries” count, optional breakdown by frequency, connection status, fullscreen control. No donor records, individual entries, notes, or operator edit controls. Use high contrast, auto-sizing type, keyboard focus, and reduced-motion number transitions.
+
+## Synchronization contract
+1. Operator validates and writes entry/setting changes to IndexedDB and commits transaction.
+2. Operator increments campaign revision and publishes a lightweight event with campaign ID + revision through BroadcastChannel. **Do not broadcast raw pledge data.**
+3. The display receives the event, re-reads the authoritative saved campaign and entries, and recalculates through the shared calculation engine.
+4. Display must read on initial load, refresh, regained focus/visibility, and reconnect; missed events cannot permanently lose updates.
+5. For unsupported BroadcastChannel, consider a same-device polling fallback; surface degraded status.
+
+Only tabs/windows on the **same origin, compatible browser storage partition, and browser profile** share data. Different devices, browser profiles, or private windows do not synchronize in V1.
+
+## Acceptance tests
+- Add, edit, delete, campaign-date and midweek-day edits update display promptly (< 1 second target under normal conditions).
+- Reload display reconstructs accurate totals; refresh and restart do not show an invented zero as if authoritative.
+- A failed save never updates public total.
+- Closing presentation does not affect saved pledges.
+- Stale/disconnected display does not falsely claim LIVE.
+- Opening display via button handles popup blockers, with user-visible manual link.
+- No private entry notes exposed even via display debug text.
+
+## Event-day operator instructions
+Extend the computer screen; open display using direct click; move to projector; fullscreen; make a test entry and verify; keep operator dashboard off public screen. Use the JSON backup after the service.
+
+## Explicit later feature
+A Smart TV/browser on another device requires real online sync plus authenticated secure access and is **not** covered by V1.
