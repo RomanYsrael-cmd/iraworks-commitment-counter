@@ -1,5 +1,5 @@
 # 14 — Prioritized Implementation Backlog
-**Status: Draft V1 · Estimates intentionally omitted.**
+**Status:** Approved V1 baseline (2026-10-14); implementation pending.
 
 ## Phase 1 — domain and persistence (critical path)
 - [ ] Set up React/Vite/TypeScript app, lint/test scripts and CI.
@@ -35,4 +35,4 @@
 - [ ] Conduct end-user rehearsal with church operator and release guide.
 
 ## Definition of done for each ticket
-Behavior satisfies linked requirements; unit/behavior tests included; no new privacy leak; local backup/restore and projector workflows unaffected; documentation updated. Do not begin coding before owner approves open recurrence decisions.
+Behavior satisfies linked requirements; unit/behavior tests included; no new privacy leak; local backup/restore and projector workflows unaffected; documentation updated. The owner approved the recurrence rules on 2026-10-14; development may proceed from the merged main branch.

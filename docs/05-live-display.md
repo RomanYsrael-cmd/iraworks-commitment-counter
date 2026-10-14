@@ -1,5 +1,5 @@
 # 05 — Same-Device Live Display
-**Status: Draft V1**
+**Status:** Approved V1 baseline (2026-10-14); implementation pending.
 
 ## Purpose
 A read-only screen suitable for a church projector, TV, or second monitor. The operator enters pledges privately on a laptop; the public display automatically shows aggregate **Projected Commitments**.

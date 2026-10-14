@@ -1,5 +1,5 @@
 # 09 — Privacy, Security and Accessibility
-**Status: Draft V1. Not a compliance certification.**
+**Status:** Approved V1 baseline (2026-10-14); implementation pending. This is not a regulatory or accessibility certification.
 
 ## Privacy by default
 V1 records amounts and pledge frequencies anonymously. It does not require names, contact details or church member accounts. Operator should not put donor identities or sensitive information in the optional note. No pledge data is transmitted to an IraWorks server in the local-first design.

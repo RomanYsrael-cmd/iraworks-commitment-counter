@@ -1,5 +1,5 @@
 # 13 — Source Workbook Analysis (Sanitized)
-**Status: Draft V1 · Source:** owner-supplied macro-enabled Excel workbook (not included in public repository).
+**Status:** Approved V1 baseline (2026-10-14); implementation pending. Source: owner-provided workbook; financial records excluded from public repo. owner-supplied macro-enabled Excel workbook (not included in public repository).
 
 ## Structure verified
 The original workbook is one worksheet titled as a church commitment counter. It contains start/end campaign dates, a selected midweek service day, four input columns (Once, Per Week, Per Month, Per Service), summary calculations, and displayed totals. It includes a VBA project and an ActiveX component. The public repository intentionally excludes original institution branding, entry values and financial totals.
@@ -30,4 +30,4 @@ The website should preserve the easy pledge-entry concept while correcting ambig
 Do not commit the workbook, screenshots containing real pledge numbers, donor information, or unredacted exports. Use synthetic fixture data in public documentation, demos, and automated tests.
 
 ## Acceptance note
-Owners must approve the shift from “weekly = Sunday count” and “monthly = completed months” to scheduled occurrences before V1 is finalized.
+The owner approved the scheduled-occurrence model on 2026-10-14; implement the new rules, not the original spreadsheet formulas.

@@ -1,5 +1,5 @@
 # 03 — User Flows and UX
-**Status: Draft V1**
+**Status:** Approved V1 baseline (2026-10-14); implementation pending.
 
 ## Screens
 1. **Campaigns:** first-run welcome, new campaign, saved campaigns, prominent local-data notice.

@@ -1,5 +1,5 @@
 # 02 — Product Requirements
-**Status: Draft V1. All decisions pending approval.**
+**Status:** Approved V1 baseline (2026-10-14); implementation pending.
 
 ## Required capabilities
 | ID | Feature | Acceptance |

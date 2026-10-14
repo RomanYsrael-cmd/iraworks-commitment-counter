@@ -1,5 +1,5 @@
 # 08 — Lightweight Technical Architecture
-**Status: Draft V1**
+**Status:** Approved V1 baseline (2026-10-14); implementation pending.
 
 ## Proposed stack
 React + Vite + TypeScript SPA. IndexedDB for device-local persistence. Pure TypeScript calculations/validation. BroadcastChannel for same-browser live notifications. Browser-side XLSX creation. Optional service worker for cached app assets (to be validated by browser support). Static hosting on Vercel **under an eligible usage plan**, or Cloudflare Pages; production host not yet selected.

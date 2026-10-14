@@ -1,5 +1,5 @@
 # 15 — Operator Quick Start
-**Status: Draft V1 — planned behavior, not instructions for a released product.**
+**Status:** Approved V1 user flows (2026-10-14); this guide describes planned functionality, not an already-released app.
 
 ## 1. Create a campaign
 Open the site in your preferred browser. Select New Campaign. Enter campaign title, start date, end date, currency (PHP suggested default), and midweek day (Wednesday suggested default). Save. Dates are inclusive; the system will use these to project recurring pledges.

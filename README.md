@@ -1,6 +1,6 @@
 # IraWorks Commitment Counter
 
-**Status:** Draft V1 — documentation-first, specifications pending owner approval.
+**Status:** Approved V1 requirements baseline (2026-10-14); implementation pending. Approval is not production-release sign-off.
 
 A simple, free-to-use commitment counting and projection utility for churches and nonprofit organizations. Core functions: anonymous pledge entry, recurring projections, an Excel (.xlsx) report, same-device live projector display, and offline-friendly local storage with backup/restore.
 
@@ -23,11 +23,12 @@ A simple, free-to-use commitment counting and projection utility for churches an
 - [13 — Original Excel workbook analysis](docs/13-workbook-analysis.md)
 - [14 — Implementation backlog](docs/14-backlog.md)
 - [15 — User guide](docs/15-user-guide.md)
+- [16 — Codex implementation handoff](docs/16-codex-handoff.md)
 
-## Proposed V1 stack
+## V1 implementation direction
 
 React + Vite + TypeScript; IndexedDB for on-device persistence; BroadcastChannel plus persistence re-read for same-browser second-screen updates; client-side XLSX creation; static hosting on an eligible Vercel plan or Cloudflare Pages. No login or cloud database in V1.
 
 ## Status and ownership
 
-All product and technical decisions are **proposals**, not signed-off or production-ready requirements. This public repository does **not** grant an open-source license until a license is explicitly selected and added. Avoid uploading the original workbook if it contains private information.
+The product owner approved the V1 product scope and calculation rules on 2026-10-14. The specifications remain revisable during implementation. Production hosting, source-code licensing, final domain and release readiness still require separate decisions. A public repository does **not** automatically grant an open-source license. Avoid publishing the original workbook or sensitive pledge data.

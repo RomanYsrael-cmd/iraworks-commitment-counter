@@ -1,5 +1,5 @@
 # 04 — Calculation Specification
-**Status: Draft V1; owner must approve recurrence semantics before implementation.**
+**Status:** Approved V1 calculation rules (2026-10-14); implementation pending.
 
 ## Canonical definitions
 Campaign start and end are inclusive local calendar dates (YYYY-MM-DD). A pledged amount is stored as a positive integer in minor currency units (PHP centavos by default). Projected value per row = amount × occurrence count. Grand total = sum of row projections. Entry count = number of active rows, **not donors**.

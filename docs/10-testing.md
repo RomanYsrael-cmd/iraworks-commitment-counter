@@ -1,5 +1,5 @@
 # 10 — Test Strategy and Acceptance Criteria
-**Status: Draft V1**
+**Status:** Approved V1 baseline (2026-10-14); implementation pending.
 
 ## Calculation tests — must be automated
 | Test | Expected |

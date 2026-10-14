@@ -1,5 +1,5 @@
 # 06 — Excel Export and Restorable Backup
-**Status: Draft V1**
+**Status:** Approved V1 baseline (2026-10-14); implementation pending.
 
 ## Excel report (.xlsx)
 Generate the workbook inside the browser; no upload to conversion service; no macros. Proposed filename: commitment-counter_CAMPAIGN_YYYY-MM-DD.xlsx. It is a **snapshot report**, not a source of truth or restorable app backup.
