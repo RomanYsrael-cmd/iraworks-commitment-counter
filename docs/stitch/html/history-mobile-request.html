@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>IraWorks Commitment Counter — Pastoral Mobile Ledger</title>
+
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Google Fonts: Newsreader, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN with Forms & Container Queries -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container": "#f4ede3",
+            "on-surface": "#1e1b15",
+            "surface": "#fff8f0",
+            "inverse-primary": "#adcebc",
+            "background": "#fff8f0",
+            "outline-variant": "#c2c8c2",
+            "primary": "#1b382b",
+            "primary-dark": "#042217",
+            "primary-container": "#1b382b",
+            "on-primary-container": "#c9ead7",
+            "surface-dim": "#e0d9cf",
+            "surface-bright": "#fff8f0",
+            "surface-container-low": "#faf3e8",
+            "surface-container-high": "#eee7dd",
+            "surface-container-lowest": "#ffffff",
+            "secondary": "#8f4e00",
+            "secondary-gold": "#b8860b",
+            "secondary-container": "#fef3e7",
+            "outline": "#727974",
+            "on-surface-variant": "#424844",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error-container": "#93000a"
+          },
+          fontFamily: {
+            "headline": ["Newsreader", "serif"],
+            "body": ["Plus Jakarta Sans", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Touch target baseline */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  </style>
+</head>
+
+<body class="bg-[#1e1b15]/10 text-on-surface antialiased font-body flex justify-center selection:bg-primary/20 min-h-screen">
+
+  <!-- Mobile Phone Portrait Simulator Container (390px default, max 420px) -->
+  <div class="w-full max-w-[420px] bg-background min-h-screen relative flex flex-col shadow-2xl border-x border-outline-variant/40 pb-24">
+
+    <!-- Top App Bar (Sovereign Church Header) -->
+    <header class="bg-surface border-b border-outline-variant/70 sticky top-0 z-30">
+      <div class="flex justify-between items-center px-4 py-3">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-2xl" data-icon="account_balance">account_balance</span>
+          <div>
+            <h1 class="font-headline text-lg font-semibold tracking-tight text-primary leading-tight">IraWorks Counter</h1>
+            <p class="font-mono text-[10px] text-on-surface-variant flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-700 inline-block animate-pulse"></span>
+              IndexedDB Local • Offline
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-1">
+          <button class="touch-target flex items-center justify-center p-2 rounded-lg text-on-surface-variant hover:bg-surface-container active:scale-95 transition-all" aria-label="Campaign Settings">
+            <span class="material-symbols-outlined text-xl" data-icon="tune">tune</span>
+          </button>
+          <button class="touch-target flex items-center justify-center p-2 rounded-lg text-on-surface-variant hover:bg-surface-container active:scale-95 transition-all" aria-label="Security & Sovereign Archival">
+            <span class="material-symbols-outlined text-xl" data-icon="lock">lock</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Campaign Sub-header Context Banner -->
+      <div class="bg-surface-container-low px-4 py-2 border-t border-surface-container-high flex items-center justify-between">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span class="material-symbols-outlined text-secondary text-sm flex-shrink-0" data-icon="church">church</span>
+          <span class="font-headline text-xs font-medium text-on-surface truncate">San Isidro Sanctuary Renewal 2025</span>
+        </div>
+        <span class="font-mono text-[10px] bg-surface-container-high px-2 py-0.5 rounded text-secondary font-medium tracking-wide flex-shrink-0">
+          52-Wk Cycle
+        </span>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 px-4 pt-4 space-y-4">
+
+      <!-- Fiduciary Doctrine Advisory Banner -->
+      <section class="bg-surface-container border-l-2 border-secondary p-3 rounded-r-lg">
+        <div class="flex gap-2 items-start">
+          <span class="material-symbols-outlined text-secondary text-sm mt-0.5" data-icon="info">info</span>
+          <p class="text-xs text-on-surface-variant leading-relaxed">
+            <strong class="font-semibold text-on-surface">Commitment Pledges vs. Cash in Bank:</strong> Figures model intentional faith covenants and recurring envelopes. Not collected bank funds or cash-on-hand.
+          </p>
+        </div>
+      </section>
+
+      <!-- Totals & Commitment Progress Bento Card -->
+      <section class="bg-surface-container-lowest border border-outline-variant/70 rounded-xl p-4 shadow-sm space-y-3">
+        <div class="flex items-center justify-between pb-2 border-b border-surface-container">
+          <span class="text-[11px] font-semibold text-outline tracking-wider uppercase">Projected Annual Tithes</span>
+          <span class="font-mono text-[11px] bg-primary/10 text-primary px-2 py-0.5 rounded font-medium">
+            148 Pledges Active
+          </span>
+        </div>
+
+        <div>
+          <div class="font-headline text-3xl font-medium tracking-tight text-primary">
+            ₱ 1,842,500.00
+          </div>
+          <div class="flex items-center justify-between mt-1 text-xs text-on-surface-variant">
+            <span>Target: <strong class="font-mono text-on-surface font-semibold">₱ 2,500,000.00</strong></span>
+            <span class="font-mono font-medium text-secondary">73.7% Pledged</span>
+          </div>
+
+          <!-- Golden Progress Bar -->
+          <div class="w-full h-2 bg-surface-container rounded-full overflow-hidden mt-2">
+            <div class="h-full bg-[#b8860b] rounded-full transition-all" style="width: 73.7%;"></div>
+          </div>
+          <div class="flex justify-between items-center text-[10px] text-outline font-mono mt-1">
+            <span>₱ 0.00</span>
+            <span>Deficit: ₱ 657,500.00</span>
+          </div>
+        </div>
+
+        <!-- Recurrence Distribution Micro-Pills -->
+        <div class="grid grid-cols-2 gap-2 pt-1 border-t border-surface-container">
+          <div class="bg-surface-container-low p-2 rounded-lg">
+            <div class="text-[10px] uppercase tracking-wider text-outline font-medium">Weekly (68)</div>
+            <div class="font-mono text-xs font-semibold text-primary">₱ 894,400.00</div>
+          </div>
+          <div class="bg-surface-container-low p-2 rounded-lg">
+            <div class="text-[10px] uppercase tracking-wider text-outline font-medium">Monthly (42)</div>
+            <div class="font-mono text-xs font-semibold text-primary">₱ 468,000.00</div>
+          </div>
+          <div class="bg-surface-container-low p-2 rounded-lg">
+            <div class="text-[10px] uppercase tracking-wider text-outline font-medium">Midweek (24)</div>
+            <div class="font-mono text-xs font-semibold text-primary">₱ 160,100.00</div>
+          </div>
+          <div class="bg-surface-container-low p-2 rounded-lg">
+            <div class="text-[10px] uppercase tracking-wider text-outline font-medium">One-Off (14)</div>
+            <div class="font-mono text-xs font-semibold text-primary">₱ 320,000.00</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Primary Action CTA Row (Quick Add & Sovereign Export) -->
+      <section class="flex gap-2">
+        <button class="touch-target flex-1 bg-primary text-white font-medium text-sm rounded-lg px-3 py-2.5 flex items-center justify-center gap-2 shadow-sm hover:bg-primary-dark active:scale-[0.98] transition-all">
+          <span class="material-symbols-outlined text-lg" data-icon="add_circle">add_circle</span>
+          <span>Record New Pledge</span>
+        </button>
+        <button class="touch-target bg-surface-container-lowest border border-outline-variant text-on-surface font-medium text-xs rounded-lg px-3 py-2.5 flex items-center justify-center gap-1.5 hover:bg-surface-container active:scale-[0.98] transition-all" title="Export CSV / JSON">
+          <span class="material-symbols-outlined text-base text-secondary" data-icon="file_download">file_download</span>
+          <span>Export</span>
+        </button>
+      </section>
+
+      <!-- Filter & Search Section (Mobile Optimized) -->
+      <section class="space-y-2">
+        <!-- Search Input -->
+        <div class="relative">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="search">search</span>
+          <input
+            type="text"
+            placeholder="Search envelope #, memo, fund..."
+            class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-9 pr-8 py-2.5 text-xs text-on-surface placeholder:text-outline focus:ring-1 focus:ring-primary focus:border-primary"
+            value="Envelope #C-012"
+          >
+          <button class="absolute right-2.5 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface" aria-label="Clear Search">
+            <span class="material-symbols-outlined text-base" data-icon="cancel">cancel</span>
+          </button>
+        </div>
+
+        <!-- Horizontal Frequency Filter Tabs -->
+        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1">
+          <button class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-primary text-white">
+            All (148)
+          </button>
+          <button class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container">
+            Weekly (68)
+          </button>
+          <button class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container">
+            Monthly (42)
+          </button>
+          <button class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container">
+            Midweek (24)
+          </button>
+          <button class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium bg-surface-container-lowest border border-outline-variant text-on-surface-variant hover:bg-surface-container">
+            One-off (14)
+          </button>
+        </div>
+
+        <!-- Filter Sub-line with Cycle Select & Result Counter -->
+        <div class="flex items-center justify-between text-xs text-on-surface-variant px-1 pt-1">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm text-secondary" data-icon="event">event</span>
+            <select class="bg-transparent border-0 py-0 pl-1 pr-6 text-xs font-medium text-on-surface underline decoration-dotted cursor-pointer focus:ring-0">
+              <option>Full 52-Wk Campaign</option>
+              <option>Q1 Holy Week Horizon</option>
+              <option>Q2 Easter Season</option>
+              <option>Harvest &amp; Patronal Feast</option>
+            </select>
+          </div>
+          <span class="font-mono text-[11px] text-outline">Showing 5 of 148</span>
+        </div>
+      </section>
+
+      <!-- Stacked Commitment Cards List (No Horizontal Scrolling) -->
+      <section class="space-y-3 pt-1">
+
+        <!-- Stacked Card 1: Standard Active Weekly Pledge -->
+        <article class="bg-surface-container-lowest border border-outline-variant/70 rounded-xl p-3.5 shadow-sm space-y-2.5">
+          <!-- Card Header & Metadata -->
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-1.5">
+              <span class="font-mono text-xs font-bold text-primary">#0148</span>
+              <span class="text-[11px] text-outline">• Today, 10:42 AM</span>
+            </div>
+            <span class="font-mono text-[11px] font-semibold bg-emerald-900/10 text-emerald-900 px-2 py-0.5 rounded">
+              Weekly (52×)
+            </span>
+          </div>
+
+          <!-- Anonymous Identifier & Allocation Memo -->
+          <div>
+            <div class="flex items-center gap-1.5 text-xs font-medium text-on-surface">
+              <span class="material-symbols-outlined text-secondary text-sm" data-icon="mail">mail</span>
+              <span>Envelope #A-204</span>
+              <span class="text-[10px] text-outline font-normal">(Family Altar Tithe)</span>
+            </div>
+            <p class="text-xs text-on-surface-variant mt-0.5 pl-5">
+              Sanctuary Renovation Tile &amp; Mosaic Fund
+            </p>
+          </div>
+
+          <!-- Calculations & Projected Total -->
+          <div class="bg-surface-container-low rounded-lg p-2.5 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-outline">Pledge Rate</div>
+              <div class="font-mono text-xs font-medium text-on-surface">₱ 500.00 <span class="text-[10px] text-outline font-normal">/ week</span></div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] uppercase tracking-wider text-secondary font-semibold">Annual Projected</div>
+              <div class="font-mono text-sm font-bold text-primary">₱ 26,000.00</div>
+            </div>
+          </div>
+
+          <!-- Reachable Actions Row -->
+          <div class="flex items-center justify-end gap-2 pt-1 border-t border-surface-container">
+            <button class="touch-target px-3 py-1.5 text-xs font-medium text-primary hover:bg-surface-container rounded-lg flex items-center gap-1 active:scale-95 transition-all">
+              <span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+              <span>Edit</span>
+            </button>
+            <button class="touch-target px-3 py-1.5 text-xs font-medium text-error hover:bg-error-container/40 rounded-lg flex items-center gap-1 active:scale-95 transition-all">
+              <span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+              <span>Delete</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Stacked Card 2: One-off Memorial Intent -->
+        <article class="bg-surface-container-lowest border border-outline-variant/70 rounded-xl p-3.5 shadow-sm space-y-2.5">
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-1.5">
+              <span class="font-mono text-xs font-bold text-primary">#0147</span>
+              <span class="text-[11px] text-outline">• Today, 09:15 AM</span>
+            </div>
+            <span class="font-mono text-[11px] font-semibold bg-amber-900/10 text-amber-900 px-2 py-0.5 rounded">
+              One-off (1×)
+            </span>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-1.5 text-xs font-medium text-on-surface">
+              <span class="material-symbols-outlined text-secondary text-sm" data-icon="volunteer_activism">volunteer_activism</span>
+              <span>Anonymous Tithe Box — Main Portico</span>
+            </div>
+            <p class="text-xs text-on-surface-variant mt-0.5 pl-5">
+              Youth Ministry curriculum &amp; sound equipment
+            </p>
+          </div>
+
+          <div class="bg-surface-container-low rounded-lg p-2.5 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-outline">Single Gift</div>
+              <div class="font-mono text-xs font-medium text-on-surface">₱ 15,000.00 <span class="text-[10px] text-outline font-normal">once</span></div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] uppercase tracking-wider text-secondary font-semibold">Total Projected</div>
+              <div class="font-mono text-sm font-bold text-primary">₱ 15,000.00</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end gap-2 pt-1 border-t border-surface-container">
+            <button class="touch-target px-3 py-1.5 text-xs font-medium text-primary hover:bg-surface-container rounded-lg flex items-center gap-1 active:scale-95 transition-all">
+              <span class="material-symbols-outlined text-sm" data-icon="edit">edit</span>
+              <span>Edit</span>
+            </button>
+            <button class="touch-target px-3 py-1.5 text-xs font-medium text-error hover:bg-error-container/40 rounded-lg flex items-center gap-1 active:scale-95 transition-all">
+              <span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+              <span>Delete</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Stacked Card 3: Inline Editing Active State Simulation -->
+        <article class="bg-surface-container-lowest border-2 border-secondary/60 rounded-xl p-3.5 shadow-md space-y-2.5 relative">
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-1.5">
+              <span class="font-mono text-xs font-bold text-primary">#0146</span>
+              <span class="text-[10px] font-semibold bg-secondary/15 text-secondary px-1.5 py-0.5 rounded">
+                Editing In-Progress
+              </span>
+            </div>
+            <span class="font-mono text-[11px] font-semibold bg-blue-900/10 text-blue-900 px-2 py-0.5 rounded">
+              Monthly (12×)
+            </span>
+          </div>
+
+          <!-- Inline Edit Input Fields -->
+          <div class="space-y-2">
+            <div>
+              <label class="text-[10px] uppercase tracking-wider text-outline font-semibold">Anonymous Reference / Memo</label>
+              <input type="text" value="Envelope #D-102 (Parish Altar Linens)" class="w-full text-xs font-medium bg-surface-container-low border border-outline-variant rounded p-1.5 mt-0.5 focus:ring-1 focus:ring-primary">
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-[10px] uppercase tracking-wider text-outline font-semibold">Monthly Amount (₱)</label>
+                <input type="number" value="2000" class="w-full font-mono text-xs font-medium bg-surface-container-low border border-outline-variant rounded p-1.5 mt-0.5 focus:ring-1 focus:ring-primary">
+              </div>
+              <div>
+                <label class="text-[10px] uppercase tracking-wider text-outline font-semibold">Projected (12×)</label>
+                <div class="font-mono text-xs font-bold text-primary p-1.5 bg-surface-container rounded mt-0.5">₱ 24,000.00</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Inline Save & Cancel Buttons -->
+          <div class="flex items-center justify-end gap-2 pt-1 border-t border-surface-container">
+            <button class="touch-target px-3 py-1.5 text-xs font-medium text-on-surface-variant hover:bg-surface-container rounded-lg active:scale-95 transition-all">
+              Cancel
+            </button>
+            <button class="touch-target px-3 py-1.5 text-xs font-medium bg-primary text-white hover:bg-primary-dark rounded-lg flex items-center gap-1 active:scale-95 transition-all shadow-sm">
+              <span class="material-symbols-outlined text-sm" data-icon="check">check</span>
+              <span>Save Changes</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- Stacked Card 4: Target of Deletion Dialog (Highlighted State) -->
+        <article class="bg-surface-container-lowest border border-error/50 rounded-xl p-3.5 shadow-sm space-y-2.5 bg-error-container/10">
+          <div class="flex items-start justify-between">
+            <div class="flex items-center gap-1.5">
+              <span class="font-mono text-xs font-bold text-error">#0145</span>
+              <span class="text-[11px] text-outline">• Yesterday, 02:18 PM</span>
+            </div>
+            <span class="font-mono text-[11px] font-semibold bg-orange-900/10 text-orange-900 px-2 py-0.5 rounded">
+              Midweek (40×)
+            </span>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-1.5 text-xs font-medium text-on-surface">
+              <span class="material-symbols-outlined text-secondary text-sm" data-icon="mail">mail</span>
+              <span>Envelope #C-012</span>
+              <span class="text-[10px] text-outline font-normal">(Midweek Fellowship)</span>
+            </div>
+            <p class="text-xs text-on-surface-variant mt-0.5 pl-5">
+              Faith Formation instructional materials
+            </p>
+          </div>
+
+          <div class="bg-surface-container-low rounded-lg p-2.5 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] uppercase tracking-wider text-outline">Midweek Rate</div>
+              <div class="font-mono text-xs font-medium text-on-surface">₱ 350.00 <span class="text-[10px] text-outline font-normal">× 40 dates</span></div>
+            </div>
+            <div class="text-right">
+              <div class="text-[10px] uppercase tracking-wider text-secondary font-semibold">Total Projected</div>
+              <div class="font-mono text-sm font-bold text-primary">₱ 14,000.00</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1 border-t border-surface-container">
+            <span class="text-[11px] text-error font-medium flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm" data-icon="warning">warning</span>
+              Pending Confirmation
+            </span>
+            <div class="flex items-center gap-2">
+              <button class="touch-target px-3 py-1.5 text-xs font-medium text-primary hover:bg-surface-container rounded-lg">
+                Edit
+              </button>
+              <button class="touch-target px-3 py-1.5 text-xs font-semibold bg-error text-white hover:bg-red-800 rounded-lg flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+                <span>Delete</span>
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Empty / Filter State Diagnostic Section -->
+      <section class="bg-surface-container-lowest border border-dashed border-outline-variant rounded-xl p-4 text-center space-y-2 mt-4">
+        <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center mx-auto text-outline">
+          <span class="material-symbols-outlined text-xl" data-icon="filter_alt_off">filter_alt_off</span>
+        </div>
+        <h3 class="font-headline text-sm font-semibold text-on-surface">No commitments match filtered criteria</h3>
+        <p class="text-xs text-on-surface-variant max-w-xs mx-auto">
+          No envelope records found under "Midweek Prayer" for date range specified.
+        </p>
+        <button class="touch-target text-xs font-medium text-secondary hover:underline underline-offset-2">
+          Reset all filters to Full Campaign
+        </button>
+      </section>
+
+      <!-- Sovereign Ledger Footer & Checksum -->
+      <footer class="pt-4 pb-2 text-center space-y-1.5 border-t border-surface-dim">
+        <p class="font-mono text-[10px] text-outline">
+          Ledger CRC32: <strong class="text-on-surface">CRC32-7A99B</strong> • Local IndexedDB
+        </p>
+        <p class="text-[10px] text-on-surface-variant">
+          © 2025 IraWorks Commitment Counter • Pastoral Sovereignty
+        </p>
+      </footer>
+
+    </main>
+
+    <!-- FOCUSED KEYBOARD-SAFE DELETE CONFIRMATION DIALOG (BOTTOM SHEET MODAL SIMULATION) -->
+    <div class="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/60 backdrop-blur-[1px] p-0 sm:p-4 animate-fade-in" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="w-full max-w-[420px] bg-surface-container-lowest rounded-t-2xl sm:rounded-2xl border-t sm:border border-outline-variant p-5 shadow-2xl space-y-4">
+
+        <!-- Header with Warning Icon -->
+        <div class="flex items-start gap-3">
+          <div class="w-10 h-10 rounded-full bg-error-container/60 flex items-center justify-center flex-shrink-0 text-error">
+            <span class="material-symbols-outlined text-2xl" data-icon="delete_forever">delete_forever</span>
+          </div>
+          <div class="flex-1">
+            <h2 id="modal-title" class="font-headline text-lg font-bold text-on-surface leading-tight">
+              Remove Commitment Record #0145?
+            </h2>
+            <p class="font-mono text-xs text-secondary mt-0.5 font-medium">
+              Envelope Ref #C-012 (Midweek Fellowship)
+            </p>
+          </div>
+        </div>
+
+        <!-- Impact Description -->
+        <div class="bg-surface-container-low rounded-lg p-3 text-xs text-on-surface-variant space-y-2 border border-surface-container-high">
+          <p>
+            This action will purge this record (<strong>₱350.00 × 40 occurrences = ₱14,000.00</strong>) from this device's memory.
+          </p>
+          <div class="p-2 bg-surface-container rounded border-l-2 border-primary text-[11px] text-primary">
+            <strong>Recalibration notice:</strong> Total campaign projections will immediately decrease to <strong>₱ 1,828,500.00</strong> (147 pledges).
+          </div>
+        </div>
+
+        <!-- Sovereignty Safeguard Note -->
+        <p class="text-[11px] text-outline flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
+          Isolated to browser local storage. No network request made.
+        </p>
+
+        <!-- Actions Row (Reachable, Keyboard Accessible) -->
+        <div class="space-y-2 pt-1">
+          <button class="touch-target w-full bg-error text-white font-semibold text-sm rounded-lg py-3 flex items-center justify-center gap-2 shadow-sm hover:bg-red-800 active:scale-[0.98] transition-all">
+            <span class="material-symbols-outlined text-lg" data-icon="delete">delete</span>
+            <span>Confirm Deletion</span>
+          </button>
+          <button class="touch-target w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-medium text-sm rounded-lg py-2.5 hover:bg-surface-container active:scale-[0.98] transition-all">
+            Keep Record (Cancel)
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom Persistent Navigation Bar (IraWorks Mobile Standard) -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-[420px] mx-auto bg-surface/95 backdrop-blur border-t border-outline-variant z-40 flex items-center justify-around py-1.5 px-2">
+      <!-- Nav Item 1: Entry -->
+      <a href="#" class="touch-target flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-2 py-1">
+        <span class="material-symbols-outlined text-xl" data-icon="edit_note">edit_note</span>
+        <span class="text-[10px] font-medium tracking-tight mt-0.5">Entry</span>
+      </a>
+
+      <!-- Nav Item 2: Ledger (Active) -->
+      <a href="#" class="touch-target flex flex-col items-center justify-center text-primary bg-primary/10 rounded-lg px-3 py-1 font-semibold">
+        <span class="material-symbols-outlined text-xl" data-icon="receipt_long">receipt_long</span>
+        <span class="text-[10px] tracking-tight mt-0.5">Ledger</span>
+      </a>
+
+      <!-- Nav Item 3: Summary -->
+      <a href="#" class="touch-target flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-2 py-1">
+        <span class="material-symbols-outlined text-xl" data-icon="analytics">analytics</span>
+        <span class="text-[10px] font-medium tracking-tight mt-0.5">Summary</span>
+      </a>
+
+      <!-- Nav Item 4: Export -->
+      <a href="#" class="touch-target flex flex-col items-center justify-center text-on-surface-variant hover:text-primary px-2 py-1">
+        <span class="material-symbols-outlined text-xl" data-icon="download_for_offline">download_for_offline</span>
+        <span class="text-[10px] font-medium tracking-tight mt-0.5">Export</span>
+      </a>
+    </nav>
+
+  </div>
+
+</body>
+</html>

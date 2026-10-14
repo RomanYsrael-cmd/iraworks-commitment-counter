@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Live Congregation Display - Sanctuary Projector View | IraWorks</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Newsreader (Editorial Serif), Plus Jakarta Sans, JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#8f4e00",
+            "surface-container-high": "#eee7dd",
+            "primary-fixed": "#c9ead7",
+            "primary": "#042217",
+            "on-tertiary-fixed": "#002116",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "surface-container-highest": "#e9e2d7",
+            "on-error-container": "#93000a",
+            "surface-bright": "#fff8f0",
+            "error": "#ba1a1a",
+            "surface-container-low": "#faf3e8",
+            "on-primary-fixed": "#022015",
+            "secondary-fixed": "#ffdcc2",
+            "on-primary-fixed-variant": "#304d3f",
+            "on-secondary-fixed-variant": "#6d3a00",
+            "on-primary-container": "#82a291",
+            "on-primary": "#ffffff",
+            "secondary-container": "#fea047",
+            "on-secondary": "#ffffff",
+            "on-background": "#1e1b15",
+            "surface-variant": "#e9e2d7",
+            "on-tertiary-container": "#7fa292",
+            "secondary-fixed-dim": "#ffb77a",
+            "primary-container": "#1b382b",
+            "outline": "#727974",
+            "on-surface": "#1e1b15",
+            "tertiary-fixed-dim": "#abcebe",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed-variant": "#2d4d40",
+            "background": "#fff8f0",
+            "primary-fixed-dim": "#adcebc",
+            "on-tertiary": "#ffffff",
+            "on-surface-variant": "#424844",
+            "surface-dim": "#e0d9cf",
+            "on-secondary-fixed": "#2e1500",
+            "surface-container": "#f4ede3",
+            "inverse-surface": "#333029",
+            "inverse-primary": "#adcebc",
+            "tertiary-fixed": "#c6ebd9",
+            "tertiary": "#002218",
+            "inverse-on-surface": "#f7f0e5",
+            "tertiary-container": "#17382c",
+            "surface-tint": "#476556",
+            "surface": "#fff8f0",
+            "outline-variant": "#c2c8c2",
+            "on-secondary-container": "#6d3a00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-2xl": "4rem",
+            "space-md": "1rem",
+            "margin": "2rem",
+            "gutter-lg": "2rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "gutter-sm": "1rem",
+            "space-lg": "1.5rem",
+            "margin-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "gutter": "1.5rem"
+          },
+          "fontFamily": {
+            "title-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-numeric-sm": ["JetBrains Mono"],
+            "label-numeric-md": ["JetBrains Mono"],
+            "display-lg-mobile": ["Newsreader"],
+            "label-caps": ["Plus Jakarta Sans"],
+            "headline-sm": ["Newsreader"],
+            "display-lg": ["Newsreader"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-numeric-lg": ["JetBrains Mono"],
+            "headline-md": ["Newsreader"],
+            "headline-lg-mobile": ["Newsreader"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Newsreader"]
+          },
+          "fontSize": {
+            "title-md": ["1.125rem", { "lineHeight": "1.625rem", "fontWeight": "600" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "label-numeric-sm": ["0.8125rem", { "lineHeight": "1.125rem", "fontWeight": "400" }],
+            "label-numeric-md": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "display-lg-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-caps": ["0.6875rem", { "lineHeight": "1rem", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }],
+            "display-lg": ["3rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.5rem", "fontWeight": "400" }],
+            "label-numeric-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-md": ["1.625rem", { "lineHeight": "2.125rem", "fontWeight": "500" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-lg": ["1.0625rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+            "headline-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.015em", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Custom Sanctuary Projection Styling */
+    :root {
+      --sanctuary-bg: #0c1f17;
+      --sanctuary-card-bg: #132a20;
+      --sanctuary-card-border: #234335;
+      --sanctuary-gold: #f5b942;
+      --sanctuary-gold-muted: #e8a838;
+      --sanctuary-ivory: #fcf8f0;
+      --sanctuary-ivory-dim: #d5cfc4;
+      --sanctuary-emerald: #34d399;
+    }
+
+    body {
+      background-color: var(--sanctuary-bg);
+      color: var(--sanctuary-ivory);
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Pulsing Live Sync Dot */
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.92); }
+    }
+
+    .pulse-live {
+      animation: subtlePulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .pulse-live {
+        animation: none;
+      }
+    }
+
+    /* Tactile Inset Micro-Line on Sanctuary Card Tops */
+    .sanctuary-card {
+      background-color: var(--sanctuary-card-bg);
+      border: 1px solid var(--sanctuary-card-border);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 4px 20px rgba(4, 34, 23, 0.5);
+    }
+
+    /* Projection View Hero Font Clamp */
+    .hero-metric-text {
+      font-size: clamp(3.75rem, 6.5vw, 6.75rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .campaign-title-text {
+      font-size: clamp(1.75rem, 2.7vw, 2.85rem);
+      line-height: 1.15;
+    }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col justify-between p-6 md:p-8 lg:p-10 select-none antialiased">
+<!-- ================= TOP STATUS BAR ================= -->
+<header class="w-full flex items-center justify-between border-b border-[#234335]/70 pb-4">
+<!-- Brand & Projection Mode Indicator -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-[#e8a838] text-xl" data-icon="church">church</span>
+<span class="font-headline-sm text-headline-sm font-semibold tracking-tight text-[#fcf8f0]">
+          IraWorks Commitment Counter
+        </span>
+</div>
+<span class="text-[#234335] text-lg font-light">|</span>
+<span class="font-label-caps text-label-caps text-[#d5cfc4]/80 tracking-widest uppercase">
+        Sanctuary Display
+      </span>
+</div>
+<!-- Live Local Sync Status -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#234335] bg-[#132a20]/80">
+<span class="w-2.5 h-2.5 rounded-full bg-[#34d399] pulse-live" id="syncStatusDot"></span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#fcf8f0]" id="syncStatusText">
+        Live · Local Sync Active
+      </span>
+<span class="text-[#234335] px-1 text-xs">/</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#d5cfc4]/70">
+        100% On-Premise
+      </span>
+</div>
+<!-- Right Utility: Current Liturgical Time & Fullscreen Toggle -->
+<div class="flex items-center gap-5">
+<div class="text-right">
+<div class="font-label-numeric-md text-label-numeric-md font-semibold text-[#fcf8f0] tracking-wide" id="liveClock">
+          10:45:18 AM
+        </div>
+<div class="font-label-caps text-label-caps text-[#d5cfc4]/80" id="liveDate">
+          Sunday, Cycle 2025
+        </div>
+</div>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#234335] hover:border-[#e8a838]/60 bg-[#132a20] hover:bg-[#1a382b] text-[#fcf8f0] transition-colors duration-150 active:scale-[0.98]" id="fullscreenBtn" onclick="toggleFullScreen()">
+<span class="material-symbols-outlined text-sm" data-icon="fullscreen">fullscreen</span>
+<span class="font-label-caps text-label-caps tracking-wider">⛶ Enter Fullscreen</span>
+</button>
+</div>
+</header>
+<!-- ================= MAIN FOCAL HERO CANVAS ================= -->
+<main class="w-full max-w-[1720px] mx-auto my-auto flex flex-col items-center justify-center text-center px-4">
+<!-- Campaign Hierarchy & Badges -->
+<div class="mb-3">
+<span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#f5b942]/30 bg-[#f5b942]/10 text-[#f5b942] font-label-caps text-label-caps tracking-widest font-bold">
+<span class="material-symbols-outlined text-xs" data-icon="verified">verified</span>
+        ACTIVE CAMPAIGN CONGREGATIONAL VIEW
+      </span>
+</div>
+<h1 class="campaign-title-text font-display-lg text-[#fcf8f0] font-normal tracking-tight max-w-5xl mx-auto mb-2">
+      San Isidro Parish Sanctuary Renewal &amp; Mission 2025
+    </h1>
+<p class="font-body-md text-body-md text-[#d5cfc4] tracking-wide mb-6 flex items-center justify-center gap-2 font-medium">
+<span class="material-symbols-outlined text-sm text-[#e8a838]" data-icon="calendar_today">calendar_today</span>
+      52-Week Sacred Horizon · Cycle 2025
+    </p>
+<!-- The Primary Hero Metric (Total Projected Commitments) -->
+<div class="w-full max-w-4xl sanctuary-card rounded-xl p-8 mb-4 border border-[#234335] bg-gradient-to-b from-[#132a20] to-[#0f241b]">
+<div class="font-label-caps text-label-caps text-[#e8a838] tracking-[0.2em] uppercase font-bold mb-1">
+        TOTAL PROJECTED COMMITMENTS
+      </div>
+<div class="hero-metric-text font-label-numeric-lg font-semibold text-[#fcf8f0] tabular-nums my-1">
+        ₱ 1,842,500.00
+      </div>
+<!-- Humble Liturgical & Fiduciary Disclaimer -->
+<p class="font-body-sm text-body-sm text-[#d5cfc4]/80 max-w-2xl mx-auto italic mt-2">
+        Intentional faith pledges &amp; recurring envelopes modeled for parish stewardship. Pledges represent communal commitments, not cleared bank funds or cash-on-hand.
+      </p>
+</div>
+<!-- Stewardship Overall Goal & Household Participation Pill -->
+<div class="flex items-center justify-center gap-4 mb-8">
+<div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-[#234335] bg-[#132a20]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#34d399] text-base" data-icon="mail">mail</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#fcf8f0] font-semibold">
+            148 Anonymized Envelopes &amp; Household Pledges Recorded
+          </span>
+</div>
+<span class="text-[#234335] text-xs">/</span>
+<div class="flex items-center gap-1.5">
+<span class="font-label-caps text-label-caps text-[#e8a838] font-bold">
+            73.7% OF ₱ 2.50M
+          </span>
+<span class="font-body-sm text-body-sm text-[#d5cfc4]/80">
+            Parish Renewal Baseline
+          </span>
+</div>
+</div>
+</div>
+<!-- Metrics Row / Sub-Totals in a Balanced 4-Column Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 text-left">
+<!-- Sub-total Card 1: Weekly Gatherings -->
+<div class="sanctuary-card rounded-lg p-5 border-l-4 border-l-[#f5b942] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-caps text-label-caps text-[#d5cfc4]/70 tracking-wider uppercase">
+              Weekly Gatherings
+            </span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#f5b942] font-semibold">
+              48.5%
+            </span>
+</div>
+<div class="font-body-sm text-body-sm text-[#d5cfc4]/80 mb-2">
+            52 Cycles Scheduled
+          </div>
+<div class="font-label-numeric-lg text-headline-sm font-semibold text-[#fcf8f0] tabular-nums">
+            ₱ 894,400.00
+          </div>
+</div>
+<div class="pt-3 border-t border-[#234335]/60 mt-3 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-[#d5cfc4]/70">Pledges Recorded</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#fcf8f0] font-medium">68 Pledges</span>
+</div>
+</div>
+<!-- Sub-total Card 2: Monthly Dedications -->
+<div class="sanctuary-card rounded-lg p-5 border-l-4 border-l-[#34d399] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-caps text-label-caps text-[#d5cfc4]/70 tracking-wider uppercase">
+              Monthly Dedications
+            </span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#34d399] font-semibold">
+              25.4%
+            </span>
+</div>
+<div class="font-body-sm text-body-sm text-[#d5cfc4]/80 mb-2">
+            12 Cycles Scheduled
+          </div>
+<div class="font-label-numeric-lg text-headline-sm font-semibold text-[#fcf8f0] tabular-nums">
+            ₱ 468,000.00
+          </div>
+</div>
+<div class="pt-3 border-t border-[#234335]/60 mt-3 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-[#d5cfc4]/70">Pledges Recorded</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#fcf8f0] font-medium">42 Pledges</span>
+</div>
+</div>
+<!-- Sub-total Card 3: Midweek Gatherings -->
+<div class="sanctuary-card rounded-lg p-5 border-l-4 border-l-[#82a291] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-caps text-label-caps text-[#d5cfc4]/70 tracking-wider uppercase">
+              Midweek Gatherings
+            </span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#82a291] font-semibold">
+              8.7%
+            </span>
+</div>
+<div class="font-body-sm text-body-sm text-[#d5cfc4]/80 mb-2">
+            40 Gatherings Scheduled
+          </div>
+<div class="font-label-numeric-lg text-headline-sm font-semibold text-[#fcf8f0] tabular-nums">
+            ₱ 160,100.00
+          </div>
+</div>
+<div class="pt-3 border-t border-[#234335]/60 mt-3 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-[#d5cfc4]/70">Pledges Recorded</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#fcf8f0] font-medium">24 Pledges</span>
+</div>
+</div>
+<!-- Sub-total Card 4: One-off Memorial Gifts -->
+<div class="sanctuary-card rounded-lg p-5 border-l-4 border-l-[#c9ead7] flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-1.5">
+<span class="font-label-caps text-label-caps text-[#d5cfc4]/70 tracking-wider uppercase">
+              One-off Memorial Gifts
+            </span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#c9ead7] font-semibold">
+              17.4%
+            </span>
+</div>
+<div class="font-body-sm text-body-sm text-[#d5cfc4]/80 mb-2">
+            Sanctuary Bequests &amp; Honor
+          </div>
+<div class="font-label-numeric-lg text-headline-sm font-semibold text-[#fcf8f0] tabular-nums">
+            ₱ 320,000.00
+          </div>
+</div>
+<div class="pt-3 border-t border-[#234335]/60 mt-3 flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-[#d5cfc4]/70">Gifts Recorded</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#fcf8f0] font-medium">14 Pledges</span>
+</div>
+</div>
+</div>
+</main>
+<!-- ================= DISCRETE LITURGICAL FOOTNOTE / AUDIT FOOTER ================= -->
+<footer class="w-full flex items-center justify-between border-t border-[#234335]/70 pt-4">
+<!-- Local Sovereign Badge -->
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#34d399] text-sm" data-icon="security">security</span>
+<span class="font-label-caps text-label-caps text-[#d5cfc4]/70 tracking-wider uppercase">
+        IraWorks Commitment Counter · Browser-local sovereign ledger · Cryptographic verify:
+      </span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#f5b942]/90">
+        0x9F42..B71E
+      </span>
+</div>
+<!-- Reverent Discretion Notice -->
+<div class="flex items-center gap-4">
+<span class="font-body-sm text-body-sm text-[#d5cfc4]/60">
+        All names protected under parish privacy stewardship canon
+      </span>
+<span class="w-1.5 h-1.5 rounded-full bg-[#234335]"></span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-[#d5cfc4]/60">
+        Fiducially Sealed: 2025-Q1
+      </span>
+</div>
+</footer>
+<!-- Script for Realtime Clock, Subtle State Simulator & Fullscreen Mode -->
+<script>
+    // Live Clock & Date
+    function updateSanctuaryClock() {
+      const now = new Date();
+      const clockElem = document.getElementById('liveClock');
+      const dateElem = document.getElementById('liveDate');
+
+      if (clockElem) {
+        clockElem.textContent = now.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true
+        });
+      }
+
+      if (dateElem) {
+        dateElem.textContent = now.toLocaleDateString('en-US', {
+          weekday: 'long',
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        });
+      }
+    }
+
+    setInterval(updateSanctuaryClock, 1000);
+    updateSanctuaryClock();
+
+    // Fullscreen Toggle
+    function toggleFullScreen() {
+      const btn = document.getElementById('fullscreenBtn');
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().then(() => {
+          if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-sm" data-icon="fullscreen_exit">fullscreen_exit</span><span class="font-label-caps text-label-caps tracking-wider">Exit Fullscreen</span>';
+        }).catch(err => {
+          console.warn(`Fullscreen error: ${err.message}`);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().then(() => {
+            if (btn) btn.innerHTML = '<span class="material-symbols-outlined text-sm" data-icon="fullscreen">fullscreen</span><span class="font-label-caps text-label-caps tracking-wider">⛶ Enter Fullscreen</span>';
+          });
+        }
+      }
+    }
+
+    // Gentle Sync Simulation (stays live 99% of time, provides quiet realism)
+    let syncCycle = 0;
+    setInterval(() => {
+      syncCycle++;
+      const dot = document.getElementById('syncStatusDot');
+      const text = document.getElementById('syncStatusText');
+      if (!dot || !text) return;
+
+      if (syncCycle % 45 === 0) {
+        // Brief simulated check (2 seconds)
+        dot.classList.remove('bg-[#34d399]');
+        dot.classList.add('bg-[#e8a838]');
+        text.textContent = 'Verifying Local Hash...';
+        setTimeout(() => {
+          dot.classList.remove('bg-[#e8a838]');
+          dot.classList.add('bg-[#34d399]');
+          text.textContent = 'Live · Local Sync Active';
+        }, 1800);
+      }
+    }, 1000);
+  </script>
+</body></html>

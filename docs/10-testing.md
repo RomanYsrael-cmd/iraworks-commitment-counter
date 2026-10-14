@@ -1,5 +1,5 @@
 # 10 — Test Strategy and Acceptance Criteria
-**Status:** Approved V1 baseline (2026-10-14); implementation pending.
+**Status:** Approved V1 baseline (2026-10-14); automated unit, repository, workbook, and Chromium end-to-end coverage is implemented. See [implementation report](implementation-report.md) for the final commands and limitations.
 
 ## Calculation tests — must be automated
 | Test | Expected |

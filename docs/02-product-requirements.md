@@ -1,5 +1,5 @@
 # 02 — Product Requirements
-**Status:** Approved V1 baseline (2026-10-14); implementation pending.
+**Status:** Approved V1 baseline (2026-10-14); implemented on `feat/stitch-commitment-counter-v1`, not yet merged or released.
 
 ## Required capabilities
 | ID | Feature | Acceptance |

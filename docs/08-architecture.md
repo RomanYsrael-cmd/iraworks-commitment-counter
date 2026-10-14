@@ -1,8 +1,8 @@
 # 08 — Lightweight Technical Architecture
-**Status:** Approved V1 baseline (2026-10-14); implementation pending.
+**Status:** Approved V1 baseline (2026-10-14); implemented on `feat/stitch-commitment-counter-v1`. See [implementation report](implementation-report.md) for actual architecture and limitations.
 
 ## Proposed stack
-React + Vite + TypeScript SPA. IndexedDB for device-local persistence. Pure TypeScript calculations/validation. BroadcastChannel for same-browser live notifications. Browser-side XLSX creation. Optional service worker for cached app assets (to be validated by browser support). Static hosting on Vercel **under an eligible usage plan**, or Cloudflare Pages; production host not yet selected.
+React + Vite + TypeScript SPA. IndexedDB for device-local persistence. Pure TypeScript calculations/validation. BroadcastChannel revision invalidations with IndexedDB re-read and polling fallback. Browser-side XLSX creation. No service worker is included; a fresh load requires the hosted static assets. Production host not selected.
 
 ## Modules
 - ui/: campaign setup, dashboard, pledge form, settings, projector display.

@@ -1,5 +1,5 @@
 # 07 — Data Model and Persistence
-**Status:** Approved V1 baseline (2026-10-14); implementation pending.
+**Status:** Approved V1 baseline (2026-10-14); IndexedDB data model implemented on `feat/stitch-commitment-counter-v1`, not yet merged or released.
 
 ## Campaign
 - id: UUID

@@ -1,5 +1,5 @@
 # 12 — Roadmap and Decision Log
-**Status:** Approved V1 baseline (2026-10-14); application not yet implemented or released.
+**Status:** Approved V1 baseline (2026-10-14); V1 is implemented on `feat/stitch-commitment-counter-v1`, not merged or released.
 
 ## Owner approval
 On **2026-10-14 (Asia/Manila)** the product owner explicitly approved the draft V1 documentation in PR #1 and authorized moving into Google Stitch UI design and complete V1 implementation. Scope and calculation decisions are approved but remain **V1** and may be revised in later reviewed changes. Approval does not imply QA completion, production launch, licensing, or paid service commitments.
@@ -7,14 +7,14 @@ On **2026-10-14 (Asia/Manila)** the product owner explicitly approved the draft 
 ## Milestone A — documentation (approved)
 V1 PRD, formulas, workflows, local storage, same-device live display, Excel export, JSON backup, testing and architecture are the approved implementation baseline.
 
-## Milestone B — Stitch design (next)
-Use actual Google Stitch project/screen generation with the developer's local STITCH_API_KEY; create/edit polished designs for campaign setup, operator dashboard/entry, report/backup/settings, and projector view. Stitch must generate any design.md artifact; do **not** invent or hand-author design.md as a substitute for using Stitch. Preserve real Stitch project IDs, screen references and assets when available. Review responsive and accessibility behavior.
+## Milestone B — Stitch design (generated)
+Actual Google Stitch project/screen generation is complete for the V1 workflow. Project, screen IDs, generated PNGs, generated HTML source, and the actual Stitch-returned design system and `design.md` are recorded in `docs/stitch/`. One screen returned DESKTOP for an initial mobile history prompt; a verified MOBILE history screen was generated and retained as well.
 
-## Milestone C — complete V1 app
-Implement React/Vite/TypeScript, calculation tests, IndexedDB, campaigns, entries, read-only same-browser projector sync, local XLSX generation, versioned JSON backup/restore, keyboard/mobile access, offline-friendly operation and clear error states.
+## Milestone C — complete V1 app (implemented)
+React/Vite/TypeScript, recurrence calculations, IndexedDB persistence, campaign and entry management, same-device projector updates, XLSX reporting, versioned JSON backup/restore, keyboard/mobile layouts, and error states are implemented. Static assets are not cached with a service worker, so a fresh load requires network access to the host.
 
-## Milestone D — QA and launch readiness
-Automated and manual tests, projector rehearsal, backups, browser compatibility, accessibility review, license selection, approved commercial hosting plan and deployment. No production deploy until hosting/domain approvals.
+## Milestone D — QA and launch readiness (partial)
+Automated local QA and Chromium browser accessibility checks are included with the implementation. Manual projector rehearsal, broader browser validation, license selection, hosting plan, domain, and production deployment remain release decisions. No production deploy is authorized by this implementation.
 
 ## Future iterations (not V1 promises)
 **V1.1:** Secure authenticated cloud backup/cross-device presentation/collaboration. **V2:** Optional collected payments and fulfillment, visibly separate from pledge projections.

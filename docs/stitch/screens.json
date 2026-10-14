@@ -1,0 +1,117 @@
+{
+  "project": {
+    "title": "IraWorks Commitment Counter",
+    "id": "656374960065096271",
+    "canvasUrl": "https://stitch.google.com/projects/656374960065096271"
+  },
+  "designSystem": {
+    "id": "bdead35abb514a1c973a4e781fcafc5f",
+    "name": "Pastoral Stewardship",
+    "source": "Google Stitch design-system resource",
+    "json": "docs/stitch/generated/stitch-design-system.json",
+    "designMd": "docs/stitch/generated/design.md"
+  },
+  "screens": [
+    {
+      "title": "Welcome & New Campaign Setup",
+      "screenId": "199e3559594241dbbaba2c6d1d5664fd",
+      "device": "DESKTOP",
+      "width": "2560",
+      "height": "3678",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=199e3559594241dbbaba2c6d1d5664fd",
+      "screenshot": "docs/stitch/screenshots/welcome-new-campaign.png",
+      "html": "docs/stitch/html/welcome-new-campaign.html"
+    },
+    {
+      "title": "Operator Dashboard & Quick Commitment Entry",
+      "screenId": "7a4921ae872743bc8cadaed91dc6c9f5",
+      "device": "DESKTOP",
+      "width": "2560",
+      "height": "3732",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=7a4921ae872743bc8cadaed91dc6c9f5",
+      "screenshot": "docs/stitch/screenshots/operator-dashboard-desktop.png",
+      "html": "docs/stitch/html/operator-dashboard-desktop.html"
+    },
+    {
+      "title": "Commitment History & Ledger Management",
+      "screenId": "1c0b3cccaf934562b81934f7206d733d",
+      "device": "DESKTOP",
+      "width": "2560",
+      "height": "3734",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=1c0b3cccaf934562b81934f7206d733d",
+      "screenshot": "docs/stitch/screenshots/commitment-history-desktop.png",
+      "html": "docs/stitch/html/commitment-history-desktop.html"
+    },
+    {
+      "title": "Campaign Settings, Excel Export & JSON Archival",
+      "screenId": "20115917f0fb4797b58fc3efab0dcdb9",
+      "device": "DESKTOP",
+      "width": "2560",
+      "height": "4840",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=20115917f0fb4797b58fc3efab0dcdb9",
+      "screenshot": "docs/stitch/screenshots/campaign-settings-desktop.png",
+      "html": "docs/stitch/html/campaign-settings-desktop.html"
+    },
+    {
+      "title": "Live Congregation Display - Sanctuary Projector 16:9",
+      "screenId": "06db82b9e3024416a721363fc89f1aea",
+      "device": "DESKTOP",
+      "width": "2560",
+      "height": "2048",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=06db82b9e3024416a721363fc89f1aea",
+      "screenshot": "docs/stitch/screenshots/projector-16x9.png",
+      "html": "docs/stitch/html/projector-16x9.html"
+    },
+    {
+      "title": "Mobile Operator Dashboard & Quick Entry",
+      "screenId": "4c2b56e3e6ff4e03ad325ebd7b68672c",
+      "device": "MOBILE",
+      "width": "780",
+      "height": "1768",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=4c2b56e3e6ff4e03ad325ebd7b68672c",
+      "screenshot": "docs/stitch/screenshots/operator-dashboard-mobile.png",
+      "html": "docs/stitch/html/operator-dashboard-mobile.html"
+    },
+    {
+      "title": "Mobile Welcome & New Campaign Setup",
+      "screenId": "dcb642e9565247e7b091996a111ad259",
+      "device": "MOBILE",
+      "width": "780",
+      "height": "4194",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=dcb642e9565247e7b091996a111ad259",
+      "screenshot": "docs/stitch/screenshots/welcome-mobile.png",
+      "html": "docs/stitch/html/welcome-mobile.html"
+    },
+    {
+      "title": "Mobile Campaign Settings & Local Data Recovery",
+      "screenId": "bbbb21e40b0f493da6477174cce89c70",
+      "device": "MOBILE",
+      "width": "780",
+      "height": "5446",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=bbbb21e40b0f493da6477174cce89c70",
+      "screenshot": "docs/stitch/screenshots/campaign-settings-mobile.png",
+      "html": "docs/stitch/html/campaign-settings-mobile.html"
+    },
+    {
+      "title": "Mobile Commitment History & Ledger Management",
+      "screenId": "863ee084035e4c6ab12207abce347ee2",
+      "device": "MOBILE",
+      "width": "780",
+      "height": "3818",
+      "canvasUrl": "https://stitch.google.com/projects/656374960065096271?node-id=863ee084035e4c6ab12207abce347ee2",
+      "screenshot": "docs/stitch/screenshots/commitment-history-mobile.png",
+      "html": "docs/stitch/html/commitment-history-mobile.html"
+    },
+    {
+      "title": "Mobile Commitment History & Ledger Management (desktop result)",
+      "screenId": "619b5bd809d145688bbdf14748757539",
+      "device": "DESKTOP",
+      "width": "2560",
+      "height": "4100",
+      "canvasUrl": null,
+      "screenshot": "docs/stitch/screenshots/history-mobile-request.png",
+      "html": "docs/stitch/html/history-mobile-request.html",
+      "note": "Stitch returned a desktop canvas for the mobile prompt. The verified mobile history design is screen 863ee084035e4c6ab12207abce347ee2."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 # 03 — User Flows and UX
-**Status:** Approved V1 baseline (2026-10-14); implementation pending.
+**Status:** Approved V1 baseline (2026-10-14); implemented on `feat/stitch-commitment-counter-v1`, not yet merged or released.
 
 ## Screens
 1. **Campaigns:** first-run welcome, new campaign, saved campaigns, prominent local-data notice.

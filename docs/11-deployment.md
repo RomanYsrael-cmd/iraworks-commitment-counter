@@ -1,5 +1,5 @@
 # 11 — Deployment and Operations Runbook
-**Status:** Approved V1 baseline (2026-10-14); implementation pending.
+**Status:** V1 implementation is on `feat/stitch-commitment-counter-v1`; production hosting and release approval remain pending.
 
 ## Environment
 The initial architecture is a static React/Vite app; no server or secret environment variables are required to record commitments. Local data belongs to each browser profile, not the hosting platform. Do **not** upload the original financial workbook or pledge exports to the public repo.
