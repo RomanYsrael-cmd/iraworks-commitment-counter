@@ -22,6 +22,16 @@ Campaign creation/edit/archive; add/edit/delete entries; entry count defined as 
 
 ## Live display tests
 Open on second monitor, fullscreen, add/edit/delete propagates after successful save, refresh display reconstructs, campaign-date changes propagate, popup blocked fallback, disconnected state, inactive window recovery, low animation/reduced motion, no notes visible.
+- Upload/replace/remove campaign images, same-device update without refresh, reload persistence, campaign isolation, backup/copy/replace roundtrip, legacy V1 import without images, rejection of malformed/oversized/unsupported files, simulated quota failure preserving the old image, <=1 MB output, centered cover scaling on mobile and 16:9, and readable contrast on a bright/detail-heavy image.
+
+## Quick-entry keyboard regressions
+- ArrowUp/ArrowLeft move to the previous frequency and ArrowDown/ArrowRight to the next, wrapping Once → Weekly → Monthly → Per Service → Once without moving focus from Amount.
+- Frequency changes are announced; modifiers/composition do not trigger cycling; native frequency radio keyboard semantics remain available.
+- Enter saves exactly one valid entry, reports invalid values without adding a row, clears amount/note, restores Amount focus, and retains the selected frequency across subsequent saves and edit cancellation.
+
+## Dashboard display regressions
+- ISO calendar dates render as `MMM-DD-YYYY` without timezone conversion.
+- Campaign Dashboard omits its local-storage notice and explanatory subtitle beneath Projected Commitments while settings, onboarding, and backup retain their warnings.
 
 ## Export/restore tests
 XLSX opens in Excel and alternate spreadsheet viewer; exactly three sheets; rows and totals reconcile; entry notes beginning with = or + do not execute as formulas; no macros; JSON round-trip yields exact campaign and entry data; unsupported version/corrupt JSON rejected atomically; duplicate IDs rejected; oversized file rejected.

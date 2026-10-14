@@ -6,10 +6,10 @@
 2. **Setup:** name, start/end date, currency, optional midweek service day; defaults sensible.
 3. **Operator Dashboard:** projected total, entry count, frequency subtotals, rapid pledge entry, entry history with edit/delete, Export Excel, Backup, Open Live Display.
 4. **Presentation:** clean full-screen view of aggregate projected total, optional entry count/breakdown.
-5. **Settings:** edit campaign, backup, restore, storage warning, display preferences.
+5. **Settings:** edit campaign, upload/preview/replace/remove a campaign-specific live display background, backup, restore, storage warning, and display preferences.
 
 ## Primary flow
-Open site → Create campaign → Confirm dates → Enter pledged amount → Select one of four frequencies → Add commitment → Dashboard total and presentation update. Amount and frequency are the only required entry fields.
+Open site → Create campaign → Confirm dates → Enter pledged amount → Select one of four frequencies (or cycle with arrow keys while Amount stays focused) → Press Enter or Add commitment → Dashboard total and presentation update. Amount and frequency are the only required entry fields; successful saves clear amount/note while retaining the selected frequency and Amount focus.
 
 ## Second-screen flow
 Connect projector as extended monitor → press Open Live Display → move new window to external screen → enable fullscreen → add/edit pledges on laptop. Projector must never reveal entry notes or editing controls. If popups blocked, expose a regular Open Display link. Check a sample entry before event starts.

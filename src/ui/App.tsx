@@ -1,10 +1,11 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import { Archive, ArrowLeft, ArrowUpRight, CalendarDays, Check, CircleHelp, Download, FileSpreadsheet, FolderOpen, HeartHandshake, History, MonitorUp, Plus, Settings2, ShieldCheck, Upload, X } from 'lucide-react';
-import { archiveCampaign, createCampaign, createId, deleteEntry, getCampaignSnapshot, getSnapshot, importAsCopy, saveDisplaySettings, saveEntry, setActiveCampaign, updateCampaign, replaceAllData } from '../data/database';
+import { archiveCampaign, createCampaign, createId, deleteEntry, getCampaignSnapshot, getSnapshot, importAsCopy, saveCampaignBanner, saveDisplaySettings, saveEntry, setActiveCampaign, updateCampaign, replaceAllData } from '../data/database';
 import { calculateCampaign, formatMinor, parseAmountToMinor } from '../domain/calculations';
-import { addMonthsAnchored, validateCampaignDates } from '../domain/dates';
+import { addMonthsAnchored, formatCampaignDate, validateCampaignDates } from '../domain/dates';
 import { campaignSchema } from '../domain/validation';
+import { prepareLiveBanner } from '../data/banner';
 import { CURRENCIES, FREQUENCIES, FREQUENCY_LABELS, WEEKDAYS } from '../domain/types';
 import type { AppSettings, Campaign, CommitmentEntry, Frequency } from '../domain/types';
 import type { DatabaseSnapshot } from '../data/database';
@@ -177,9 +178,13 @@ function DashboardPage() {
   const [frequency, setFrequency] = useState<Frequency>('ONCE');
   const [note, setNote] = useState('');
   const [editEntry, setEditEntry] = useState<CommitmentEntry | null>(null);
+  const frequencyBeforeEdit = useRef<Frequency | null>(null);
+  const amountInputRef = useRef<HTMLInputElement>(null);
+  const savingRef = useRef(false);
   const [deleteTarget, setDeleteTarget] = useState<CommitmentEntry | null>(null);
   const [entryError, setEntryError] = useState('');
   const [announcement, setAnnouncement] = useState('');
+  const [frequencyAnnouncement, setFrequencyAnnouncement] = useState('');
   const [saving, setSaving] = useState(false);
   const [popupBlocked, setPopupBlocked] = useState(false);
   const projection = campaign ? calculateCampaign(campaign, snapshot.entries) : null;
@@ -194,22 +199,48 @@ function DashboardPage() {
   if (campaign.archived) return <AppFrame campaign={campaign}><div className="empty-state"><h1>This campaign is archived</h1><p>Restore it in campaign settings to keep adding commitments.</p><Link to={`/campaigns/${campaign.id}/settings`} className="button primary">Open settings</Link></div></AppFrame>;
   const rows = [...(projection?.entries ?? [])].sort((a, b) => b.entry.createdAt.localeCompare(a.entry.createdAt) || b.entry.id.localeCompare(a.entry.id));
 
+  function chooseFrequency(nextFrequency: Frequency) {
+    setFrequency(nextFrequency);
+    setFrequencyAnnouncement(`${FREQUENCY_LABELS[nextFrequency]} frequency selected.`);
+  }
+
+  function handleAmountKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.nativeEvent.isComposing) return;
+    const direction = ({ ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 } as const)[event.key as 'ArrowRight' | 'ArrowDown' | 'ArrowLeft' | 'ArrowUp'];
+    if (direction === undefined) return;
+    event.preventDefault();
+    const currentIndex = FREQUENCIES.indexOf(frequency);
+    const nextIndex = (currentIndex + direction + FREQUENCIES.length) % FREQUENCIES.length;
+    chooseFrequency(FREQUENCIES[nextIndex]!);
+  }
+
   async function addOrSave(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault(); setEntryError(''); setSaving(true);
+    event.preventDefault();
+    if (savingRef.current) return;
+    savingRef.current = true; setEntryError(''); setSaving(true);
     try {
       const wasEditing = Boolean(editEntry);
       const amountMinor = parseAmountToMinor(amount);
       await saveEntry({ ...(editEntry ? { id: editEntry.id } : {}), campaignId: campaign!.id, amountMinor, frequency, note: note.trim() || undefined });
-      setAmount(''); setNote(''); setFrequency('ONCE'); setEditEntry(null);
+      setAmount(''); setNote(''); setEditEntry(null); frequencyBeforeEdit.current = null;
       await refresh();
+      amountInputRef.current?.focus({ preventScroll: true });
       setAnnouncement(wasEditing ? 'Commitment updated.' : 'Commitment added.');
     } catch (reason) { setEntryError(messageOf(reason)); }
-    finally { setSaving(false); }
+    finally { savingRef.current = false; setSaving(false); }
   }
 
   function startEdit(entry: CommitmentEntry) {
-    setEditEntry(entry); setAmount((entry.amountMinor / 100).toFixed(2)); setFrequency(entry.frequency); setNote(entry.note ?? ''); setEntryError('');
+    frequencyBeforeEdit.current = frequency;
+    setEditEntry(entry); setAmount((entry.amountMinor / 100).toFixed(2)); chooseFrequency(entry.frequency); setNote(entry.note ?? ''); setEntryError('');
     document.getElementById('amount')?.focus();
+  }
+
+  function cancelEdit() {
+    setEditEntry(null); setAmount(''); setNote('');
+    if (frequencyBeforeEdit.current) chooseFrequency(frequencyBeforeEdit.current);
+    frequencyBeforeEdit.current = null; setEntryError('');
+    amountInputRef.current?.focus({ preventScroll: true });
   }
 
   async function confirmDelete() {
@@ -232,12 +263,11 @@ function DashboardPage() {
   return (
     <AppFrame campaign={campaign} wide>
       <div className="sr-only" aria-live="polite" aria-atomic="true">{announcement}</div>
-      <div className="dashboard-topline"><div><p className="eyebrow">Campaign dashboard</p><h1>{campaign.title}</h1><p className="muted">{campaign.startDate} – {campaign.endDate} <span className="dot-separator">·</span> {campaign.currencyCode}</p></div><div className="heading-actions"><Link className="button secondary" to={`/campaigns/${campaign.id}/settings`}><Settings2 size={17} /> Settings</Link><button className="button secondary" onClick={openDisplay}><MonitorUp size={17} /> Open live display</button></div></div>
+      <div className="dashboard-topline"><div><p className="eyebrow">Campaign dashboard</p><h1>{campaign.title}</h1><p className="muted">{formatCampaignDate(campaign.startDate)} – {formatCampaignDate(campaign.endDate)} <span className="dot-separator">·</span> {campaign.currencyCode}</p></div><div className="heading-actions"><Link className="button secondary" to={`/campaigns/${campaign.id}/settings`}><Settings2 size={17} /> Settings</Link><button className="button secondary" onClick={openDisplay}><MonitorUp size={17} /> Open live display</button></div></div>
       <ErrorBanner message={error} onClose={() => setError('')} />
       {popupBlocked && <div className="info-banner" role="status">The browser blocked the new window. <a href={`${window.location.pathname}#/display/${campaign.id}`} target="_blank" rel="noreferrer">Open live display in a new tab</a><button className="icon-button" onClick={() => setPopupBlocked(false)} aria-label="Dismiss"><X size={16} /></button></div>}
-      <LocalDataNotice compact />
       <section className="summary-grid" aria-label="Campaign totals">
-        <div className="summary-card total-card"><span className="summary-label">Projected Commitments</span><strong className="total-value" aria-live="polite" aria-atomic="true">{formatMinor(projection!.totalMinor, campaign.currencyCode)}</strong><small>Pledges projected across the campaign · not funds collected</small></div>
+        <div className="summary-card total-card"><span className="summary-label">Projected Commitments</span><strong className="total-value" aria-live="polite" aria-atomic="true">{formatMinor(projection!.totalMinor, campaign.currencyCode)}</strong></div>
         <div className="summary-card count-card"><span className="summary-label">Commitment Entries</span><strong className="count-value">{projection!.entryCount}</strong><small>Rows entered in this campaign</small></div>
         <div className="frequency-cards">{FREQUENCIES.map((item) => <div className="frequency-card" key={item}><span>{FREQUENCY_LABELS[item]}</span><strong>{formatMinor(projection!.byFrequency[item], campaign.currencyCode)}</strong></div>)}</div>
       </section>
@@ -253,10 +283,10 @@ function DashboardPage() {
           <p className="form-intro">Just an amount and frequency. Names are never required.</p>
           <form onSubmit={(event) => void addOrSave(event)}>
             {entryError && <div className="field-error" role="alert">{entryError}</div>}
-            <label className="field" htmlFor="amount"><span>Amount</span><div className="money-input"><span>{campaign.currencyCode}</span><input id="amount" inputMode="decimal" autoComplete="off" placeholder="0.00" value={amount} onChange={(event) => setAmount(event.target.value)} aria-describedby="amount-help" required /></div><small id="amount-help">Enter a positive amount, up to two decimal places.</small></label>
-            <fieldset className="frequency-picker"><legend>Frequency</legend><div className="frequency-options">{FREQUENCIES.map((item) => <label key={item} className={`frequency-option${frequency === item ? ' selected' : ''}`}><input type="radio" name="frequency" value={item} checked={frequency === item} onChange={() => setFrequency(item)} /><span>{FREQUENCY_LABELS[item]}</span></label>)}</div></fieldset>
+            <label className="field" htmlFor="amount"><span>Amount</span><div className="money-input"><span>{campaign.currencyCode}</span><input ref={amountInputRef} id="amount" inputMode="decimal" autoComplete="off" placeholder="0.00" value={amount} onChange={(event) => setAmount(event.target.value)} onKeyDown={handleAmountKeyDown} aria-describedby="amount-help frequency-help" required /></div><small id="amount-help">Enter a positive amount, up to two decimal places.</small></label>
+            <fieldset className="frequency-picker" aria-describedby="frequency-help"><legend>Frequency</legend><div className="frequency-options">{FREQUENCIES.map((item) => <label key={item} className={`frequency-option${frequency === item ? ' selected' : ''}`}><input type="radio" name="frequency" value={item} checked={frequency === item} onChange={() => chooseFrequency(item)} /><span>{FREQUENCY_LABELS[item]}</span></label>)}</div><small id="frequency-help" className="frequency-help">Arrow keys switch frequency while entering an amount · Enter adds.</small><span className="sr-only" role="status" aria-live="polite" aria-atomic="true">{frequencyAnnouncement}</span></fieldset>
             <label className="field" htmlFor="note"><span>Note <em>Optional</em></span><input id="note" maxLength={140} value={note} onChange={(event) => setNote(event.target.value)} placeholder="A short reminder" /><small>Avoid names or personal details. Up to 140 characters.</small></label>
-            <div className="quick-entry-actions"><button className="button primary full-button" disabled={saving}>{saving ? 'Saving…' : editEntry ? 'Save changes' : 'Add commitment'} <Check size={17} /></button>{editEntry && <button className="button secondary full-button" type="button" onClick={() => { setEditEntry(null); setAmount(''); setNote(''); setFrequency('ONCE'); setEntryError(''); }}>Cancel edit</button>}</div>
+            <div className="quick-entry-actions"><button className="button primary full-button" disabled={saving}>{saving ? 'Saving…' : editEntry ? 'Save changes' : 'Add commitment'} <Check size={17} /></button>{editEntry && <button className="button secondary full-button" type="button" onClick={cancelEdit}>Cancel edit</button>}</div>
           </form>
         </aside>
       </section>
@@ -293,7 +323,12 @@ function SettingsPage() {
   const [restoreError, setRestoreError] = useState('');
   const [busyRestore, setBusyRestore] = useState(false);
   const [confirmArchive, setConfirmArchive] = useState(false);
-  useEffect(() => { if (campaign) setDraft(campaign); }, [campaign]);
+  useEffect(() => {
+    if (!campaign) return;
+    setDraft((current) => current && current.id === campaign.id
+      ? { ...current, revision: campaign.revision, updatedAt: campaign.updatedAt, liveBannerDataUrl: campaign.liveBannerDataUrl }
+      : campaign);
+  }, [campaign]);
 
   if (loading) return <AppFrame><p className="muted">Opening settings…</p></AppFrame>;
   if (!campaign || !draft) return <AppFrame><div className="empty-state"><h1>Campaign not found</h1><Link to="/" className="button primary">Return to campaigns</Link></div></AppFrame>;
@@ -306,6 +341,14 @@ function SettingsPage() {
       await refresh(); setDraft(next); setError('');
     } catch (reason) { setError(messageOf(reason)); }
     finally { setSaving(false); }
+  }
+
+  async function saveBanner(liveBannerDataUrl?: string) {
+    const updated = await saveCampaignBanner(campaign!.id, liveBannerDataUrl);
+    setDraft((current) => current
+      ? { ...current, revision: updated.revision, updatedAt: updated.updatedAt, liveBannerDataUrl: updated.liveBannerDataUrl }
+      : updated);
+    await refresh();
   }
 
   async function uploadBackup(file?: File) {
@@ -347,12 +390,63 @@ function SettingsPage() {
       <div className="form-row"><label className="field"><span>Currency</span><select value={draft.currencyCode} onChange={(event) => setDraft({ ...draft!, currencyCode: event.target.value as Campaign['currencyCode'] })}>{CURRENCIES.map((code) => <option value={code} key={code}>{code}</option>)}</select>{draft.currencyCode !== campaign.currencyCode && <small className="warning-copy">Changing currency does not convert existing amounts.</small>}</label><label className="field"><span>Midweek service day</span><select value={draft.midweekDay} onChange={(event) => setDraft({ ...draft!, midweekDay: Number(event.target.value) })}>{WEEKDAYS.map((day) => <option value={day.value} key={day.value}>{day.label}</option>)}</select></label></div>
       <div className="form-footer"><Link className="button secondary" to={`/campaigns/${campaign.id}`}>Cancel</Link><button className="button primary" disabled={saving}>{saving ? 'Saving…' : 'Save campaign'} <Check size={16} /></button></div>
     </form>
+    <LiveBannerSettings campaign={campaign} onSave={saveBanner} />
     <section className="settings-card display-settings"><div><h2>Live display</h2><p>Choose which aggregate details appear on the separate projector screen.</p></div><label className="toggle-row"><span><strong>Show commitment entry count</strong><small>Counts rows, not people.</small></span><input type="checkbox" checked={snapshot.settings.displayShowCount} onChange={(event) => void saveDisplaySettings({ displayShowCount: event.target.checked }).then(refresh).catch((reason: unknown) => setError(messageOf(reason)))} /></label><label className="toggle-row"><span><strong>Show frequency breakdown</strong><small>Display projected subtotals for each frequency.</small></span><input type="checkbox" checked={snapshot.settings.displayShowBreakdown} onChange={(event) => void saveDisplaySettings({ displayShowBreakdown: event.target.checked }).then(refresh).catch((reason: unknown) => setError(messageOf(reason)))} /></label><label className="toggle-row"><span><strong>Reduce motion</strong><small>Use still number updates on the public screen.</small></span><input type="checkbox" checked={snapshot.settings.reducedMotionOverride ?? false} onChange={(event) => void saveDisplaySettings({ reducedMotionOverride: event.target.checked }).then(refresh).catch((reason: unknown) => setError(messageOf(reason)))} /></label><button className="button secondary" onClick={() => { const target = `${window.location.origin}${window.location.pathname}#/display/${campaign.id}`; window.open(target, '_blank', 'popup,width=1440,height=900'); }}><MonitorUp size={16} /> Open live display</button></section>
     <section className="settings-card backup-card"><div><h2>Excel export and JSON backup</h2><p>Excel is a report. JSON is the editable backup you can restore later.</p></div><div className="backup-actions"><button className="button secondary" onClick={() => void exportWorkbook(campaign, snapshot.entries).catch((reason: unknown) => setError(messageOf(reason)))}><FileSpreadsheet size={16} /> Export Excel report</button><button className="button secondary" onClick={() => void downloadBackup().catch((reason: unknown) => setError(messageOf(reason)))}><Download size={16} /> Download JSON backup</button><label className="button secondary upload-button"><Upload size={16} /> Restore JSON backup<input type="file" accept="application/json,.json" onChange={(event) => { void uploadBackup(event.target.files?.[0]); event.target.value = ''; }} /></label></div>{restoreError && <div className="field-error" role="alert">{restoreError}</div>}<LocalDataNotice compact /></section>
     {campaign.archived ? <section className="settings-card archive-card"><div><h2>Archived campaign</h2><p>This campaign is read-only until you restore it.</p></div><button className="button primary" onClick={() => void doArchive()}>Restore campaign</button></section> : <section className="settings-card archive-card"><div><h2>Archive this campaign</h2><p>Move it out of your active campaign list. Its entries and history remain saved.</p></div><button className="button danger-outline" onClick={() => setConfirmArchive(true)}><Archive size={16} /> Archive campaign</button></section>}
     {confirmArchive && <ConfirmDialog title="Archive this campaign?" description="This removes the campaign from the active list. Its entries remain in this browser and can be restored later." confirmLabel="Archive campaign" onCancel={() => setConfirmArchive(false)} onConfirm={() => { setConfirmArchive(false); void doArchive(); }} />}
     {restoreBackup && <RestoreDialog backup={restoreBackup} error={restoreError} busy={busyRestore} onCancel={() => setRestoreBackup(null)} onReplace={() => void restore('replace')} onCopy={() => void restore('copy')} />}
   </AppFrame>;
+}
+
+function LiveBannerSettings({ campaign, onSave }: { campaign: Campaign; onSave: (dataUrl?: string) => Promise<void> }) {
+  const [pendingBanner, setPendingBanner] = useState<string | null | undefined>(undefined);
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
+  const [status, setStatus] = useState('');
+  const displayedBanner = pendingBanner === undefined ? campaign.liveBannerDataUrl : pendingBanner ?? undefined;
+  const hasPendingChange = pendingBanner !== undefined && (pendingBanner ?? undefined) !== campaign.liveBannerDataUrl;
+
+  async function upload(file?: File) {
+    if (!file) return;
+    setError(''); setStatus('');
+    try {
+      const processed = await prepareLiveBanner(file);
+      setPendingBanner(processed); setPreviewOpen(true);
+      setStatus('Preview ready. Save background changes to update the live display.');
+    } catch (reason) {
+      setPendingBanner(undefined); setError(messageOf(reason));
+    }
+  }
+
+  async function save() {
+    if (pendingBanner === undefined || !hasPendingChange) return;
+    setSaving(true); setError(''); setStatus('');
+    try {
+      await onSave(pendingBanner ?? undefined);
+      setPendingBanner(undefined); setStatus('Live display background saved.');
+    } catch (reason) {
+      setPendingBanner(undefined); setError(`${messageOf(reason)} The previous background is unchanged.`);
+    } finally { setSaving(false); }
+  }
+
+  return <section className="settings-card live-banner-card" aria-labelledby="live-banner-title">
+    <div><h2 id="live-banner-title">Live display background</h2><p>Choose a campaign-specific image for the public projector screen. A dark overlay keeps the title and projected total readable.</p></div>
+    <div className="banner-actions">
+      <label className="button secondary upload-button"><Upload size={16} /> {displayedBanner ? 'Replace background' : 'Upload background'}<input type="file" aria-label="Upload live display background" aria-describedby="banner-help" accept="image/jpeg,image/png,image/webp" onChange={(event) => { void upload(event.target.files?.[0]); event.target.value = ''; }} /></label>
+      <button className="button secondary" type="button" onClick={() => setPreviewOpen((open) => !open)}>{previewOpen ? 'Hide preview' : 'Preview live display'}</button>
+      {displayedBanner && <button className="button secondary danger-outline" type="button" disabled={saving} onClick={() => { setPendingBanner(null); setPreviewOpen(true); setError(''); setStatus('Removal preview ready. Save background changes to remove it from the live display.'); }}>Remove background</button>}
+      {hasPendingChange && <><button className="button primary" type="button" disabled={saving} onClick={() => void save()}>{saving ? 'Saving…' : 'Save background changes'} <Check size={16} /></button><button className="button text-button" type="button" disabled={saving} onClick={() => { setPendingBanner(undefined); setError(''); setStatus('Background changes discarded.'); }}>Discard changes</button></>}
+    </div>
+    <p className="banner-help" id="banner-help">JPEG, PNG, or WebP · up to 5 MB selected · saved as an optimized image up to 1 MB and 1920 × 1080. SVG and animated GIF are not supported. Stored only in this browser and included in JSON backups.</p>
+    {error && <div className="field-error" role="alert">{error}</div>}
+    {status && <p className="banner-status" role="status">{status}</p>}
+    {previewOpen && <div className={`live-banner-preview${displayedBanner ? ' has-image' : ''}`} style={displayedBanner ? { backgroundImage: `linear-gradient(180deg, rgba(5,17,12,.42), rgba(5,17,12,.48)), url("${displayedBanner}"), radial-gradient(ellipse at 50% 38%, #2e6150 0%, #214b3d 40%, #18382f 100%)` } : undefined} role="img" aria-label={`Preview of the live display for ${campaign.title}`}>
+      <div className="live-banner-preview-panel"><span>Projected Commitments</span><strong>{formatMinor(12500000, campaign.currencyCode)}</strong><small>{campaign.title}</small></div>
+    </div>}
+    {!campaign.liveBannerDataUrl && pendingBanner === undefined && <p className="muted banner-empty">No custom background is saved. The branded green background will be used.</p>}
+  </section>;
 }
 
 function RestoreDialog({ backup, error, busy, onCancel, onReplace, onCopy }: { backup: Awaited<ReturnType<typeof readBackupFile>>; error: string; busy: boolean; onCancel: () => void; onReplace: () => void; onCopy: () => void }) {
@@ -410,12 +504,17 @@ function DisplayPage() {
   }
 
   const reduceMotion = settings.reducedMotionOverride ?? window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  return <main className={`display-screen${reduceMotion ? ' reduce-motion' : ''}`}>
+  const hasBanner = Boolean(campaign?.liveBannerDataUrl);
+  const displayBackground = campaign?.liveBannerDataUrl
+    ? { backgroundImage: `linear-gradient(180deg, rgba(5,17,12,.42), rgba(5,17,12,.34) 44%, rgba(5,17,12,.50)), url("${campaign.liveBannerDataUrl}"), radial-gradient(ellipse at 50% 38%, #2e6150 0%, #214b3d 40%, #18382f 100%)` }
+    : undefined;
+  return <main className={`display-screen${reduceMotion ? ' reduce-motion' : ''}${hasBanner ? ' has-banner' : ''}`} style={displayBackground}>
     <div className="display-topbar"><Link to={campaign ? `/campaigns/${campaign.id}` : '/'} className="display-brand"><span className="brand-mark"><HeartHandshake size={18} /></span>IraWorks</Link><div className={`connection-badge ${status}`} role="status"><span className="connection-dot" />{status === 'live' ? 'Live' : status === 'degraded' ? 'Limited updates' : 'Reconnecting'}</div></div>
     {loading ? <div className="display-loading" role="status">Loading saved campaign…</div> : error && !campaign ? <div className="display-empty"><h1>Live display unavailable</h1><p>{error}</p><Link className="button display-button" to="/">Return to campaigns</Link></div> : campaign && projection && <>
-      <div className="display-content"><p className="display-overline">Projected Commitments</p><h1 className="display-campaign-title">{campaign.title}</h1><strong className="display-total" aria-live="polite" aria-atomic="true">{formatMinor(projection.totalMinor, campaign.currencyCode)}</strong><p className="display-disclaimer">Pledges projected across {campaign.startDate} – {campaign.endDate}<br />This total represents commitments, not funds collected.</p>
+      <div className="display-content"><div className="display-content-panel"><p className="display-overline">Projected Commitments</p><h1 className="display-campaign-title">{campaign.title}</h1><strong className="display-total" aria-live="polite" aria-atomic="true">{formatMinor(projection.totalMinor, campaign.currencyCode)}</strong><p className="display-disclaimer">Pledges projected across {campaign.startDate} – {campaign.endDate}<br />This total represents commitments, not funds collected.</p>
         {settings.displayShowCount && <div className="display-entry-count"><span>{projection.entryCount}</span> Commitment {projection.entryCount === 1 ? 'Entry' : 'Entries'}</div>}
         {settings.displayShowBreakdown && <div className="display-breakdown">{FREQUENCIES.map((frequency) => <div key={frequency}><span>{FREQUENCY_LABELS[frequency]}</span><strong>{formatMinor(projection.byFrequency[frequency], campaign.currencyCode)}</strong></div>)}</div>}
+      </div>
       </div><div className="display-footer"><span>Private to this device and browser</span><button className="button display-button" onClick={() => void toggleFullscreen()}>{isFullscreen ? 'Exit full screen' : 'Enter full screen'}</button></div>
       {error && <div className="display-toast" role="status">{error}</div>}
     </>}

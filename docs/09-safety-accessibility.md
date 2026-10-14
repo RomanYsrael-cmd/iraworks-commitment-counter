@@ -12,6 +12,7 @@ Public presentation shows projected totals and optional aggregate counts/breakdo
 
 ## Threats and mitigations
 - Malicious/corrupt JSON file → size limit, full schema validation, duplicate-ID and reference checks, atomic restore.
+- Malicious image file → accept JPEG/PNG/WebP raster signatures only, cap selected file at 5 MB, decode and re-encode locally to bounded JPEG, and reject SVG/animated GIF; do not contact image services or send files to a server.
 - Spreadsheet formula injection → store user-controlled text as literal cells and neutralize risky prefixes before export.
 - XSS → escape strings using framework text rendering; avoid raw HTML for campaign titles/notes.
 - Unwanted loss/overwrite → confirmation, transactionality, backup callouts, and restore preview.
@@ -20,7 +21,7 @@ Public presentation shows projected totals and optional aggregate counts/breakdo
 - Cloud or telemetry leakage → no analytics capturing commitments, notes, or detailed errors containing amounts.
 
 ## Accessibility goals
-Target WCAG 2.2 AA: keyboard-only task completion, labeled inputs, visible focus, sufficient contrast, adaptable text size, semantic table headers, dialog focus return, meaningful error descriptions, screen-reader announcements of saved updates, reduced-motion controls and no flashing. Test at large text zoom and 1366×768 laptop, 1920×1080 projector, and mobile widths.
+Target WCAG 2.2 AA: keyboard-only task completion, labeled inputs, visible focus, sufficient contrast, adaptable text size, semantic table headers, dialog focus return, meaningful error descriptions, screen-reader announcements of saved updates, reduced-motion controls and no flashing. Arrow-key frequency changes are announced without moving focus from Amount. Projector backgrounds keep a dark gradient plus a high-contrast text panel so white, dark, and detailed images do not sit directly behind the projected total. Test at large text zoom and 1366×768 laptop, 1920×1080 projector, and mobile widths.
 
 ## Financial wording and boundaries
 Every total explicitly says **Projected Commitments**, not “Donations Received.” Product is a pledge projection utility, not a financial ledger, donation processor, tax-receipt generator, or certified accounting tool.

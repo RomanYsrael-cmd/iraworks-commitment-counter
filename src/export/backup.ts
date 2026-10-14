@@ -2,10 +2,10 @@ import { backupEnvelope } from '../data/database';
 import { validateBackup } from '../domain/validation';
 import type { BackupEnvelope } from '../domain/types';
 
-export const MAX_BACKUP_BYTES = 10 * 1024 * 1024;
+export const MAX_BACKUP_BYTES = 50 * 1024 * 1024;
 
 export async function readBackupFile(file: File): Promise<BackupEnvelope> {
-  if (file.size > MAX_BACKUP_BYTES) throw new Error('This backup is larger than the 10 MB import limit.');
+  if (file.size > MAX_BACKUP_BYTES) throw new Error('This backup is larger than the 50 MB import limit.');
   if (!file.name.toLowerCase().endsWith('.json') && file.type !== 'application/json') throw new Error('Choose a JSON backup file.');
   let contents: unknown;
   try { contents = JSON.parse(await file.text()) as unknown; }

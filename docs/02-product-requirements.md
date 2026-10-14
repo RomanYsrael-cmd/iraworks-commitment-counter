@@ -1,5 +1,5 @@
 # 02 — Product Requirements
-**Status:** Approved V1 baseline (2026-10-14); implemented on `feat/stitch-commitment-counter-v1`, not yet merged or released.
+**Status:** Approved V1 baseline (2026-10-14); the V1 implementation and Issues #4/#5 updates are in review on feature branches, not released.
 
 ## Required capabilities
 | ID | Feature | Acceptance |
@@ -18,7 +18,7 @@
 ## UX and validation
 Campaign title 1–100 characters; ISO calendar dates; maximum campaign span proposed as five years. Amount is a positive integer number of minor currency units, entered to no more than two decimal places for supported two-decimal currencies. Keep projected totals within safe integer range. Optional note up to 140 characters, with warning against personal details. Entry count means **rows**, never unique donors.
 
-Core workflow: create campaign → enter amount → choose frequency → save → projected total updates. There is no registration, member roster, or recurring donation processing.
+Core workflow: create campaign → enter amount → choose frequency → save → projected total updates. Arrow keys cycle frequency without leaving Amount; Enter saves and the last successful frequency remains selected. There is no registration, member roster, or recurring donation processing.
 
 ## Quality constraints
 Pure and testable calculation engine; local-only processing by default; reliable backup recovery; full-screen high-contrast display; suitable keyboard and screen-reader semantics; XLSX totals match app exactly. Performance target: update within 200 ms for ordinary campaigns and update a connected second-screen view within one second on a typical laptop (targets requiring measurement).

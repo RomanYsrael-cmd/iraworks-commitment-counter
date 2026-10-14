@@ -13,6 +13,7 @@ export interface Campaign {
   midweekDay: number;
   archived: boolean;
   revision: number;
+  liveBannerDataUrl?: string;
   createdAt: string;
   updatedAt: string;
 }
