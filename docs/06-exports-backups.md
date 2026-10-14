@@ -1,5 +1,5 @@
 # 06 — Excel Export and Restorable Backup
-**Status:** Approved V1 baseline (2026-10-14); implementation pending.
+**Status:** Approved V1 baseline (2026-10-14); XLSX and JSON workflows implemented on `feat/stitch-commitment-counter-v1`. See [implementation report](implementation-report.md) for validation and release limitations.
 
 ## Excel report (.xlsx)
 Generate the workbook inside the browser; no upload to conversion service; no macros. Proposed filename: commitment-counter_CAMPAIGN_YYYY-MM-DD.xlsx. It is a **snapshot report**, not a source of truth or restorable app backup.

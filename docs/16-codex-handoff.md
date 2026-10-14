@@ -1,5 +1,5 @@
 # 16 — Codex Stitch + Full V1 Implementation Handoff
-**Status:** Implementation authorized by owner (2026-10-14); work has not yet been executed.
+**Status:** Implementation authorized and completed on `feat/stitch-commitment-counter-v1`; see [implementation report](implementation-report.md). Pull request and release remain separate from the approved requirements.
 **Repository:** RomanYsrael-cmd/iraworks-commitment-counter
 **Local Windows path:** `D:\UserData\Documents\GitHub\iraworks-commitment-counter`
 **Credential name:** `STITCH_API_KEY` already in the local process environment; **do not ask for or expose its value**.

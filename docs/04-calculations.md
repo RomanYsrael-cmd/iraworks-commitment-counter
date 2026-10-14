@@ -1,5 +1,5 @@
 # 04 — Calculation Specification
-**Status:** Approved V1 calculation rules (2026-10-14); implementation pending.
+**Status:** Approved V1 calculation rules (2026-10-14); implemented and covered by unit tests on `feat/stitch-commitment-counter-v1`.
 
 ## Canonical definitions
 Campaign start and end are inclusive local calendar dates (YYYY-MM-DD). A pledged amount is stored as a positive integer in minor currency units (PHP centavos by default). Projected value per row = amount × occurrence count. Grand total = sum of row projections. Entry count = number of active rows, **not donors**.

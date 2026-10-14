@@ -1,5 +1,5 @@
 # 13 — Source Workbook Analysis (Sanitized)
-**Status:** Approved V1 baseline (2026-10-14); implementation pending. Source: owner-provided workbook; financial records excluded from public repo. owner-supplied macro-enabled Excel workbook (not included in public repository).
+**Status:** Approved V1 reference (2026-10-14); sanitized analysis informed the implemented V1. Source: owner-provided workbook; financial records excluded from public repo. The owner-supplied macro-enabled Excel workbook is not included in this repository.
 
 ## Structure verified
 The original workbook is one worksheet titled as a church commitment counter. It contains start/end campaign dates, a selected midweek service day, four input columns (Once, Per Week, Per Month, Per Service), summary calculations, and displayed totals. It includes a VBA project and an ActiveX component. The public repository intentionally excludes original institution branding, entry values and financial totals.

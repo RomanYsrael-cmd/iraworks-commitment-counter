@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-surface" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IraWorks Commitment Counter - Setup New Campaign</title>
+<!-- Google Fonts: Newsreader (Editorial Serif), Plus Jakarta Sans (Precision UI), JetBrains Mono (Financial Tabular) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-container": "#7fa292",
+            "surface-tint": "#476556",
+            "surface-container": "#f4ede3",
+            "on-secondary-fixed": "#2e1500",
+            "on-tertiary-fixed": "#002116",
+            "inverse-surface": "#333029",
+            "on-error": "#ffffff",
+            "surface-container-high": "#eee7dd",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed-dim": "#ffb77a",
+            "primary-fixed": "#c9ead7",
+            "surface-container-highest": "#e9e2d7",
+            "background": "#fff8f0",
+            "outline-variant": "#c2c8c2",
+            "primary-fixed-dim": "#adcebc",
+            "outline": "#727974",
+            "error": "#ba1a1a",
+            "surface-dim": "#e0d9cf",
+            "on-surface-variant": "#424844",
+            "on-primary-fixed-variant": "#304d3f",
+            "secondary-fixed": "#ffdcc2",
+            "surface-container-low": "#faf3e8",
+            "secondary": "#8f4e00",
+            "surface": "#fff8f0",
+            "tertiary-container": "#17382c",
+            "on-primary-container": "#82a291",
+            "on-surface": "#1e1b15",
+            "on-error-container": "#93000a",
+            "on-tertiary-fixed-variant": "#2d4d40",
+            "on-secondary": "#ffffff",
+            "surface-variant": "#e9e2d7",
+            "on-secondary-fixed-variant": "#6d3a00",
+            "tertiary-fixed": "#c6ebd9",
+            "inverse-on-surface": "#f7f0e5",
+            "inverse-primary": "#adcebc",
+            "primary": "#042217",
+            "on-background": "#1e1b15",
+            "surface-bright": "#fff8f0",
+            "on-primary-fixed": "#022015",
+            "tertiary": "#002218",
+            "on-primary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed-dim": "#abcebe",
+            "primary-container": "#1b382b",
+            "secondary-container": "#fea047",
+            "error-container": "#ffdad6",
+            "on-secondary-container": "#6d3a00"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter-sm": "1rem",
+            "space-sm": "0.5rem",
+            "space-2xl": "4rem",
+            "margin": "2rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter": "1.5rem",
+            "gutter-lg": "2rem",
+            "space-xl": "2.5rem",
+            "margin-mobile": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "display-lg-mobile": ["Newsreader", "serif"],
+            "headline-lg": ["Newsreader", "serif"],
+            "headline-sm": ["Newsreader", "serif"],
+            "label-numeric-lg": ["JetBrains Mono", "monospace"],
+            "label-caps": ["Plus Jakarta Sans", "sans-serif"],
+            "label-numeric-md": ["JetBrains Mono", "monospace"],
+            "headline-md": ["Newsreader", "serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-numeric-sm": ["JetBrains Mono", "monospace"],
+            "display-lg": ["Newsreader", "serif"],
+            "title-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "display-lg-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }],
+            "label-numeric-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "label-caps": ["0.6875rem", { "lineHeight": "1rem", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "label-numeric-md": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-md": ["1.625rem", { "lineHeight": "2.125rem", "fontWeight": "500" }],
+            "body-lg": ["1.0625rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "label-numeric-sm": ["0.8125rem", { "lineHeight": "1.125rem", "fontWeight": "400" }],
+            "display-lg": ["3rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "title-md": ["1.125rem", { "lineHeight": "1.625rem", "fontWeight": "600" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.5rem", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Letterpress hairline button illusion & subtle focus transitions */
+    .tactile-button-primary {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(4, 34, 23, 0.12);
+    }
+    .tactile-card {
+      box-shadow: 0 1px 3px rgba(20, 43, 33, 0.04), 0 1px 2px rgba(20, 43, 33, 0.02);
+    }
+    input:focus, select:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #fff8f0, 0 0 0 4px #1b382b !important;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col bg-background text-on-surface antialiased selection:bg-primary-fixed selection:text-primary">
+<!-- TOP APP BAR (Shared Components JSON Anchor) -->
+<header class="w-full bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none sticky top-0 z-40">
+<div class="w-full max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between h-16">
+<!-- Brand & Product Title -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="auto_stories">auto_stories</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-sm font-headline-sm font-semibold tracking-tight text-primary dark:text-inverse-primary leading-tight">
+            IraWorks Commitment Counter
+          </span>
+<span class="font-label-caps text-label-caps text-on-surface-variant font-medium uppercase tracking-wider">
+            Browser-Local Pledge Modeling · Offline Fiduciary Utility
+          </span>
+</div>
+</div>
+<!-- Navigation & Status Clusters -->
+<div class="hidden md:flex items-center gap-6">
+<nav class="flex items-center gap-5 text-body-md font-body-md">
+<button class="text-primary dark:text-inverse-primary font-semibold border-b-2 border-primary dark:border-inverse-primary pb-1 flex items-center gap-1.5 cursor-pointer">
+<span>Campaigns (0)</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</button>
+<button class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer">
+            Ledger
+          </button>
+<button class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer">
+            Projections
+          </button>
+</nav>
+<div class="h-5 w-px bg-outline-variant dark:bg-outline"></div>
+<!-- Trailing Utility Actions -->
+<div class="flex items-center gap-3">
+<button class="px-2.5 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container text-body-sm font-body-sm text-on-surface flex items-center gap-1.5 transition-colors duration-150 active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="download">download</span>
+<span>Backup JSON</span>
+</button>
+<button class="px-2.5 py-1.5 rounded-lg border border-outline-variant hover:bg-surface-container text-body-sm font-body-sm text-on-surface flex items-center gap-1.5 transition-colors duration-150 active:scale-[0.99]" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="upload_file">upload_file</span>
+<span>Restore</span>
+</button>
+<!-- Safe Storage Badge -->
+<div class="flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#E9F0EC] border border-[#C3D5CB] text-primary" title="Data is strictly held in local IndexedDB without remote transmission">
+<span class="w-2 h-2 rounded-full bg-[#2D5A43] animate-pulse"></span>
+<span class="font-label-numeric-sm text-label-numeric-sm font-medium tracking-tight">STRICTLY LOCAL</span>
+</div>
+</div>
+</div>
+<!-- Mobile actions drawer fallback -->
+<div class="flex md:hidden items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-[#2D5A43]"></span>
+<span class="font-label-caps text-label-caps text-primary">LOCAL-ONLY</span>
+</div>
+</div>
+</header>
+<!-- MAIN VIEWPORT CONTAINER -->
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-8 md:py-10">
+<!-- FIDUCIARY CLARIFICATION CALLOUT BANNER -->
+<section aria-label="Fiduciary and Storage Notice" class="mb-8 rounded-lg bg-surface-container border border-outline-variant p-5 md:p-6 tactile-card">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+<!-- Pillar 1: Stewardship Distinctive -->
+<div class="flex items-start gap-3.5">
+<div class="mt-0.5 w-7 h-7 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="balance">balance</span>
+</div>
+<div>
+<h2 class="font-title-md text-title-md font-semibold text-primary mb-1">
+              Commitment Pledges vs. Cash in Bank
+            </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Figures calculated within this console model communal faith pledges, intention envelopes, and scheduled stewardship offerings. They do not represent cleared commercial bank balances or transactional reconciliations.
+            </p>
+</div>
+</div>
+<!-- Pillar 2: Data Sovereignty -->
+<div class="flex items-start gap-3.5 border-t md:border-t-0 md:border-l border-outline-variant/70 pt-4 md:pt-0 md:pl-6">
+<div class="mt-0.5 w-7 h-7 rounded-lg bg-surface-container-high border border-outline-variant flex items-center justify-center text-secondary shrink-0">
+<span class="material-symbols-outlined text-[18px]" data-icon="database">database</span>
+</div>
+<div>
+<h2 class="font-title-md text-title-md font-semibold text-primary mb-1 flex items-center gap-2">
+<span>Local Browser Sovereignty</span>
+<span class="font-label-caps text-[0.625rem] px-1.5 py-0.5 bg-surface-container-highest rounded text-on-surface-variant">No Cloud Sync</span>
+</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              No server database or cloud backend handles your parish records. Data is stored strictly on this workstation’s storage engine. Download a JSON ledger backup after every council deliberation.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- MAIN TWO-COLUMN WORKSPACE (5/12 + 7/12 Composition) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- LEFT COLUMN: Pastoral Welcome & Empty State Framework (~5/12) -->
+<section class="lg:col-span-5 flex flex-col space-y-6">
+<!-- Pastoral Herald Card -->
+<div class="p-6 md:p-8 bg-surface-container-lowest rounded-lg border border-outline-variant tactile-card relative overflow-hidden">
+<!-- Subtle Decorative Accent -->
+<div class="absolute -top-10 -right-10 w-36 h-36 bg-surface-container rounded-full opacity-60 pointer-events-none"></div>
+<!-- Symbolic Emblem -->
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-surface-container-low border border-outline-variant text-primary mb-5 shadow-sm">
+<span class="material-symbols-outlined text-[26px]" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight mb-3">
+            Begin with intentional stewardship.
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
+            IraWorks Commitment Counter is a quiet fiduciary workshop built for treasurers, church wardens, and finance councils. Model seasonal fulfillment rhythms and mission targets with total local privacy.
+          </p>
+<!-- 3-Step Stewardship Arc -->
+<div class="space-y-4 pt-2 border-t border-surface-container-high">
+<div class="flex items-start gap-3">
+<span class="font-label-numeric-sm text-label-numeric-sm font-semibold w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-primary mt-0.5 shrink-0">1</span>
+<div>
+<span class="font-title-md text-body-md font-semibold text-on-surface block">Set rhythm &amp; worship schedule</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Define calendar boundaries alongside midweek and Sunday collection milestones.</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-label-numeric-sm text-label-numeric-sm font-semibold w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-primary mt-0.5 shrink-0">2</span>
+<div>
+<span class="font-title-md text-body-md font-semibold text-on-surface block">Group anonymized commitments</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Aggregate tiered pledge brackets without exposing sensitive parishioner names.</span>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="font-label-numeric-sm text-label-numeric-sm font-semibold w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-primary mt-0.5 shrink-0">3</span>
+<div>
+<span class="font-title-md text-body-md font-semibold text-on-surface block">Forecast fulfillment &amp; seasonal dip</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Stress-test pledges against summer holidays and harvest festivals with weekly curves.</span>
+</div>
+</div>
+</div>
+<!-- Preset Demonstration Prompt -->
+<div class="mt-8 pt-5 border-t border-surface-container-high flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Prefer reviewing existing figures?</span>
+<button class="font-body-sm text-body-sm font-semibold text-secondary hover:text-on-secondary-fixed-variant inline-flex items-center gap-1 group cursor-pointer transition-colors" type="button">
+<span>Inspect Sample Campaign</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Archival Verification Note -->
+<div class="px-5 py-4 rounded-lg bg-surface-container-low border border-outline-variant flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-primary" data-icon="verified_user">verified_user</span>
+<div class="flex-1">
+<p class="font-label-caps text-label-caps text-primary uppercase">Council Protocol Notice</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Campaign ledgers conform strictly to GAAP non-commercial nonprofit pledge documentation frameworks.
+            </p>
+</div>
+</div>
+</section>
+<!-- RIGHT COLUMN: Setup New Stewardship Campaign Form Card (~7/12) -->
+<section class="lg:col-span-7">
+<form class="p-6 md:p-8 bg-surface-container-lowest rounded-lg border border-outline-variant tactile-card shadow-sm space-y-6" onsubmit="event.preventDefault();">
+<!-- Form Header & Progress Subheader -->
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-5 border-b border-surface-container-high gap-2">
+<div>
+<span class="font-label-caps text-label-caps text-secondary uppercase tracking-wider block mb-1">Step 1 of 1 · Local Initialization</span>
+<h2 class="font-headline-md text-headline-md text-primary font-serif">Setup New Stewardship Campaign</h2>
+</div>
+<div class="self-start md:self-auto">
+<span class="font-label-numeric-sm text-label-numeric-sm px-2.5 py-1 rounded bg-surface-container border border-outline-variant text-on-surface-variant">
+                INDEXED_DB · LOCAL #01
+              </span>
+</div>
+</div>
+<!-- Field 1: Campaign Title / Purpose -->
+<div class="space-y-1.5">
+<label class="block font-title-md text-body-md font-semibold text-on-surface" for="campaign-title">
+              Campaign Title / Purpose
+            </label>
+<input aria-describedby="campaign-title-desc" class="w-full h-11 px-3.5 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-body-md placeholder:text-outline focus:border-primary transition-all duration-150" id="campaign-title" name="campaign_title" placeholder="e.g. San Isidro Parish Sanctuary Renewal &amp; Mission 2025" required="" type="text" value="San Isidro Parish Sanctuary Renewal &amp; Mission 2025"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="campaign-title-desc">
+              Use a precise, formal title for parish bulletin publication, council packets, and local ledger backup filenames.
+            </p>
+</div>
+<!-- Field 2: Inclusive Date Range -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="block font-title-md text-body-md font-semibold text-on-surface">
+                Inclusive Date Range &amp; Duration
+              </label>
+<!-- Computed Preview Chip -->
+<span class="font-label-numeric-sm text-label-numeric-sm px-2 py-0.5 bg-[#E9F0EC] border border-[#C3D5CB] text-primary rounded">
+                52 Weeks · 104 Worship Gatherings
+              </span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1" for="start-date">
+                  START DATE (SUNDAY CYCLE)
+                </label>
+<div class="relative">
+<input class="w-full h-11 px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-label-numeric-md focus:border-primary transition-all duration-150" id="start-date" name="start_date" type="date" value="2025-01-01"/>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-1" for="end-date">
+                  END DATE (INCLUSIVE)
+                </label>
+<div class="relative">
+<input class="w-full h-11 px-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-label-numeric-md focus:border-primary transition-all duration-150" id="end-date" name="end_date" type="date" value="2025-12-31"/>
+</div>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Pledge projections model recurring weekly Sunday contributions plus secondary midweek services across these exact calendar boundaries.
+            </p>
+</div>
+<!-- Field 3: Base Operating Currency -->
+<div class="space-y-2">
+<label class="block font-title-md text-body-md font-semibold text-on-surface">
+              Base Currency Configuration
+            </label>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+<!-- PHP (Active/Default Selection) -->
+<label class="flex items-center justify-between p-3 rounded-lg border-2 border-primary bg-surface-container-low cursor-pointer shadow-sm">
+<span class="flex items-center gap-2">
+<input checked="" class="text-primary focus:ring-secondary w-4 h-4" name="currency" type="radio" value="PHP"/>
+<span class="font-body-md font-semibold text-primary">PHP (₱)</span>
+</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">Peso</span>
+</label>
+<!-- USD -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline-variant hover:bg-surface-container-low cursor-pointer transition-colors">
+<span class="flex items-center gap-2">
+<input class="text-primary focus:ring-secondary w-4 h-4" name="currency" type="radio" value="USD"/>
+<span class="font-body-md font-medium text-on-surface">USD ($)</span>
+</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">Dollar</span>
+</label>
+<!-- EUR -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline-variant hover:bg-surface-container-low cursor-pointer transition-colors">
+<span class="flex items-center gap-2">
+<input class="text-primary focus:ring-secondary w-4 h-4" name="currency" type="radio" value="EUR"/>
+<span class="font-body-md font-medium text-on-surface">EUR (€)</span>
+</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">Euro</span>
+</label>
+<!-- GBP -->
+<label class="flex items-center justify-between p-3 rounded-lg border border-outline-variant hover:bg-surface-container-low cursor-pointer transition-colors">
+<span class="flex items-center gap-2">
+<input class="text-primary focus:ring-secondary w-4 h-4" name="currency" type="radio" value="GBP"/>
+<span class="font-body-md font-medium text-on-surface">GBP (£)</span>
+</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">Pound</span>
+</label>
+</div>
+</div>
+<!-- Field 4: Midweek Gathering Day -->
+<div class="space-y-1.5">
+<label class="block font-title-md text-body-md font-semibold text-on-surface" for="midweek-day">
+              Midweek Service / Prayer Gathering Day
+            </label>
+<div class="relative">
+<select class="w-full h-11 px-3.5 pr-10 rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-body-md focus:border-primary transition-all duration-150 appearance-none" id="midweek-day" name="midweek_day">
+<option selected="" value="Wednesday">Wednesday Evening (Midweek Vespers / Prayer Meeting)</option>
+<option value="Tuesday">Tuesday Evening (Novena &amp; Fellowship)</option>
+<option value="Thursday">Thursday Evening (Eucharistic Adoration &amp; Tithe)</option>
+<option value="Friday">Friday Night (Vigil Service)</option>
+<option value="None">None (Sunday-Only Campaign Tracking)</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]" data-icon="unfold_more">unfold_more</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Allows the algorithmic curve engine to calibrate seasonal mid-cycle tithe envelopes alongside principal weekend offerings.
+            </p>
+</div>
+<!-- Field 5: Estimated Pledge Target (Optional Baseline) -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="block font-title-md text-body-md font-semibold text-on-surface" for="commitment-target">
+                Estimated Pledge Target (Optional Baseline)
+              </label>
+<span class="font-label-caps text-label-caps text-outline uppercase">Non-Binding Goal</span>
+</div>
+<div class="relative flex items-center">
+<span class="absolute left-0 inset-y-0 w-11 flex items-center justify-center font-label-numeric-md text-on-surface-variant bg-surface-container-low border-r border-outline-variant rounded-l-lg select-none">
+                ₱
+              </span>
+<input class="w-full h-11 pl-14 pr-3.5 text-right rounded-lg border border-outline-variant bg-surface-container-lowest text-on-surface font-label-numeric-md tracking-tight focus:border-primary transition-all duration-150" id="commitment-target" name="commitment_target" placeholder="0.00" type="text" value="2,500,000.00"/>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Sets the benchmark threshold across progress gauges in the projection matrix. You can adjust or calibrate tier distributions at any time.
+            </p>
+</div>
+<!-- Persistence Cautionary Callout -->
+<div class="p-4 rounded-lg bg-[#FEF6EE] border border-[#F5D6B8] flex items-start gap-3">
+<span class="material-symbols-outlined text-[20px] text-secondary shrink-0 mt-0.5" data-icon="lock_clock">lock_clock</span>
+<div class="space-y-0.5">
+<span class="font-title-md text-body-md font-semibold text-secondary">
+                Local Persistence Safeguard
+              </span>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant leading-relaxed">
+                Clearing your web browser history, site cookies, or website data will wipe this campaign unless archived. Safeguard your work by exporting a verified JSON file after each finance session.
+              </p>
+</div>
+</div>
+<!-- Actions Area -->
+<div class="pt-4 border-t border-surface-container-high space-y-3">
+<!-- Primary Action -->
+<button class="w-full h-12 rounded-lg bg-primary hover:bg-[#142B21] text-surface font-title-md text-body-md font-semibold flex items-center justify-center gap-2.5 transition-all duration-150 tactile-button-primary focus:ring-2 focus:ring-secondary focus:outline-none active:scale-[0.99] cursor-pointer" type="submit">
+<span>Create Campaign &amp; Open Projection Matrix</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<!-- Secondary & Tertiary Action Pair -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+<button class="h-10 px-4 rounded-lg border border-outline-variant hover:bg-surface-container-low text-primary font-body-sm text-body-sm font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="data_object">data_object</span>
+<span>Load Demonstration Data</span>
+</button>
+<button class="h-10 px-4 rounded-lg border border-outline-variant hover:bg-surface-container-low text-primary font-body-sm text-body-sm font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="file_upload">file_upload</span>
+<span>Import Existing .json File</span>
+</button>
+</div>
+</div>
+</form>
+</section>
+</div>
+<!-- REASSURANCE BENCHMARK METRICS (Quiet Fiduciary Indicators) -->
+<section class="mt-12 pt-8 border-t border-outline-variant/60 grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/50">
+<div class="flex items-center gap-2 mb-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="security">security</span>
+<span class="font-label-caps text-label-caps uppercase font-bold">Confidential By Architecture</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Pledge calculations are computed in-memory on your CPU. No analytics pixels, telemetry pings, or third-party cookies exist.
+        </p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/50">
+<div class="flex items-center gap-2 mb-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="offline_pin">offline_pin</span>
+<span class="font-label-caps text-label-caps uppercase font-bold">Airplane &amp; Field Ready</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          Functions entirely without an active internet connection. Safely model budgets in remote parishes or chapel basements.
+        </p>
+</div>
+<div class="p-4 rounded-lg bg-surface-container-low border border-outline-variant/50">
+<div class="flex items-center gap-2 mb-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-caps text-label-caps uppercase font-bold">Standard Archival Schema</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          All campaigns export to human-readable RFC-8259 JSON, ready for physical printing or parish council archives.
+        </p>
+</div>
+</section>
+</main>
+<!-- FOOTER (Shared Components JSON Anchor) -->
+<footer class="w-full bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline mt-auto">
+<div class="w-full max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<!-- Identity & Copyright -->
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="font-headline-sm text-headline-sm text-primary dark:text-inverse-primary font-semibold">
+          IraWorks Commitment Counter
+        </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline-variant">
+          © 2025 IraWorks Commitment Counter. Fiduciary local stewardship software.
+        </span>
+</div>
+<!-- Links & Stewardship Controls -->
+<div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-body-sm text-body-sm">
+<button class="text-on-surface-variant dark:text-outline-variant hover:text-secondary hover:underline transition-colors duration-150 cursor-pointer" type="button">
+          Local Security Policy
+        </button>
+<button class="text-on-surface-variant dark:text-outline-variant hover:text-secondary hover:underline transition-colors duration-150 cursor-pointer" type="button">
+          Export Audit Archive
+        </button>
+<button class="text-on-surface-variant dark:text-outline-variant hover:text-secondary hover:underline transition-colors duration-150 cursor-pointer" type="button">
+          Data Sovereignty
+        </button>
+<button class="text-error hover:underline transition-colors duration-150 inline-flex items-center gap-1 cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="delete_sweep">delete_sweep</span>
+<span>Clear Device Cache</span>
+</button>
+</div>
+</div>
+</footer>
+<!-- Subtle Micro-Interaction Script for Currency & Tab Interaction -->
+<script>
+    // Pure inline script to reflect selected currency prefix dynamically
+    const currencyRadios = document.querySelectorAll('input[name="currency"]');
+    const currencyPrefix = document.querySelector('label[for="commitment-target"] ~ div span');
+
+    const symbolMap = {
+      'PHP': '₱',
+      'USD': '$',
+      'EUR': '€',
+      'GBP': '£'
+    };
+
+    currencyRadios.forEach(radio => {
+      radio.addEventListener('change', (e) => {
+        if (e.target.checked && currencyPrefix) {
+          currencyPrefix.textContent = symbolMap[e.target.value] || '$';
+        }
+      });
+    });
+  </script>
+</body></html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background text-on-background" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Campaign Settings &amp; Fiduciary Data Governance — IraWorks Commitment Counter</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Newsreader (Editorial Serif), Plus Jakarta Sans (Grounded Clean Body), JetBrains Mono (Financial Tabular Monospace) -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration verbatim from Design System -->
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-container": "#82a291",
+            "surface-dim": "#e0d9cf",
+            "on-primary-fixed": "#022015",
+            "on-error-container": "#93000a",
+            "primary-fixed-dim": "#adcebc",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed-dim": "#ffb77a",
+            "on-tertiary-container": "#7fa292",
+            "error": "#ba1a1a",
+            "tertiary": "#002218",
+            "surface-variant": "#e9e2d7",
+            "on-background": "#1e1b15",
+            "primary-fixed": "#c9ead7",
+            "primary-container": "#1b382b",
+            "secondary-container": "#fea047",
+            "inverse-primary": "#adcebc",
+            "error-container": "#ffdad6",
+            "tertiary-container": "#17382c",
+            "surface-container-highest": "#e9e2d7",
+            "on-secondary-fixed": "#2e1500",
+            "background": "#fff8f0",
+            "on-tertiary-fixed": "#002116",
+            "surface-container-high": "#eee7dd",
+            "on-secondary-fixed-variant": "#6d3a00",
+            "surface-container-low": "#faf3e8",
+            "inverse-on-surface": "#f7f0e5",
+            "surface": "#fff8f0",
+            "on-surface-variant": "#424844",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#6d3a00",
+            "on-surface": "#1e1b15",
+            "surface-container": "#f4ede3",
+            "on-error": "#ffffff",
+            "on-primary": "#ffffff",
+            "tertiary-fixed": "#c6ebd9",
+            "tertiary-fixed-dim": "#abcebe",
+            "surface-tint": "#476556",
+            "primary": "#042217",
+            "secondary-fixed": "#ffdcc2",
+            "on-primary-fixed-variant": "#304d3f",
+            "secondary": "#8f4e00",
+            "on-tertiary-fixed-variant": "#2d4d40",
+            "surface-bright": "#fff8f0",
+            "on-tertiary": "#ffffff",
+            "outline-variant": "#c2c8c2",
+            "outline": "#727974",
+            "inverse-surface": "#333029"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter-lg": "2rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "space-xl": "2.5rem",
+            "margin-mobile": "1rem",
+            "margin": "2rem",
+            "space-lg": "1.5rem",
+            "space-2xl": "4rem",
+            "gutter-sm": "1rem"
+          },
+          "fontFamily": {
+            "label-caps": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Newsreader"],
+            "display-lg": ["Newsreader"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "title-md": ["Plus Jakarta Sans"],
+            "label-numeric-sm": ["JetBrains Mono"],
+            "headline-sm": ["Newsreader"],
+            "headline-md": ["Newsreader"],
+            "display-lg-mobile": ["Newsreader"],
+            "label-numeric-lg": ["JetBrains Mono"],
+            "headline-lg": ["Newsreader"],
+            "label-numeric-md": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "label-caps": ["0.6875rem", { "lineHeight": "1rem", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "body-lg": ["1.0625rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "display-lg": ["3rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.5rem", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "title-md": ["1.125rem", { "lineHeight": "1.625rem", "fontWeight": "600" }],
+            "label-numeric-sm": ["0.8125rem", { "lineHeight": "1.125rem", "fontWeight": "400" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }],
+            "headline-md": ["1.625rem", { "lineHeight": "2.125rem", "fontWeight": "500" }],
+            "display-lg-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-numeric-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "label-numeric-md": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Subtle letterpress effect on dark primary buttons */
+    .btn-letterpress {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(20, 43, 33, 0.08);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #faf3e8;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #c2c8c2;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md text-body-md antialiased selection:bg-secondary-fixed selection:text-on-secondary-fixed bg-background text-on-background">
+<!-- Top Navigation Anchor (Shared Component Execution) -->
+<header class="w-full bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none sticky top-0 z-40 transition-colors">
+<div class="w-full max-w-[1200px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between h-16">
+<!-- Brand & Offline Anchor Cluster -->
+<div class="flex items-center gap-4">
+<a class="flex flex-col text-headline-sm font-headline-sm font-semibold tracking-tight text-primary dark:text-inverse-primary" href="#">
+<span>IraWorks Commitment Counter</span>
+<span class="text-[0.625rem] tracking-wider uppercase font-label-caps text-on-surface-variant font-medium">BROWSER-LOCAL PLEDGE MODELING · OFFLINE FIDUCIARY UTILITY</span>
+</a>
+<!-- Local Engine Badge -->
+<div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 bg-surface-container-high border border-outline-variant rounded text-[0.6875rem] font-label-numeric-sm text-primary">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-medium tracking-tight">STRICTLY LOCAL BROWSER ENGINE · IndexedDB Encrypted</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container dark:hover:bg-inverse-surface transition-colors duration-150" href="#">Campaigns (0)</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container dark:hover:bg-inverse-surface transition-colors duration-150" href="#">Ledger</a>
+<a class="text-on-surface-variant dark:text-outline-variant font-medium pb-1 hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container dark:hover:bg-inverse-surface transition-colors duration-150" href="#">Projections</a>
+<!-- Active Tab: Settings & Archival (closest match for settings governance screen) -->
+<a class="text-primary dark:text-inverse-primary font-semibold border-b-2 border-primary dark:border-inverse-primary pb-1" href="#">Campaign Settings</a>
+</nav>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-2.5">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1.5 bg-surface-container-lowest border border-outline-variant rounded hover:bg-surface-container text-body-sm font-body-sm text-primary transition-colors active:scale-[0.99]" title="Restore JSON State" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="sync_saved_locally">sync_saved_locally</span>
+<span class="hidden sm:inline">Restore</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary-container text-surface-container-lowest rounded hover:bg-primary text-body-sm font-body-sm font-medium btn-letterpress transition-colors active:scale-[0.99]" title="Backup current ledger instantly" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
+<span>Backup JSON</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Administrative Canvas (Max 1200px Fixed-Max Fluid Grid) -->
+<main class="flex-1 w-full max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-space-xl">
+<!-- Page Header & Title Section -->
+<div class="mb-space-lg">
+<div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 border-b border-outline-variant pb-space-sm">
+<div>
+<span class="text-label-caps font-label-caps uppercase text-secondary font-bold tracking-wider">Fiduciary Configuration &amp; Sovereign Control</span>
+<h1 class="text-headline-lg font-headline-lg text-primary tracking-tight mt-0.5">Campaign Settings &amp; Fiduciary Data Governance</h1>
+</div>
+<div class="flex items-center gap-2 font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-container"></span>
+<span>Ledger Context: <strong class="text-primary font-semibold">Active Sanctuary Cycle 2025</strong></span>
+</div>
+</div>
+</div>
+<!-- Notice Banner: Cryptographic Integrity & Local Execution -->
+<section class="mb-space-xl p-space-md bg-surface-container-low border-l-4 border-l-secondary-container border border-outline-variant rounded-lg shadow-sm">
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px] mt-0.5" data-icon="verified_user">verified_user</span>
+<div>
+<h2 class="text-title-md font-title-md text-primary font-semibold">Local Storage &amp; Cryptographic Verification</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5 max-w-3xl">
+              All data lives strictly within your browser's IndexedDB. Changing campaign boundaries alters projection models immediately. No telemetry, no remote cloud database. Every change recalculates verification digests locally.
+            </p>
+</div>
+</div>
+<div class="flex flex-row md:flex-col items-end gap-1.5 shrink-0 bg-surface-container-lowest px-3 py-2 border border-outline-variant rounded">
+<div class="flex items-center gap-1.5">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Local Checksum:</span>
+<code class="text-label-numeric-sm font-label-numeric-sm text-primary font-bold">CRC32-7A99B</code>
+</div>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Archive Hash:</span>
+<code class="text-label-numeric-sm font-label-numeric-sm text-outline">#0E-99F2-C1</code>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento / Two-Column Fiduciary Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- ================= COLUMN 1 (7/12): Campaign Configuration & Live Display Rules ================= -->
+<div class="lg:col-span-7 space-y-space-lg">
+<!-- Section 1.1: Campaign Metadata & Calendar Boundaries -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg shadow-sm">
+<div class="flex items-center justify-between border-b border-surface-container pb-space-sm mb-space-md">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-primary">Calendar Boundaries &amp; Tithe Cadence</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Constitutional dates governing pledge fulfillment schedules.</p>
+</div>
+<span class="px-2 py-0.5 bg-surface-container text-primary font-label-caps text-label-caps uppercase rounded">
+              Active Registry
+            </span>
+</div>
+<form class="space-y-space-md" onsubmit="event.preventDefault();">
+<!-- Campaign Title -->
+<div>
+<label class="block text-body-sm font-body-sm font-semibold text-primary mb-1" for="campaign-title">
+                Campaign Title
+              </label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded text-on-background px-3 py-2 text-body-md font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" id="campaign-title" type="text" value="San Isidro Parish Sanctuary Renewal &amp; Mission 2025"/>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1 italic">
+                Appears on congregational pledge cards and council reports.
+              </p>
+</div>
+<!-- Inclusive Date Range -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div>
+<label class="block text-body-sm font-body-sm font-semibold text-primary mb-1" for="start-date">
+                  Start Date (Sunday Cycle)
+                </label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded text-on-background px-3 py-2 text-label-numeric-sm font-label-numeric-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" id="start-date" type="date" value="2025-01-05"/>
+</div>
+</div>
+<div>
+<label class="block text-body-sm font-body-sm font-semibold text-primary mb-1" for="end-date">
+                  End Date (Sunday Cycle)
+                </label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded text-on-background px-3 py-2 text-label-numeric-sm font-label-numeric-sm focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" id="end-date" type="date" value="2025-12-28"/>
+</div>
+</div>
+</div>
+<!-- Calculated Badge Matrix -->
+<div class="flex items-center justify-between p-3 bg-surface-container-low border border-outline-variant rounded">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="calendar_month">calendar_month</span>
+<span class="font-label-numeric-sm text-label-numeric-sm text-primary font-semibold">52 Weeks · 104 Scheduled Gatherings</span>
+</div>
+<span class="text-label-caps font-label-caps uppercase text-secondary font-bold">Standard Liturgical Year</span>
+</div>
+<!-- Date Recalibration Warning Box -->
+<div class="p-3 bg-error-container/20 border-l-2 border-l-secondary text-on-surface-variant rounded-r text-body-sm font-body-sm flex items-start gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5" data-icon="info">info</span>
+<span><strong>Warning:</strong> Adjusting campaign dates immediately recalibrates all weekly and midweek projections across all 148 active ledger records.</span>
+</div>
+<!-- Currency Selection -->
+<div class="pt-space-xs">
+<label class="block text-body-sm font-body-sm font-semibold text-primary mb-1" for="currency-select">
+                Denomination Currency Unit
+              </label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded text-on-background px-3 py-2 text-body-md font-body-md focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none" id="currency-select">
+<option selected="" value="PHP">Philippine Peso (PHP ₱) — Current Active Standard</option>
+<option value="USD">United States Dollar (USD $)</option>
+<option value="EUR">Euro (EUR €)</option>
+<option value="GBP">British Pound Sterling (GBP £)</option>
+</select>
+<!-- Calm Currency Modification Warning -->
+<div class="mt-2 p-3 bg-surface-container border border-outline-variant rounded text-body-sm font-body-sm text-on-surface-variant flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5" data-icon="lock_clock">lock_clock</span>
+<p>
+<strong class="text-primary font-medium">Currency Modification Notice:</strong> Altering campaign currency changes display symbols only; it never converts historical pledge figures. For multi-currency campaigns, archive this cycle first.
+                </p>
+</div>
+</div>
+<!-- Midweek Service / Prayer Gathering Day -->
+<div>
+<label class="block text-body-sm font-body-sm font-semibold text-primary mb-2">
+                Midweek Liturgy / Prayer Gathering Cadence
+              </label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<label class="flex items-center gap-3 p-2.5 border border-primary-container bg-surface-container-low rounded cursor-pointer">
+<input checked="" class="text-primary-container focus:ring-secondary focus:ring-offset-0" name="midweek_service" type="radio" value="wednesday"/>
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm font-medium text-primary">Wednesday Evening</span>
+<span class="text-[0.75rem] text-on-surface-variant">Midweek Vespers &amp; Prayer Meeting</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-2.5 border border-outline-variant bg-surface-container-lowest rounded hover:bg-surface-container cursor-pointer transition-colors">
+<input class="text-primary-container focus:ring-secondary focus:ring-offset-0" name="midweek_service" type="radio" value="thursday"/>
+<div class="flex flex-col">
+<span class="text-body-sm font-body-sm font-medium text-primary">Thursday Evening</span>
+<span class="text-[0.75rem] text-on-surface-variant">Council Devotional &amp; Intercession</span>
+</div>
+</label>
+</div>
+</div>
+</form>
+</article>
+<!-- Section 1.2: Congregation & Live Projection Display Controls -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg shadow-sm">
+<div class="border-b border-surface-container pb-space-sm mb-space-md">
+<h2 class="text-headline-sm font-headline-sm text-primary">Congregation &amp; Live Projection Display Controls</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              Configure sanctuary kiosks and live sanctuary displays to respect communal transparency without compromising donor confidentiality.
+            </p>
+</div>
+<div class="space-y-space-md">
+<!-- Toggle 1: Publicize Live Commitment Count -->
+<div class="flex items-center justify-between p-3 bg-surface-bright border border-outline-variant rounded">
+<div class="pr-4">
+<p class="text-body-md font-body-md font-semibold text-primary">Publicize Live Commitment Count</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                  Permit the Live Congregation Display view to project aggregate commitment tallies in real-time.
+                </p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Toggle 2: Show Frequency Breakdown on Public Display -->
+<div class="flex items-center justify-between p-3 bg-surface-bright border border-outline-variant rounded">
+<div class="pr-4">
+<p class="text-body-md font-body-md font-semibold text-primary">Show Frequency Breakdown on Public Display</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                  Expose weekly, monthly, and midweek recurrence distribution on kiosk view.
+                </p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Toggle 3: Mask Large Single Bequests -->
+<div class="flex items-center justify-between p-3 bg-surface-bright border border-outline-variant rounded">
+<div class="pr-4">
+<p class="text-body-md font-body-md font-semibold text-primary">Mask Large Single Bequests</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">
+                  Anonymize individual one-off pledges exceeding ₱25,000 to maintain pastoral humility.
+                </p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface-container-lowest after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<!-- Commit Action Bar -->
+<div class="pt-space-sm flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-surface-container">
+<button class="w-full sm:w-auto px-5 py-2.5 bg-primary-container hover:bg-primary text-surface-container-lowest font-body-sm font-semibold rounded btn-letterpress transition-all flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="save">save</span>
+<span>Save Campaign Settings</span>
+</button>
+<div class="flex items-center gap-1.5 text-body-sm font-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary-container text-[16px]" data-icon="check_circle">check_circle</span>
+<span>Changes saved locally to IndexedDB</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+<!-- ================= COLUMN 2 (5/12): Data Sovereignty, Audit Reports & JSON Archival ================= -->
+<div class="lg:col-span-5 space-y-space-lg">
+<!-- Section 2.1: Equal Prominence Export & Backup Architecture -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg shadow-sm">
+<div class="border-b border-surface-container pb-space-sm mb-space-md">
+<span class="text-label-caps font-label-caps uppercase text-primary-container font-bold tracking-wider">Dual Export Architecture</span>
+<h2 class="text-headline-sm font-headline-sm text-primary">Sovereign Exports &amp; Audit Workbooks</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              Two distinct fiduciary exports tailored for human review or cryptographic software continuity.
+            </p>
+</div>
+<div class="space-y-space-md">
+<!-- Card A: Audit & Accounting Report (.xlsx / .csv) -->
+<div class="p-3.5 bg-surface-container-low border border-outline-variant rounded">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="table_view">table_view</span>
+<h3 class="text-title-md font-title-md text-primary font-semibold">Parish Audit Workbook (.xlsx)</h3>
+</div>
+<span class="text-[0.6875rem] font-label-numeric-sm px-1.5 py-0.5 bg-surface-container border border-outline-variant rounded text-on-surface-variant">Human Readable</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-3">
+                Formatted spreadsheet report designed for parish wardens, finance committees, and annual general meetings. <em class="text-on-background font-medium">Not restorable into IraWorks software.</em>
+</p>
+<!-- Checkbox Options -->
+<div class="space-y-1.5 mb-3 text-body-sm font-body-sm text-on-surface">
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-secondary w-4 h-4" type="checkbox"/>
+<span>Include anonymized envelope IDs</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-secondary w-4 h-4" type="checkbox"/>
+<span>Include weekly schedule matrix</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="rounded border-outline-variant text-primary-container focus:ring-secondary w-4 h-4" type="checkbox"/>
+<span>Include raw cryptographic hashes</span>
+</label>
+</div>
+<button class="w-full py-2 px-3 bg-surface-container-lowest border border-outline-variant hover:border-primary text-primary font-body-sm font-semibold rounded transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span>
+<span>Generate Parish Audit Workbook (.xlsx)</span>
+</button>
+</div>
+<!-- Card B: Authoritative Ledger Archive (.json) -->
+<div class="p-3.5 bg-surface-container-high border-2 border-primary-container rounded">
+<div class="flex items-center justify-between mb-1">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="dataset">dataset</span>
+<h3 class="text-title-md font-title-md text-primary font-semibold">Authoritative Ledger Archive (.json)</h3>
+</div>
+<span class="text-[0.6875rem] font-label-numeric-sm px-1.5 py-0.5 bg-primary-container text-surface-container-lowest rounded">Complete Snapshot</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mb-3">
+                Full machine-readable backup containing complete commitment parameters, campaign configuration, and tamper-verification checksums. Use this file to migrate devices or restore lost browser state.
+              </p>
+<!-- File Metadata Pill -->
+<div class="mb-3 px-2 py-1.5 bg-surface-container-lowest border border-outline-variant rounded flex items-center justify-between font-label-numeric-sm text-label-numeric-sm text-on-surface-variant">
+<span>ira-san-isidro-2025-archive-v1.json</span>
+<span class="font-bold text-primary">142 KB</span>
+</div>
+<button class="w-full py-2.5 px-3 bg-primary-container hover:bg-primary text-surface-container-lowest font-body-sm font-semibold rounded btn-letterpress transition-colors flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="archive">archive</span>
+<span>Download Sovereign Archive (.json)</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Section 2.2: Restorable JSON Backup & Safe Import Preview Modal/Card -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg shadow-sm">
+<div class="border-b border-surface-container pb-space-sm mb-space-md">
+<h2 class="text-headline-sm font-headline-sm text-primary">Restore or Import Campaign Backup</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">
+              Reconstitute a previously archived ledger into this device's memory.
+            </p>
+</div>
+<!-- Dropzone Container -->
+<div class="border border-dashed border-outline rounded p-4 text-center bg-surface-container-low mb-4 hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary-container text-[32px] mb-1" data-icon="upload_file">upload_file</span>
+<p class="text-body-sm font-body-sm font-semibold text-primary">Drop authoritative .json file here</p>
+<p class="text-[0.75rem] text-on-surface-variant mb-2">or select an encrypted backup from your secure thumb drive</p>
+<button class="px-3 py-1 bg-surface-container-lowest border border-outline-variant text-primary text-body-sm font-body-sm font-medium rounded hover:bg-surface-container" type="button">
+              Upload .json Ledger Backup
+            </button>
+</div>
+<!-- Safe Import Preview Box (Simulated Active Inspection) -->
+<div class="border border-outline-variant rounded bg-surface-bright p-3.5 space-y-3">
+<div class="flex items-center justify-between border-b border-outline-variant/50 pb-2">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-[18px]" data-icon="shield">shield</span>
+<span class="text-label-caps font-label-caps text-primary uppercase font-bold">Verified Archival Digest</span>
+</div>
+<code class="text-label-numeric-sm font-label-numeric-sm px-1.5 py-0.5 bg-surface-container rounded text-primary">CRC32: 8F2A-44C1</code>
+</div>
+<!-- Inspect Digest Content -->
+<div class="font-label-numeric-sm text-label-numeric-sm text-on-surface-variant space-y-1">
+<p class="text-primary font-medium">1 Campaign Found: San Isidro Parish Sanctuary Renewal &amp; Mission 2025</p>
+<div class="flex items-center justify-between text-body-sm font-body-sm">
+<span>148 Commitment Entries</span>
+<span class="font-semibold text-primary">₱ 1,842,500.00 Total Tithes</span>
+</div>
+<p class="text-[0.75rem] text-outline">Created: Oct 24, 2025 at 17:40 (Local Device Timestamp)</p>
+</div>
+<!-- Resolution Choice Radios -->
+<div class="space-y-2 pt-1 border-t border-outline-variant/40">
+<label class="flex items-start gap-2.5 p-2 bg-surface-container-low border border-primary-container rounded cursor-pointer">
+<input checked="" class="mt-0.5 text-primary-container focus:ring-secondary" name="import_resolution" type="radio"/>
+<div class="text-body-sm font-body-sm">
+<span class="font-semibold text-primary block">Overwrite Current Campaign</span>
+<span class="text-on-surface-variant text-[0.75rem]">Pledges and parameters in local memory will be replaced entirely with the contents of this archive.</span>
+</div>
+</label>
+<label class="flex items-start gap-2.5 p-2 bg-surface-container-lowest border border-outline-variant rounded hover:bg-surface-container cursor-pointer transition-colors">
+<input class="mt-0.5 text-primary-container focus:ring-secondary" name="import_resolution" type="radio"/>
+<div class="text-body-sm font-body-sm">
+<span class="font-semibold text-primary block">Import as Standalone Copy</span>
+<span class="text-on-surface-variant text-[0.75rem]">Create 'San Isidro Parish 2025 (Imported Copy)' and preserve your current browser ledger intact.</span>
+</div>
+</label>
+</div>
+<!-- Modal Action Buttons -->
+<div class="flex items-center justify-end gap-2 pt-2">
+<button class="px-3 py-1.5 text-on-surface-variant hover:text-primary text-body-sm font-body-sm" type="button">
+                Cancel Import
+              </button>
+<button class="px-3 py-1.5 bg-primary-container hover:bg-primary text-surface-container-lowest text-body-sm font-body-sm font-semibold rounded btn-letterpress" type="button">
+                Proceed with Overwrite (Restores 148 entries)
+              </button>
+</div>
+</div>
+</article>
+<!-- Section 2.3: Campaign Lifecycle & Cold Storage -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-lg p-space-lg shadow-sm">
+<div class="border-b border-surface-container pb-space-sm mb-space-md">
+<h2 class="text-headline-sm font-headline-sm text-primary">Lifecycle Finalization &amp; Sanitization</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Archival cold storage locks or device decommissioning.</p>
+</div>
+<div class="space-y-3">
+<button class="w-full py-2 px-3 bg-surface-container hover:bg-surface-dim border border-outline-variant text-primary font-body-sm font-semibold rounded text-left flex items-center justify-between transition-colors" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="lock">lock</span>
+<span>Archive Current Campaign to Cold Storage</span>
+</div>
+<span class="text-label-caps font-label-caps text-on-surface-variant uppercase">Read-Only</span>
+</button>
+<p class="text-[0.75rem] text-on-surface-variant px-1">
+              Disables entry pad modifications, freezes verification hash, and keeps record in IndexedDB for historical audit inquiries.
+            </p>
+<!-- Danger Zone -->
+<div class="mt-4 pt-3 border-t border-outline-variant/60">
+<div class="flex items-center justify-between">
+<div>
+<span class="text-body-sm font-body-sm font-semibold text-error block">Clear Browser Cache for this Device</span>
+<span class="text-[0.75rem] text-on-surface-variant">Irreversibly erases local IndexedDB records. Ensure JSON backup exists first.</span>
+</div>
+<button class="px-3 py-1.5 bg-surface-container-lowest border border-error text-error hover:bg-error-container/40 text-body-sm font-body-sm font-semibold rounded transition-colors shrink-0" type="button">
+                  Wipe Memory
+                </button>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<!-- Sticky Local Ledger Safe Badge -->
+<aside class="w-full bg-surface-container-high border-t border-outline-variant py-1.5 px-4">
+<div class="max-w-[1200px] mx-auto flex items-center justify-between text-[0.6875rem] font-label-numeric-sm text-on-surface-variant">
+<div class="flex items-center gap-2">
+<span class="inline-block w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-bold uppercase tracking-wider text-primary">LOCAL FILE ARCHIVE · NO EXTERNAL TRANSMISSION</span>
+</div>
+<div class="hidden sm:flex items-center gap-3">
+<span>Storage Engine: <strong>IndexedDB (v4.2)</strong></span>
+<span>Allocated: <strong>2.4 MB / Quota Unlimited</strong></span>
+</div>
+</div>
+</aside>
+<!-- Footer (Shared Component Execution) -->
+<footer class="w-full bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flat no shadows">
+<div class="w-full max-w-[1200px] mx-auto px-margin-mobile md:px-margin py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<!-- Brand & Copyright -->
+<div class="flex flex-col md:flex-row items-center gap-3 text-center md:text-left">
+<span class="text-headline-sm font-headline-sm text-primary dark:text-inverse-primary">
+          IraWorks Commitment Counter
+        </span>
+<span class="hidden md:inline text-outline-variant">|</span>
+<p class="text-body-sm font-body-sm text-on-surface-variant dark:text-outline-variant">
+          © 2025 IraWorks Commitment Counter. Fiduciary local stewardship software.
+        </p>
+</div>
+<!-- Links & Navigation -->
+<nav class="flex flex-wrap items-center justify-center gap-4 text-body-sm font-body-sm">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Local Security Policy</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Export Audit Archive</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Data Sovereignty</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary hover:underline transition-colors duration-150" href="#">Clear Device Cache</a>
+</nav>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,186 @@
+{
+  "success": true,
+  "data": {
+    "designSystem": {
+      "displayName": "Pastoral Stewardship",
+      "styleGuidelines": "## Brand & Style\n\nThis design system embodies quiet authority, pastoral warmth, and meticulous fiduciary stewardship. Tailored specifically for faith-based communities, parishes, and non-profit finance committees, the aesthetic avoids corporate SaaS tropes, growth-hacking visual clutter, and transactional coldness. Instead, it projects the quiet gravitas of archival ledgers, physical stewardship records, and local-first institutional software.\n\nThe UI philosophy is rooted in a refined **Tactile Minimalist** style:\n- **Atmosphere:** Contemplative, grounded, and unhurried. Elements breathe with generous internal margins and structured typographic rhythm.\n- **Audience Resonance:** Designed for volunteer treasurers, pastors, and finance councils who manage sacred tithes, capital campaigns, and communal commitments. It communicates total discretion, offline-first reliability, and integrity.\n- **Emotional Response:** Calm reassurance, fiduciary confidence, and unencumbered clarity.\n\n## Layout & Spacing\n\nThe layout philosophy uses a disciplined **Fixed-Max Fluid Grid** anchored at a maximum content boundary of `1200px` to maintain optimal scanning width for financial sheets and input forms.\n\n### Grid & Breakpoints\n- **Desktop (≥ 1024px):** 12-column grid, `gutter-lg` (2rem), side margin minimum `2rem`. Ledger sheets can expand to a wide-aspect 1400px container for cross-tabulation.\n- **Tablet (768px – 1023px):** 8-column grid, `gutter` (1.5rem), `margin` (1.5rem). Multi-column pledge forms collapse into a two-column paired layout.\n- **Mobile (≤ 767px):** 4-column grid, `gutter-sm` (1rem), `margin-mobile` (1rem). Ledger rows transition to stacked card structures with explicit boundary cards.\n\n### Spacing Principles\n- Vertical rhythm follows an explicit 8px base grid.\n- Generous outer breathing room: sections are demarcated by `space-xl` and `space-2xl` increments rather than heavy tinted backgrounds.\n- Field groupings maintain strict internal proximity (`space-sm` between label and input; `space-md` between discrete form fields).\n\n## Elevation & Depth\n\nVisual hierarchy rejects artificial floating glass layers and heavy black drop-shadows in favor of grounded physical paper stock and fine stonework borders.\n\n### Surface Tiers\n- **Tier 0 (Canvas Base):** `#FAF7F2` warm linen background.\n- **Tier 1 (Ledger Cards & Working Pads):** Crisp `#FFFFFF` surface bounded by a crisp 1px `#E6DFD5` solid border. Shadow: `0 1px 3px rgba(20, 43, 33, 0.04), 0 1px 2px rgba(20, 43, 33, 0.02)`.\n- **Tier 2 (Popovers, Calculation Drawers, Dropdowns):** `#FFFFFF` surface, framed by 1px `#D8CFBE` edge. Shadow: `0 8px 24px -4px rgba(20, 43, 33, 0.08), 0 2px 6px -1px rgba(20, 43, 33, 0.04)`.\n- **Tier 3 (Modals & Audit Confirmation Windows):** `#FFFFFF` anchored over a tinted scrim of `rgba(14, 32, 24, 0.45)`. Shadow: `0 16px 40px -8px rgba(14, 32, 24, 0.18)`.\n\n### Tactile Detail\n- Interactive surfaces (buttons, clickable table rows) employ an optical inset micro-line on the top edge (`box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2)` on dark buttons) to mimic letterpress craftsmanship.\n\n## Components\n\n### Buttons\n- **Primary:** Background `#1B382B`, text `#FAF7F2`, hairline border `#142B21`, radius `0.25rem`. Hover state transitions to `#142B21` with a delicate lift. Focus ring is a 2px offset ring in `#D9822B`.\n- **Secondary / Outlined:** Background `#FFFFFF`, text `#1B382B`, border 1px solid `#D8CFBE`. Hover: `#F4EFE6` background with border `#1B382B`.\n- **Accent / Special Action:** Background `#D9822B`, text `#FFFFFF`, border `#C26E1D`. Reserved for commitment confirmation and ledger finalization.\n- **Tertiary / Ghost:** Background transparent, text `#1B382B`, hover: background `#F4EFE6`.\n\n### Inputs & Financial Entry Controls\n- **Standard Input:** Crisp `#FFFFFF` surface, 1px solid border `#D8CFBE`, text `#0E2018`, font `Plus Jakarta Sans`. Height: `2.625rem` (42px) with horizontal padding `0.75rem`.\n- **Currency Entry Fields:** Monospaced (`JetBrains Mono`), right-aligned numeric format with a fixed evergreen prefix symbol (`$`) enclosed in a subtle `#FAF7F2` container flank.\n- **Focus States:** `outline: none; border-color: #1B382B; box-shadow: 0 0 0 3px rgba(27, 56, 43, 0.15)`.\n\n### Cards & Ledger Sheets\n- Constructed with `#FFFFFF` background, wrapped in 1px `#E6DFD5` border, and standard padding of `1.5rem`.\n- Header partitions use subtle horizontal hairline dividers (`1px solid #F4EFE6`) accompanied by serif subheaders and monospaced balance totals.\n\n### Table & Data Grids (Commitment Counter Ledger)\n- Alternating row zebra tints are avoided; distinct rows are marked by a 1px bottom border of `#E6DFD5`.\n- Row hover yields a gentle `#FAF7F2` background transition.\n- Header cells set in `label-caps` using `#526056` over an off-white `#F4EFE6` sub-canvas.\n- Tabular figures use right alignment with matching width decimal fractions.\n\n### Checkboxes & Radios\n- Box size: `1.125rem` with `0.25rem` border-radius for checkboxes, fully circular for radio toggles.\n- Unchecked: 1.5px border in `#D8CFBE`, background `#FFFFFF`.\n- Checked: Background `#1B382B`, checkmark icon in `#FAF7F2`. Focus rings mirror the secondary marigold tone (`#D9822B`).\n\n### Chips & Stewardship Badges\n- **Pledged / Active:** `#E9F0EC` background, `#1B382B` text, 1px `#C3D5CB` border.\n- **Fitted / Met Target:** `#FEF6EE` background, `#C26E1D` text, 1px `#F5D6B8` border.\n- **Reconciliation Audit Pill:** Monospaced date/hash reference in `#FAF7F2` background with `#526056` text.\n\n### Specialized Commitment Components\n- **Local Ledger Safe Badge:** A persistent micro-indicator in the footer/header demonstrating local-only browser storage (`IndexedDB` verified) using an evergreen dot indicator `#2D5A43` and tiny monospace notice: `LOCAL FILE ARCHIVE · NO EXTERNAL TRANSMISSION`.\n- **Pledge Progress Gauge:** A horizontal stepped progress track: unfulfilled tracks use `#E6DFD5`, fulfilled portions use a dual gradient from `#1B382B` to `#D9822B`, without round ends, maintaining architectural 4px corners.",
+      "theme": {
+        "bodyFont": "PLUS_JAKARTA_SANS",
+        "bodyFontFamily": "Plus Jakarta Sans",
+        "colorMode": "LIGHT",
+        "colorVariant": "FIDELITY",
+        "customColor": "#1b382b",
+        "designMd": "---\nname: Pastoral Stewardship\ncolors:\n  surface: '#fff8f0'\n  surface-dim: '#e0d9cf'\n  surface-bright: '#fff8f0'\n  surface-container-lowest: '#ffffff'\n  surface-container-low: '#faf3e8'\n  surface-container: '#f4ede3'\n  surface-container-high: '#eee7dd'\n  surface-container-highest: '#e9e2d7'\n  on-surface: '#1e1b15'\n  on-surface-variant: '#424844'\n  inverse-surface: '#333029'\n  inverse-on-surface: '#f7f0e5'\n  outline: '#727974'\n  outline-variant: '#c2c8c2'\n  surface-tint: '#476556'\n  primary: '#042217'\n  on-primary: '#ffffff'\n  primary-container: '#1b382b'\n  on-primary-container: '#82a291'\n  inverse-primary: '#adcebc'\n  secondary: '#8f4e00'\n  on-secondary: '#ffffff'\n  secondary-container: '#fea047'\n  on-secondary-container: '#6d3a00'\n  tertiary: '#002218'\n  on-tertiary: '#ffffff'\n  tertiary-container: '#17382c'\n  on-tertiary-container: '#7fa292'\n  error: '#ba1a1a'\n  on-error: '#ffffff'\n  error-container: '#ffdad6'\n  on-error-container: '#93000a'\n  primary-fixed: '#c9ead7'\n  primary-fixed-dim: '#adcebc'\n  on-primary-fixed: '#022015'\n  on-primary-fixed-variant: '#304d3f'\n  secondary-fixed: '#ffdcc2'\n  secondary-fixed-dim: '#ffb77a'\n  on-secondary-fixed: '#2e1500'\n  on-secondary-fixed-variant: '#6d3a00'\n  tertiary-fixed: '#c6ebd9'\n  tertiary-fixed-dim: '#abcebe'\n  on-tertiary-fixed: '#002116'\n  on-tertiary-fixed-variant: '#2d4d40'\n  background: '#fff8f0'\n  on-background: '#1e1b15'\n  surface-variant: '#e9e2d7'\ntypography:\n  display-lg:\n    fontFamily: Newsreader\n    fontSize: 3rem\n    fontWeight: '500'\n    lineHeight: 3.5rem\n    letterSpacing: -0.02em\n  display-lg-mobile:\n    fontFamily: Newsreader\n    fontSize: 2.25rem\n    fontWeight: '500'\n    lineHeight: 2.75rem\n    letterSpacing: -0.01em\n  headline-lg:\n    fontFamily: Newsreader\n    fontSize: 2.25rem\n    fontWeight: '500'\n    lineHeight: 2.75rem\n    letterSpacing: -0.015em\n  headline-lg-mobile:\n    fontFamily: Newsreader\n    fontSize: 1.75rem\n    fontWeight: '500'\n    lineHeight: 2.25rem\n    letterSpacing: -0.01em\n  headline-md:\n    fontFamily: Newsreader\n    fontSize: 1.625rem\n    fontWeight: '500'\n    lineHeight: 2.125rem\n  headline-sm:\n    fontFamily: Newsreader\n    fontSize: 1.25rem\n    fontWeight: '600'\n    lineHeight: 1.75rem\n  title-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 1.125rem\n    fontWeight: '600'\n    lineHeight: 1.625rem\n  body-lg:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 1.0625rem\n    fontWeight: '400'\n    lineHeight: 1.75rem\n  body-md:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 0.9375rem\n    fontWeight: '400'\n    lineHeight: 1.5rem\n  body-sm:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 0.8125rem\n    fontWeight: '400'\n    lineHeight: 1.25rem\n  label-numeric-lg:\n    fontFamily: JetBrains Mono\n    fontSize: 1.5rem\n    fontWeight: '500'\n    lineHeight: 2rem\n    letterSpacing: -0.02em\n  label-numeric-md:\n    fontFamily: JetBrains Mono\n    fontSize: 1rem\n    fontWeight: '500'\n    lineHeight: 1.5rem\n    letterSpacing: -0.01em\n  label-numeric-sm:\n    fontFamily: JetBrains Mono\n    fontSize: 0.8125rem\n    fontWeight: '400'\n    lineHeight: 1.125rem\n  label-caps:\n    fontFamily: Plus Jakarta Sans\n    fontSize: 0.6875rem\n    fontWeight: '700'\n    lineHeight: 1rem\n    letterSpacing: 0.06em\nrounded:\n  sm: 0.125rem\n  DEFAULT: 0.25rem\n  md: 0.375rem\n  lg: 0.5rem\n  xl: 0.75rem\n  full: 9999px\nspacing:\n  gutter: 1.5rem\n  gutter-sm: 1rem\n  gutter-lg: 2rem\n  margin: 2rem\n  margin-mobile: 1rem\n  space-xs: 0.25rem\n  space-sm: 0.5rem\n  space-md: 1rem\n  space-lg: 1.5rem\n  space-xl: 2.5rem\n  space-2xl: 4rem\n---\n\n## Brand & Style\n\nThis design system embodies quiet authority, pastoral warmth, and meticulous fiduciary stewardship. Tailored specifically for faith-based communities, parishes, and non-profit finance committees, the aesthetic avoids corporate SaaS tropes, growth-hacking visual clutter, and transactional coldness. Instead, it projects the quiet gravitas of archival ledgers, physical stewardship records, and local-first institutional software.\n\nThe UI philosophy is rooted in a refined **Tactile Minimalist** style:\n- **Atmosphere:** Contemplative, grounded, and unhurried. Elements breathe with generous internal margins and structured typographic rhythm.\n- **Audience Resonance:** Designed for volunteer treasurers, pastors, and finance councils who manage sacred tithes, capital campaigns, and communal commitments. It communicates total discretion, offline-first reliability, and integrity.\n- **Emotional Response:** Calm reassurance, fiduciary confidence, and unencumbered clarity.\n\n## Colors\n\nThe color palette draws inspiration from monastic libraries, liturgical vestments, and botanical sanctuary tones. The application operates strictly in a calibrated light mode to evoke daylight-lit parchment and legible printed registers.\n\n### Palette Architecture\n- **Primary (`#1B382B` & `#142B21`):** Deep evergreen forest. Used for primary calls-to-action, prominent section titles, active navigation states, and key tally markers. Text on dark evergreen is strictly off-white ivory (`#FAF7F2`). Deep text uses `#0E2018`.\n- **Secondary / Accent (`#D9822B` & `#C26E1D`):** Warm burnished marigold and amber. Deployed sparingly to highlight active contribution milestones, pledge fulfillment markers, warnings, and intentional audit focal points.\n- **Tertiary (`#4A6B5D`):** Weathered sage green. Used for secondary status badges, contextual metadata, table column categorizations, and supportive progress bars.\n- **Neutrals & Surfaces:**\n  - Base Page Canvas: `#FAF7F2` (Warm Linen) with deep inset regions in `#F4EFE6`.\n  - Surface Containers: Pure `#FFFFFF` cards framed by hairline borders of `#E6DFD5` and divider rules of `#D8CFBE`.\n  - Text Coloration: Primary body is `#0E2018` for optimal contrast, with secondary metadata in `#526056`.\n- **Semantic Feedback:**\n  - Safe / Reconciled: `#2D5A43` (Deep Herb Green).\n  - Attention / Pending Pledge: `#D9822B` (Amber Ochre).\n  - Discrepancy / Over-allocation: `#A33B30` (Brick Terracotta).\n\n## Typography\n\nThe typographic hierarchy relies on a tripartite structure balancing literary tradition, human-centered UI clarity, and tabular rigor:\n\n1. **Editorial Serifs (Newsreader):** Used for view titles, commitment campaign names, stewardship summaries, and total fund headers. It imbues figures with permanence and human dignity.\n2. **Workhorse Sans (Plus Jakarta Sans):** Governs structural UI, form controls, field descriptions, body narrative, and helper instructions. It presents soft, open apertures that enhance legibility in dimly lit council rooms.\n3. **Ledger Monospace (JetBrains Mono):** Dedicated entirely to quantitative data: currency figures, date stamps, pledge intervals, campaign percent allocations, and tabular ledgers. All financial values must align tabularly without optical shift.\n\n### Editorial Guidelines\n- Use `label-caps` strictly with CSS text-transform uppercase for ledger column headers, category badges, and ledger batch markers.\n- Never set narrative body copy in italics; reserve italic styles strictly for scriptural or historical motto dedications within campaign overviews.\n\n## Layout & Spacing\n\nThe layout philosophy uses a disciplined **Fixed-Max Fluid Grid** anchored at a maximum content boundary of `1200px` to maintain optimal scanning width for financial sheets and input forms.\n\n### Grid & Breakpoints\n- **Desktop (≥ 1024px):** 12-column grid, `gutter-lg` (2rem), side margin minimum `2rem`. Ledger sheets can expand to a wide-aspect 1400px container for cross-tabulation.\n- **Tablet (768px – 1023px):** 8-column grid, `gutter` (1.5rem), `margin` (1.5rem). Multi-column pledge forms collapse into a two-column paired layout.\n- **Mobile (≤ 767px):** 4-column grid, `gutter-sm` (1rem), `margin-mobile` (1rem). Ledger rows transition to stacked card structures with explicit boundary cards.\n\n### Spacing Principles\n- Vertical rhythm follows an explicit 8px base grid.\n- Generous outer breathing room: sections are demarcated by `space-xl` and `space-2xl` increments rather than heavy tinted backgrounds.\n- Field groupings maintain strict internal proximity (`space-sm` between label and input; `space-md` between discrete form fields).\n\n## Elevation & Depth\n\nVisual hierarchy rejects artificial floating glass layers and heavy black drop-shadows in favor of grounded physical paper stock and fine stonework borders.\n\n### Surface Tiers\n- **Tier 0 (Canvas Base):** `#FAF7F2` warm linen background.\n- **Tier 1 (Ledger Cards & Working Pads):** Crisp `#FFFFFF` surface bounded by a crisp 1px `#E6DFD5` solid border. Shadow: `0 1px 3px rgba(20, 43, 33, 0.04), 0 1px 2px rgba(20, 43, 33, 0.02)`.\n- **Tier 2 (Popovers, Calculation Drawers, Dropdowns):** `#FFFFFF` surface, framed by 1px `#D8CFBE` edge. Shadow: `0 8px 24px -4px rgba(20, 43, 33, 0.08), 0 2px 6px -1px rgba(20, 43, 33, 0.04)`.\n- **Tier 3 (Modals & Audit Confirmation Windows):** `#FFFFFF` anchored over a tinted scrim of `rgba(14, 32, 24, 0.45)`. Shadow: `0 16px 40px -8px rgba(14, 32, 24, 0.18)`.\n\n### Tactile Detail\n- Interactive surfaces (buttons, clickable table rows) employ an optical inset micro-line on the top edge (`box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2)` on dark buttons) to mimic letterpress craftsmanship.\n\n## Shapes\n\nThe design system maintains a **Soft** shape language (`roundedness: 1`). Radii are restrained and intentional, reinforcing stability, order, and traditional record-keeping.\n\n- **Standard Elements (Buttons, Inputs, Badges, Tabs):** `0.25rem` (4px). Crisp, architectural, and reliable.\n- **Containers (Cards, Ledger Enclosures, Panels):** `0.5rem` (8px). Softens large form surfaces without making them look casual or juvenile.\n- **Dialogs & Sheet Modals:** `0.75rem` (12px).\n- **Prohibited:** Circular pills for buttons or continuous tags. Avoid hyper-rounded aesthetic patterns that diminish fiduciary seriousness.\n\n## Components\n\n### Buttons\n- **Primary:** Background `#1B382B`, text `#FAF7F2`, hairline border `#142B21`, radius `0.25rem`. Hover state transitions to `#142B21` with a delicate lift. Focus ring is a 2px offset ring in `#D9822B`.\n- **Secondary / Outlined:** Background `#FFFFFF`, text `#1B382B`, border 1px solid `#D8CFBE`. Hover: `#F4EFE6` background with border `#1B382B`.\n- **Accent / Special Action:** Background `#D9822B`, text `#FFFFFF`, border `#C26E1D`. Reserved for commitment confirmation and ledger finalization.\n- **Tertiary / Ghost:** Background transparent, text `#1B382B`, hover: background `#F4EFE6`.\n\n### Inputs & Financial Entry Controls\n- **Standard Input:** Crisp `#FFFFFF` surface, 1px solid border `#D8CFBE`, text `#0E2018`, font `Plus Jakarta Sans`. Height: `2.625rem` (42px) with horizontal padding `0.75rem`.\n- **Currency Entry Fields:** Monospaced (`JetBrains Mono`), right-aligned numeric format with a fixed evergreen prefix symbol (`$`) enclosed in a subtle `#FAF7F2` container flank.\n- **Focus States:** `outline: none; border-color: #1B382B; box-shadow: 0 0 0 3px rgba(27, 56, 43, 0.15)`.\n\n### Cards & Ledger Sheets\n- Constructed with `#FFFFFF` background, wrapped in 1px `#E6DFD5` border, and standard padding of `1.5rem`.\n- Header partitions use subtle horizontal hairline dividers (`1px solid #F4EFE6`) accompanied by serif subheaders and monospaced balance totals.\n\n### Table & Data Grids (Commitment Counter Ledger)\n- Alternating row zebra tints are avoided; distinct rows are marked by a 1px bottom border of `#E6DFD5`.\n- Row hover yields a gentle `#FAF7F2` background transition.\n- Header cells set in `label-caps` using `#526056` over an off-white `#F4EFE6` sub-canvas.\n- Tabular figures use right alignment with matching width decimal fractions.\n\n### Checkboxes & Radios\n- Box size: `1.125rem` with `0.25rem` border-radius for checkboxes, fully circular for radio toggles.\n- Unchecked: 1.5px border in `#D8CFBE`, background `#FFFFFF`.\n- Checked: Background `#1B382B`, checkmark icon in `#FAF7F2`. Focus rings mirror the secondary marigold tone (`#D9822B`).\n\n### Chips & Stewardship Badges\n- **Pledged / Active:** `#E9F0EC` background, `#1B382B` text, 1px `#C3D5CB` border.\n- **Fitted / Met Target:** `#FEF6EE` background, `#C26E1D` text, 1px `#F5D6B8` border.\n- **Reconciliation Audit Pill:** Monospaced date/hash reference in `#FAF7F2` background with `#526056` text.\n\n### Specialized Commitment Components\n- **Local Ledger Safe Badge:** A persistent micro-indicator in the footer/header demonstrating local-only browser storage (`IndexedDB` verified) using an evergreen dot indicator `#2D5A43` and tiny monospace notice: `LOCAL FILE ARCHIVE · NO EXTERNAL TRANSMISSION`.\n- **Pledge Progress Gauge:** A horizontal stepped progress track: unfulfilled tracks use `#E6DFD5`, fulfilled portions use a dual gradient from `#1B382B` to `#D9822B`, without round ends, maintaining architectural 4px corners.",
+        "font": "NEWSREADER",
+        "headlineFont": "NEWSREADER",
+        "headlineFontFamily": "Newsreader",
+        "labelFont": "JETBRAINS_MONO",
+        "labelFontFamily": "JetBrains Mono",
+        "namedColors": {
+          "background": "#fff8f0",
+          "error": "#ba1a1a",
+          "error_container": "#ffdad6",
+          "inverse_on_surface": "#f7f0e5",
+          "inverse_primary": "#adcebc",
+          "inverse_surface": "#333029",
+          "on_background": "#1e1b15",
+          "on_error": "#ffffff",
+          "on_error_container": "#93000a",
+          "on_primary": "#ffffff",
+          "on_primary_container": "#82a291",
+          "on_primary_fixed": "#022015",
+          "on_primary_fixed_variant": "#304d3f",
+          "on_secondary": "#ffffff",
+          "on_secondary_container": "#6d3a00",
+          "on_secondary_fixed": "#2e1500",
+          "on_secondary_fixed_variant": "#6d3a00",
+          "on_surface": "#1e1b15",
+          "on_surface_variant": "#424844",
+          "on_tertiary": "#ffffff",
+          "on_tertiary_container": "#7fa292",
+          "on_tertiary_fixed": "#002116",
+          "on_tertiary_fixed_variant": "#2d4d40",
+          "outline": "#727974",
+          "outline_variant": "#c2c8c2",
+          "primary": "#042217",
+          "primary_container": "#1b382b",
+          "primary_fixed": "#c9ead7",
+          "primary_fixed_dim": "#adcebc",
+          "secondary": "#8f4e00",
+          "secondary_container": "#fea047",
+          "secondary_fixed": "#ffdcc2",
+          "secondary_fixed_dim": "#ffb77a",
+          "surface": "#fff8f0",
+          "surface_bright": "#fff8f0",
+          "surface_container": "#f4ede3",
+          "surface_container_high": "#eee7dd",
+          "surface_container_highest": "#e9e2d7",
+          "surface_container_low": "#faf3e8",
+          "surface_container_lowest": "#ffffff",
+          "surface_dim": "#e0d9cf",
+          "surface_tint": "#476556",
+          "surface_variant": "#e9e2d7",
+          "tertiary": "#002218",
+          "tertiary_container": "#17382c",
+          "tertiary_fixed": "#c6ebd9",
+          "tertiary_fixed_dim": "#abcebe"
+        },
+        "overrideNeutralColor": "#e6dfd5",
+        "overridePrimaryColor": "#1b382b",
+        "overrideSecondaryColor": "#d9822b",
+        "overrideTertiaryColor": "#4a6b5d",
+        "roundness": "ROUND_FOUR",
+        "spacing": {
+          "gutter": "1.5rem",
+          "gutter-lg": "2rem",
+          "gutter-sm": "1rem",
+          "margin": "2rem",
+          "margin-mobile": "1rem",
+          "space-2xl": "4rem",
+          "space-lg": "1.5rem",
+          "space-md": "1rem",
+          "space-sm": "0.5rem",
+          "space-xl": "2.5rem",
+          "space-xs": "0.25rem"
+        },
+        "spacingScale": 2,
+        "typography": {
+          "body-lg": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "1.0625rem",
+            "fontWeight": "400",
+            "lineHeight": "1.75rem"
+          },
+          "body-md": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "0.9375rem",
+            "fontWeight": "400",
+            "lineHeight": "1.5rem"
+          },
+          "body-sm": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "0.8125rem",
+            "fontWeight": "400",
+            "lineHeight": "1.25rem"
+          },
+          "display-lg": {
+            "fontFamily": "Newsreader",
+            "fontSize": "3rem",
+            "fontWeight": "500",
+            "letterSpacing": "-0.02em",
+            "lineHeight": "3.5rem"
+          },
+          "display-lg-mobile": {
+            "fontFamily": "Newsreader",
+            "fontSize": "2.25rem",
+            "fontWeight": "500",
+            "letterSpacing": "-0.01em",
+            "lineHeight": "2.75rem"
+          },
+          "headline-lg": {
+            "fontFamily": "Newsreader",
+            "fontSize": "2.25rem",
+            "fontWeight": "500",
+            "letterSpacing": "-0.015em",
+            "lineHeight": "2.75rem"
+          },
+          "headline-lg-mobile": {
+            "fontFamily": "Newsreader",
+            "fontSize": "1.75rem",
+            "fontWeight": "500",
+            "letterSpacing": "-0.01em",
+            "lineHeight": "2.25rem"
+          },
+          "headline-md": {
+            "fontFamily": "Newsreader",
+            "fontSize": "1.625rem",
+            "fontWeight": "500",
+            "lineHeight": "2.125rem"
+          },
+          "headline-sm": {
+            "fontFamily": "Newsreader",
+            "fontSize": "1.25rem",
+            "fontWeight": "600",
+            "lineHeight": "1.75rem"
+          },
+          "label-caps": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "0.6875rem",
+            "fontWeight": "700",
+            "letterSpacing": "0.06em",
+            "lineHeight": "1rem"
+          },
+          "label-numeric-lg": {
+            "fontFamily": "JetBrains Mono",
+            "fontSize": "1.5rem",
+            "fontWeight": "500",
+            "letterSpacing": "-0.02em",
+            "lineHeight": "2rem"
+          },
+          "label-numeric-md": {
+            "fontFamily": "JetBrains Mono",
+            "fontSize": "1rem",
+            "fontWeight": "500",
+            "letterSpacing": "-0.01em",
+            "lineHeight": "1.5rem"
+          },
+          "label-numeric-sm": {
+            "fontFamily": "JetBrains Mono",
+            "fontSize": "0.8125rem",
+            "fontWeight": "400",
+            "lineHeight": "1.125rem"
+          },
+          "title-md": {
+            "fontFamily": "Plus Jakarta Sans",
+            "fontSize": "1.125rem",
+            "fontWeight": "600",
+            "lineHeight": "1.625rem"
+          }
+        }
+      }
+    },
+    "name": "assets/bdead35abb514a1c973a4e781fcafc5f",
+    "version": "1",
+    "id": "bdead35abb514a1c973a4e781fcafc5f"
+  }
+}

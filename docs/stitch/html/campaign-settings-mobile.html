@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>Mobile Campaign Settings &amp; Local Data Recovery</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#2d4d40",
+            "on-primary-fixed-variant": "#304d3f",
+            "on-error": "#ffffff",
+            "inverse-surface": "#333029",
+            "surface-container-low": "#faf3e8",
+            "surface": "#fff8f0",
+            "primary-fixed": "#c9ead7",
+            "on-tertiary-fixed": "#002116",
+            "on-surface-variant": "#424844",
+            "primary": "#042217",
+            "on-primary-container": "#82a291",
+            "surface-variant": "#e9e2d7",
+            "surface-container": "#f4ede3",
+            "tertiary": "#002218",
+            "outline": "#727974",
+            "on-secondary-fixed-variant": "#6d3a00",
+            "tertiary-container": "#17382c",
+            "surface-tint": "#476556",
+            "surface-container-high": "#eee7dd",
+            "primary-fixed-dim": "#adcebc",
+            "surface-container-lowest": "#ffffff",
+            "on-error-container": "#93000a",
+            "outline-variant": "#c2c8c2",
+            "on-tertiary-container": "#7fa292",
+            "secondary-fixed-dim": "#ffb77a",
+            "surface-dim": "#e0d9cf",
+            "secondary": "#8f4e00",
+            "inverse-on-surface": "#f7f0e5",
+            "surface-bright": "#fff8f0",
+            "inverse-primary": "#adcebc",
+            "tertiary-fixed": "#c6ebd9",
+            "on-surface": "#1e1b15",
+            "on-background": "#1e1b15",
+            "surface-container-highest": "#e9e2d7",
+            "secondary-container": "#fea047",
+            "primary-container": "#1b382b",
+            "on-secondary-container": "#6d3a00",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#abcebe",
+            "on-secondary-fixed": "#2e1500",
+            "secondary-fixed": "#ffdcc2",
+            "on-primary": "#ffffff",
+            "on-tertiary": "#ffffff",
+            "background": "#fff8f0",
+            "error": "#ba1a1a",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed": "#022015"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "space-2xl": "4rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "gutter-lg": "2rem",
+            "margin-mobile": "1rem",
+            "space-xl": "2.5rem",
+            "margin": "2rem",
+            "gutter-sm": "1rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-lg": ["Newsreader", "serif"],
+            "display-lg-mobile": ["Newsreader", "serif"],
+            "title-md": ["Plus Jakarta Sans", "sans-serif"],
+            "label-numeric-sm": ["JetBrains Mono", "monospace"],
+            "headline-sm": ["Newsreader", "serif"],
+            "display-lg": ["Newsreader", "serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-md": ["Newsreader", "serif"],
+            "label-numeric-lg": ["JetBrains Mono", "monospace"],
+            "headline-lg-mobile": ["Newsreader", "serif"],
+            "label-numeric-md": ["JetBrains Mono", "monospace"],
+            "label-caps": ["Plus Jakarta Sans", "sans-serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"]
+          },
+          "fontSize": {
+            "headline-lg": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "display-lg-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "title-md": ["1.125rem", { "lineHeight": "1.625rem", "fontWeight": "600" }],
+            "label-numeric-sm": ["0.8125rem", { "lineHeight": "1.125rem", "fontWeight": "400" }],
+            "headline-sm": ["1.25rem", { "lineHeight": "1.75rem", "fontWeight": "600" }],
+            "display-lg": ["3rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-lg": ["1.0625rem", { "lineHeight": "1.75rem", "fontWeight": "400" }],
+            "body-sm": ["0.8125rem", { "lineHeight": "1.25rem", "fontWeight": "400" }],
+            "headline-md": ["1.625rem", { "lineHeight": "2.125rem", "fontWeight": "500" }],
+            "label-numeric-lg": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["1.75rem", { "lineHeight": "2.25rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-numeric-md": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-caps": ["0.6875rem", { "lineHeight": "1rem", "letterSpacing": "0.06em", "fontWeight": "700" }],
+            "body-md": ["0.9375rem", { "lineHeight": "1.5rem", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Touch target guarantee */
+    .touch-target {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    /* Micro letterpress effect on dark primary surfaces */
+    .letterpress-inset {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased selection:bg-primary selection:text-surface flex flex-col items-center min-h-screen">
+<!-- Mobile Portrait Container fixed at 390px max -->
+<div class="w-full max-w-[390px] min-h-screen bg-surface flex flex-col pb-28 relative shadow-sm border-x border-outline-variant/30">
+<!-- Top Bar Component (Shared TopAppBar Specs) -->
+<header class="bg-surface sticky top-0 z-40 w-full px-margin-mobile py-space-sm flex justify-between items-center shadow-none border-b border-outline-variant/40">
+<div class="flex items-center gap-space-sm">
+<button aria-label="Return to Ledger" class="touch-target flex items-center justify-center text-primary hover:bg-surface-container rounded-lg transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[22px]" data-icon="account_balance">account_balance</span>
+</button>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary tracking-tight leading-none">IraWorks Counter</h1>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-label-numeric-sm text-[10px] text-on-surface-variant font-medium tracking-tight">INDEXED-DB ARCHIVE</span>
+</div>
+</div>
+</div>
+<button aria-label="Settings and options" class="touch-target flex items-center justify-center text-primary hover:bg-surface-container rounded-lg transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+</button>
+</header>
+<!-- Subheader Active Campaign Pill -->
+<div class="px-margin-mobile pt-3 pb-2 bg-surface-container-low border-b border-outline-variant/30">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[16px]" data-icon="church">church</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Active Campaign</span>
+</div>
+<span class="font-label-numeric-sm text-[11px] bg-surface text-primary border border-outline-variant/60 px-2 py-0.5 rounded">52-Wk Cycle</span>
+</div>
+<div class="font-title-md text-title-md text-primary mt-1 font-semibold truncate">
+        San Isidro Parish Sanctuary Renewal 2025
+      </div>
+</div>
+<!-- Main Content Area -->
+<main class="px-margin-mobile pt-4 space-y-5 flex-1">
+<!-- Sovereign Browser Safeguard & Verification Banner -->
+<section aria-labelledby="safeguard-title" class="bg-surface-container-lowest border border-[#D8CFBE] rounded-lg p-3.5 relative overflow-hidden shadow-sm">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-secondary"></div>
+<div class="pl-2">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="shield">shield</span>
+<h2 class="font-title-md text-sm font-semibold tracking-tight text-on-surface" id="safeguard-title">Local Browser Sovereignty Safeguard</h2>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1.5 leading-relaxed">
+            All stewardship ledgers are held strictly in this device's browser sandbox (IndexedDB). Clearing browsing history or cookies permanently destroys records without a verified snapshot.
+          </p>
+<div class="mt-2.5 pt-2 border-t border-outline-variant/40 flex items-center justify-between text-on-surface-variant font-label-numeric-sm text-[11px]">
+<span class="flex items-center gap-1 font-medium text-primary">
+<span class="material-symbols-outlined text-[14px]" data-icon="fingerprint">fingerprint</span> CRC32: 7A99B
+            </span>
+<span class="bg-surface-container px-2 py-0.5 rounded text-on-surface font-semibold">148 Active Records</span>
+</div>
+</div>
+</section>
+<!-- Section 1: Campaign Constitutional Boundaries & Tithe Cadence -->
+<section aria-labelledby="cadence-title" class="bg-surface-container-lowest border border-outline-variant/60 rounded-lg p-4 shadow-sm">
+<div class="flex items-center justify-between mb-3 border-b border-surface-container pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="calendar_month">calendar_month</span>
+<h3 class="font-headline-sm text-base text-primary font-semibold" id="cadence-title">Constitutional Boundaries</h3>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">CADENCE</span>
+</div>
+<div class="space-y-3.5">
+<!-- Campaign Name -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1" for="campaign-name">
+              Campaign Legal Title
+            </label>
+<input class="w-full text-body-md font-body-md text-on-surface bg-surface border border-outline-variant rounded px-3 py-2 text-sm focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none" id="campaign-name" type="text" value="San Isidro Parish Sanctuary Renewal &amp; Mission 2025"/>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-1">Appears on official audit certificates and wardens' digests.</p>
+</div>
+<!-- Date Range Pickers -->
+<div class="grid grid-cols-2 gap-2.5">
+<div>
+<label class="block font-label-caps text-[10px] text-on-surface-variant uppercase mb-1" for="start-date">Start Sunday Cycle</label>
+<div class="relative">
+<input class="w-full font-label-numeric-sm text-xs text-on-surface bg-surface border border-outline-variant rounded px-2.5 py-2 focus:border-primary focus:outline-none" id="start-date" type="text" value="01/05/2025"/>
+<span class="material-symbols-outlined absolute right-2 top-2.5 text-[16px] text-outline" data-icon="event">event</span>
+</div>
+</div>
+<div>
+<label class="block font-label-caps text-[10px] text-on-surface-variant uppercase mb-1" for="end-date">End Sunday Cycle</label>
+<div class="relative">
+<input class="w-full font-label-numeric-sm text-xs text-on-surface bg-surface border border-outline-variant rounded px-2.5 py-2 focus:border-primary focus:outline-none" id="end-date" type="text" value="12/28/2025"/>
+<span class="material-symbols-outlined absolute right-2 top-2.5 text-[16px] text-outline" data-icon="event">event</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low px-2.5 py-1.5 rounded flex items-center justify-between text-on-surface-variant font-label-numeric-sm text-[11px]">
+<span>Cycle Length</span>
+<span class="font-medium text-primary">52 Weeks · 104 Worship Gatherings</span>
+</div>
+<!-- Currency Selector -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1.5">
+              Tithe Ledger Currency
+            </label>
+<div class="grid grid-cols-3 gap-2" role="radiogroup">
+<label class="touch-target flex flex-col items-center justify-center p-2 rounded border border-primary bg-primary-fixed text-primary font-label-numeric-sm text-xs cursor-pointer shadow-xs">
+<input checked="" class="sr-only" name="currency" type="radio" value="PHP"/>
+<span class="font-bold text-sm">₱ PHP</span>
+<span class="text-[9px] text-on-surface-variant">Philippine Peso</span>
+</label>
+<label class="touch-target flex flex-col items-center justify-center p-2 rounded border border-outline-variant bg-surface text-on-surface font-label-numeric-sm text-xs cursor-pointer hover:bg-surface-container">
+<input class="sr-only" name="currency" type="radio" value="USD"/>
+<span class="font-medium text-sm">$ USD</span>
+<span class="text-[9px] text-on-surface-variant">US Dollar</span>
+</label>
+<label class="touch-target flex flex-col items-center justify-center p-2 rounded border border-outline-variant bg-surface text-on-surface font-label-numeric-sm text-xs cursor-pointer hover:bg-surface-container">
+<input class="sr-only" name="currency" type="radio" value="EUR"/>
+<span class="font-medium text-sm">€ EUR</span>
+<span class="text-[9px] text-on-surface-variant">Euro</span>
+</label>
+</div>
+</div>
+<!-- Currency Notice Box -->
+<div class="bg-surface-container p-2.5 rounded border border-outline-variant/60 flex items-start gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5" data-icon="info">info</span>
+<p class="font-body-sm text-[11px] text-on-surface leading-normal">
+<strong>Notice:</strong> Changing denomination currency updates display symbols across tally reports; it does not convert previously recorded historical amounts.
+            </p>
+</div>
+<!-- Midweek Gathering Day -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider mb-1.5">
+              Secondary Midweek Gathering
+            </label>
+<div class="space-y-1.5">
+<label class="touch-target flex items-center justify-between p-2.5 rounded border border-primary bg-surface-container-low cursor-pointer">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-full border border-primary flex items-center justify-center bg-primary text-surface">
+<span class="block w-1.5 h-1.5 rounded-full bg-surface"></span>
+</div>
+<div>
+<span class="font-body-md text-xs font-semibold text-primary block">Wednesday Evening</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant">Vespers, Novena &amp; Midweek Prayer</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="check_circle">check_circle</span>
+</label>
+<label class="touch-target flex items-center justify-between p-2.5 rounded border border-outline-variant bg-surface cursor-pointer hover:bg-surface-container-low">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 rounded-full border border-outline-variant bg-surface"></div>
+<div>
+<span class="font-body-md text-xs font-medium text-on-surface block">Friday Night Vigil</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant">Sacred Heart Eucharistic Adoration</span>
+</div>
+</div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Sanctuary Projector & Accessibility Toggles -->
+<section aria-labelledby="toggles-title" class="bg-surface-container-lowest border border-outline-variant/60 rounded-lg p-4 shadow-sm">
+<div class="flex items-center justify-between mb-3 border-b border-surface-container pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="tv">tv</span>
+<h3 class="font-headline-sm text-base text-primary font-semibold" id="toggles-title">Display &amp; Kiosk Toggles</h3>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">SANCTUARY</span>
+</div>
+<div class="divide-y divide-outline-variant/30">
+<!-- Toggle 1: Publicize Live Commitment Count -->
+<div class="py-3 flex items-center justify-between gap-3">
+<div class="flex-1 pr-1">
+<span class="font-body-md text-xs font-semibold text-on-surface block">Publicize Live Commitment Count</span>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Displays real-time tally counter on sanctuary display kiosk.</p>
+</div>
+<button aria-checked="true" class="touch-target flex items-center p-1 cursor-pointer" role="switch" type="button">
+<span class="w-11 h-6 bg-primary-container rounded-full flex items-center px-0.5 transition-colors">
+<span class="w-5 h-5 bg-surface rounded-full shadow-sm translate-x-5 transition-transform flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</span>
+</span>
+</button>
+</div>
+<!-- Toggle 2: Show Frequency Breakdown -->
+<div class="py-3 flex items-center justify-between gap-3">
+<div class="flex-1 pr-1">
+<span class="font-body-md text-xs font-semibold text-on-surface block">Show Frequency Breakdown</span>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Exposes weekly, monthly, and midweek recurrence distribution.</p>
+</div>
+<button aria-checked="true" class="touch-target flex items-center p-1 cursor-pointer" role="switch" type="button">
+<span class="w-11 h-6 bg-primary-container rounded-full flex items-center px-0.5 transition-colors">
+<span class="w-5 h-5 bg-surface rounded-full shadow-sm translate-x-5 transition-transform flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</span>
+</span>
+</button>
+</div>
+<!-- Toggle 3: Reduced Motion Display Mode -->
+<div class="py-3 flex items-center justify-between gap-3">
+<div class="flex-1 pr-1">
+<span class="font-body-md text-xs font-semibold text-on-surface block">Reduced Motion Display Mode</span>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Disables tally ticker increments and particle transitions for projector clarity.</p>
+</div>
+<button aria-checked="false" class="touch-target flex items-center p-1 cursor-pointer" role="switch" type="button">
+<span class="w-11 h-6 bg-surface-variant rounded-full flex items-center px-0.5 transition-colors">
+<span class="w-5 h-5 bg-surface rounded-full shadow-sm translate-x-0 transition-transform"></span>
+</span>
+</button>
+</div>
+<!-- Toggle 4: Anonymize Bequests Over ₱25k -->
+<div class="py-3 flex items-center justify-between gap-3">
+<div class="flex-1 pr-1">
+<span class="font-body-md text-xs font-semibold text-on-surface block">Anonymize Bequests Over ₱25k</span>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Safeguards high-denomination pledges on community monitor screens.</p>
+</div>
+<button aria-checked="true" class="touch-target flex items-center p-1 cursor-pointer" role="switch" type="button">
+<span class="w-11 h-6 bg-primary-container rounded-full flex items-center px-0.5 transition-colors">
+<span class="w-5 h-5 bg-surface rounded-full shadow-sm translate-x-5 transition-transform flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</span>
+</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Section 3: Sovereign Exports & Backup Workbooks -->
+<section aria-labelledby="exports-title" class="bg-surface-container-lowest border border-outline-variant/60 rounded-lg p-4 shadow-sm">
+<div class="flex items-center justify-between mb-3 border-b border-surface-container pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="archive">archive</span>
+<h3 class="font-headline-sm text-base text-primary font-semibold" id="exports-title">Sovereign Exports</h3>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">LEDGER ARCHIVE</span>
+</div>
+<div class="space-y-3">
+<!-- Card A: Parish Audit Workbook -->
+<div class="p-3 bg-surface rounded border border-outline-variant/60">
+<div class="flex items-start justify-between">
+<div>
+<h4 class="font-body-md text-xs font-semibold text-on-surface">Parish Audit Workbook (.xlsx)</h4>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">
+                  Report-only human-readable spreadsheet for parish wardens and finance council verification.
+                </p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] ml-1" data-icon="table_view">table_view</span>
+</div>
+<button class="touch-target w-full mt-2.5 bg-surface hover:bg-surface-container text-primary border border-outline-variant rounded font-body-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors duration-150" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="file_download">file_download</span>
+              Export Parish Audit Workbook (.xlsx)
+            </button>
+</div>
+<!-- Card B: Sovereign JSON Archive -->
+<div class="p-3 bg-primary/5 rounded border border-primary/20">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-1">
+<h4 class="font-body-md text-xs font-semibold text-primary">Authoritative Sovereign Archive (.json)</h4>
+<span class="bg-primary text-surface text-[9px] font-label-numeric-sm px-1 rounded">CRYPTOGRAPHIC</span>
+</div>
+<p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">
+                  Machine-readable snapshot containing all 148 commitment entries and schema verification hash.
+                </p>
+</div>
+<span class="material-symbols-outlined text-primary text-[20px] ml-1" data-icon="lock_reset">lock_reset</span>
+</div>
+<button class="touch-target w-full mt-2.5 bg-primary hover:bg-[#142B21] text-surface letterpress-inset rounded font-body-md text-xs font-semibold flex items-center justify-center gap-1.5 shadow-sm transition-transform active:scale-95 duration-100 ease-out" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="download_for_offline">download_for_offline</span>
+              Download Local Sovereign JSON (142 KB)
+            </button>
+</div>
+</div>
+</section>
+<!-- Section 4: Restore & Import Local Backup -->
+<section aria-labelledby="restore-title" class="bg-surface-container-lowest border border-outline-variant/60 rounded-lg p-4 shadow-sm">
+<div class="flex items-center justify-between mb-3 border-b border-surface-container pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="settings_backup_restore">settings_backup_restore</span>
+<h3 class="font-headline-sm text-base text-primary font-semibold" id="restore-title">Restore Local Ledger</h3>
+</div>
+<span class="font-label-caps text-label-caps text-secondary">HOT STAGING</span>
+</div>
+<!-- Interactive Drag-and-drop / Picker -->
+<div class="border-2 border-dashed border-outline-variant/80 rounded-lg p-4 text-center bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer">
+<input accept=".json" class="sr-only" id="backup-file" type="file"/>
+<label class="cursor-pointer flex flex-col items-center" for="backup-file">
+<span class="material-symbols-outlined text-primary text-[28px] mb-1" data-icon="upload_file">upload_file</span>
+<span class="font-body-md text-xs font-semibold text-primary block">Tap to Select .json Ledger Backup</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant mt-0.5">Supports authoritative IraWorks Counter snapshot v2.1</span>
+</label>
+</div>
+<!-- Staged Verification Preview Box -->
+<div class="mt-3.5 bg-surface border border-outline-variant rounded p-3 text-left">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/40">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[16px] text-primary" data-icon="verified">verified</span>
+<span class="font-label-caps text-[10px] uppercase font-bold tracking-wider">Validated Digest</span>
+</div>
+<span class="font-label-numeric-sm text-[10px] bg-primary-fixed text-primary px-1.5 py-0.5 rounded font-medium">Valid Checksum</span>
+</div>
+<div class="mt-2 space-y-1">
+<p class="font-body-md text-xs font-semibold text-on-surface truncate">San Isidro Parish Sanctuary Renewal 2025</p>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1 font-label-numeric-sm text-[11px] text-on-surface-variant">
+<span><strong>148</strong> Records</span>
+<span>•</span>
+<span class="font-semibold text-primary">₱1,842,500.00 Tithes</span>
+<span>•</span>
+<span>Oct 24, 2025</span>
+</div>
+</div>
+<!-- Staged Overwrite / Standalone Radio Options -->
+<div class="mt-3 pt-2.5 border-t border-outline-variant/40 space-y-2">
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase block">Import Resolution Strategy:</span>
+<label class="touch-target flex items-start gap-2 p-2 rounded bg-surface-container-low border border-secondary cursor-pointer">
+<input checked="" class="mt-0.5 text-secondary focus:ring-secondary" name="import-mode" type="radio" value="overwrite"/>
+<div>
+<span class="font-body-md text-xs font-semibold text-on-surface block">Overwrite Current Campaign</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant block leading-tight">Replaces all 148 current in-memory ledger entries immediately.</span>
+</div>
+</label>
+<label class="touch-target flex items-start gap-2 p-2 rounded bg-surface border border-outline-variant cursor-pointer hover:bg-surface-container-low">
+<input class="mt-0.5 text-secondary focus:ring-secondary" name="import-mode" type="radio" value="standalone"/>
+<div>
+<span class="font-body-md text-xs font-semibold text-on-surface block">Import as Standalone Copy</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant block leading-tight">Preserves active records and archives imported snapshot under new UID.</span>
+</div>
+</label>
+</div>
+<!-- Actions -->
+<div class="mt-3 pt-2 flex items-center gap-2">
+<button class="touch-target flex-1 bg-secondary text-on-secondary rounded font-body-md text-xs font-semibold flex items-center justify-center gap-1 active:scale-95 transition-transform duration-100 ease-out shadow-xs" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="published_with_changes">published_with_changes</span>
+              Proceed with Overwrite
+            </button>
+<button class="touch-target px-3 bg-surface text-on-surface-variant hover:bg-surface-container border border-outline-variant rounded font-body-md text-xs font-semibold transition-colors" type="button">
+              Cancel
+            </button>
+</div>
+</div>
+</section>
+<!-- Section 5: Campaign Archival & Device Sanitization -->
+<section aria-labelledby="security-title" class="bg-surface-container-lowest border border-outline-variant/60 rounded-lg p-4 shadow-sm">
+<div class="flex items-center justify-between mb-2 border-b border-surface-container pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="security">security</span>
+<h3 class="font-headline-sm text-base text-primary font-semibold" id="security-title">Device &amp; Storage Hygiene</h3>
+</div>
+<span class="font-label-caps text-label-caps text-error">CAUTION</span>
+</div>
+<div class="divide-y divide-outline-variant/30">
+<!-- Archival Row -->
+<div class="py-2.5 flex items-center justify-between gap-2">
+<div>
+<span class="font-body-md text-xs font-semibold text-on-surface block">Archive Campaign to Cold Storage</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant">Locks current cycle as read-only ledger.</span>
+</div>
+<button class="touch-target shrink-0 px-3 bg-surface hover:bg-surface-container border border-outline-variant text-primary rounded font-body-md text-xs font-semibold flex items-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="inventory_2">inventory_2</span>
+              Archive
+            </button>
+</div>
+<!-- Wipe Row -->
+<div class="py-2.5 flex items-center justify-between gap-2">
+<div>
+<span class="font-body-md text-xs font-semibold text-error block">Wipe Device Cache / Reset Memory</span>
+<span class="font-body-sm text-[10px] text-on-surface-variant">Purges all local IndexedDB tables on this handset.</span>
+</div>
+<button class="touch-target shrink-0 px-3 bg-error text-on-error rounded font-body-md text-xs font-semibold flex items-center gap-1 active:scale-95 transition-transform duration-100 ease-out" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="delete_forever">delete_forever</span>
+              Wipe
+            </button>
+</div>
+</div>
+</section>
+<!-- Fiduciary Footer Note -->
+<div class="text-center py-2">
+<p class="font-label-numeric-sm text-[10px] text-on-surface-variant/80 tracking-wide uppercase">
+          IraWorks Local Core v2.4.9 · Zero-Cloud Sovereign Build
+        </p>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Execution of Shared Component JSON) -->
+<nav aria-label="Bottom Navigation" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-margin-mobile py-space-xs bg-surface border-t border-outline-variant shadow-none">
+<div class="w-full max-w-[390px] mx-auto flex justify-around items-center">
+<!-- Tab 1: Entry -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xs touch-target hover:bg-surface-container transition-colors duration-150 active:scale-95" href="#entry">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
+<span class="font-label-caps text-label-caps text-[10px] mt-0.5">Entry</span>
+</a>
+<!-- Tab 2: Ledger -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xs touch-target hover:bg-surface-container transition-colors duration-150 active:scale-95" href="#ledger">
+<span class="material-symbols-outlined text-[20px]" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-caps text-label-caps text-[10px] mt-0.5">Ledger</span>
+</a>
+<!-- Tab 3: Summary -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-space-sm py-space-xs touch-target hover:bg-surface-container transition-colors duration-150 active:scale-95" href="#summary">
+<span class="material-symbols-outlined text-[20px]" data-icon="analytics">analytics</span>
+<span class="font-label-caps text-label-caps text-[10px] mt-0.5">Summary</span>
+</a>
+<!-- Tab 4: Export / Settings (ACTIVE as per Shared Components Spec & Prompt context) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-space-sm py-space-xs touch-target transition-colors duration-150 active:scale-95" href="#export">
+<span class="material-symbols-outlined text-[20px] text-on-primary-container" data-icon="download_for_offline">download_for_offline</span>
+<span class="font-label-caps text-label-caps text-[10px] mt-0.5 font-bold">Export</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

@@ -1,5 +1,5 @@
 # 05 — Same-Device Live Display
-**Status:** Approved V1 baseline (2026-10-14); implementation pending.
+**Status:** Approved V1 baseline (2026-10-14); same-device live display implemented on `feat/stitch-commitment-counter-v1`, not yet merged or released.
 
 ## Purpose
 A read-only screen suitable for a church projector, TV, or second monitor. The operator enters pledges privately on a laptop; the public display automatically shows aggregate **Projected Commitments**.

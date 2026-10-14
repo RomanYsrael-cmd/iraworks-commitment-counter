@@ -1,34 +1,60 @@
 # IraWorks Commitment Counter
 
-**Status:** Approved V1 requirements baseline (2026-10-14); implementation pending. Approval is not production-release sign-off.
+**Status:** V1 implementation is complete on `feat/stitch-commitment-counter-v1`; the pull request is not merged and this is not a production release. Approval of the product requirements does not constitute release sign-off.
 
-A simple, free-to-use commitment counting and projection utility for churches and nonprofit organizations. Core functions: anonymous pledge entry, recurring projections, an Excel (.xlsx) report, same-device live projector display, and offline-friendly local storage with backup/restore.
+A local-first commitment counter and projection tool for churches and nonprofit organizations. It supports anonymous pledge entry, recurring projections, a real Excel report, versioned JSON backup and restore, and a same-device live display for a TV or projector.
 
-> **Important:** Projected commitments are pledges, **not money received**. This is not an accounting or payment-processing system.
+> **Projected commitments are pledges, not money received.** This app is not an accounting or payment-processing system.
 
-## Documentation
+## Run locally
 
-- [01 — Product brief](docs/01-product-brief.md)
-- [02 — Product requirements](docs/02-product-requirements.md)
-- [03 — User flows and UI](docs/03-user-flows.md)
-- [04 — Calculation specification](docs/04-calculations.md)
-- [05 — Live display](docs/05-live-display.md)
-- [06 — Excel export and backups](docs/06-exports-backups.md)
-- [07 — Data model](docs/07-data-model.md)
-- [08 — Technical architecture](docs/08-architecture.md)
-- [09 — Privacy, security and accessibility](docs/09-safety-accessibility.md)
-- [10 — Test and acceptance plan](docs/10-testing.md)
-- [11 — Deployment and operations](docs/11-deployment.md)
-- [12 — Roadmap and decisions](docs/12-roadmap-decisions.md)
-- [13 — Original Excel workbook analysis](docs/13-workbook-analysis.md)
-- [14 — Implementation backlog](docs/14-backlog.md)
-- [15 — User guide](docs/15-user-guide.md)
-- [16 — Codex implementation handoff](docs/16-codex-handoff.md)
+Requirements: Node.js 24 (the CI baseline) and npm.
 
-## V1 implementation direction
+```sh
+npm ci
+npm run dev
+```
 
-React + Vite + TypeScript; IndexedDB for on-device persistence; BroadcastChannel plus persistence re-read for same-browser second-screen updates; client-side XLSX creation; static hosting on an eligible Vercel plan or Cloudflare Pages. No login or cloud database in V1.
+Open the local URL printed by Vite. No runtime account, backend, or API key is required. Stitch credentials were used only to create the design references and are not part of the application.
 
-## Status and ownership
+## Features
 
-The product owner approved the V1 product scope and calculation rules on 2026-10-14. The specifications remain revisable during implementation. Production hosting, source-code licensing, final domain and release readiness still require separate decisions. A public repository does **not** automatically grant an open-source license. Avoid publishing the original workbook or sensitive pledge data.
+- Create, edit, select, and archive campaigns. PHP is the default currency; supported two-decimal currencies are PHP, USD, EUR, GBP, CAD, AUD, NZD, and SGD. Changing currency relabels amounts and does not convert them.
+- Add, edit, and delete anonymous commitment entries with Once, Weekly, Monthly, or Per Service frequency. Counts and projections follow the approved inclusive calendar rules in [the calculation specification](docs/04-calculations.md).
+- Persist campaigns and entries in the current browser profile's IndexedDB. Dashboard and read-only display windows on the same device and browser profile re-read the committed data after revision notifications.
+- Open the live display in a separate window and fullscreen it for a projector. It shows aggregate amounts and optional aggregate count/frequency breakdown, never entry notes.
+- Export a three-sheet `.xlsx` report (Summary, Commitment Entries, Campaign Settings) and a separate, versioned `.json` backup. Validate a backup and preview it before importing as a copy or explicitly replacing local data.
+- Responsive layouts, keyboard-operable forms and dialogs, focus handling, reduced-motion controls, semantic live announcements, and Playwright axe checks.
+
+## Quality commands
+
+```sh
+npm run lint
+npm run typecheck
+npm test
+npm run build
+npm run test:e2e
+npm audit
+```
+
+The browser suite uses Playwright Chromium; the workflow is also defined in `.github/workflows/ci.yml`.
+
+## Data and backup
+
+Commitments are stored only in IndexedDB for the browser profile and origin in use. There is no login, server database, cross-device sync, or cloud backup. Browser storage may be cleared or evicted; private browsing may discard it. Download a JSON backup after each event and keep it somewhere safe. Excel is a report, not a restorable backup. Do not enter donor identities or sensitive information in notes.
+
+The app currently does not cache its static shell with a service worker. Once the app is already loaded, entry and display workflows use local browser data; a fresh load or reload still needs the site assets to be available from the host.
+
+## Documentation and design references
+
+- [Operator quick start](docs/15-user-guide.md)
+- [V1 implementation report](docs/implementation-report.md)
+- [Approved product and technical documents](docs/)
+- [Google Stitch project and screen manifest](docs/stitch/screens.json)
+- Stitch source project: [IraWorks Commitment Counter](https://stitch.google.com/projects/656374960065096271)
+
+Generated Stitch screenshots and HTML references are stored under `docs/stitch/`. They document design input; the running React application provides the functional behavior.
+
+## Release boundary
+
+This branch is not merged or deployed. Production hosting, final domain, source-code license, and public release approval remain owner decisions. The public repository does not grant a license by itself.
