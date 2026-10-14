@@ -104,8 +104,9 @@ test('quick entry cycles frequencies from Amount and keeps the choice after Ente
   await page.getByLabel(/start date/i).fill('2026-10-11');
   await page.getByLabel(/end date/i).fill('2026-10-25');
   await page.getByRole('button', { name: /create campaign/i }).click();
+  await expect(page.getByRole('heading', { name: 'Keyboard entry test' })).toBeVisible();
 
-  const amount = page.getByLabel('Amount');
+  const amount = page.getByRole('textbox', { name: 'Amount', exact: true });
   await amount.fill('100.00');
   for (const [key, expected] of [
     ['ArrowDown', 'Weekly'], ['ArrowRight', 'Monthly'], ['ArrowDown', 'Per Service'], ['ArrowRight', 'Once'],
