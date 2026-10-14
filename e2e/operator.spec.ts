@@ -106,7 +106,7 @@ test('quick entry cycles frequencies from Amount and keeps the choice after Ente
   await page.getByRole('button', { name: /create campaign/i }).click();
   await expect(page.getByRole('heading', { name: 'Keyboard entry test' })).toBeVisible();
 
-  const amount = page.getByRole('textbox', { name: 'Amount', exact: true });
+  const amount = page.locator('#amount');
   await amount.fill('100.00');
   for (const [key, expected] of [
     ['ArrowDown', 'Weekly'], ['ArrowRight', 'Monthly'], ['ArrowDown', 'Per Service'], ['ArrowRight', 'Once'],
