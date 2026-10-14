@@ -36,3 +36,7 @@
 
 ## Definition of done for each ticket
 Behavior satisfies linked requirements; unit/behavior tests included; no new privacy leak; local backup/restore and projector workflows unaffected; documentation updated. The owner approved the recurrence rules on 2026-10-14; development may proceed from the merged main branch.
+
+## Follow-up implementation issues
+- [x] #4 Arrow-key frequency selection, Enter submit, sticky frequency, and Amount focus.
+- [x] #5 Campaign-specific live background with local image handling and contrast overlay; dashboard date/copy cleanup.

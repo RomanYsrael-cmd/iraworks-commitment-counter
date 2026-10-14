@@ -178,6 +178,23 @@ export async function updateCampaign(input: Campaign): Promise<Campaign> {
   return campaign;
 }
 
+export async function saveCampaignBanner(campaignId: string, liveBannerDataUrl?: string): Promise<Campaign> {
+  const db = await database();
+  const tx = db.transaction('campaigns', 'readwrite');
+  const campaign = await commitTransaction(tx, async () => {
+    const current = await tx.store.get(campaignId);
+    if (!current) throw new Error('Campaign not found. The background was not changed.');
+    const nextValue = { ...current, revision: current.revision + 1, updatedAt: now() };
+    if (liveBannerDataUrl === undefined) delete nextValue.liveBannerDataUrl;
+    else nextValue.liveBannerDataUrl = liveBannerDataUrl;
+    const next = campaignSchema.parse(nextValue);
+    await tx.store.put(next);
+    return next;
+  });
+  publishRevision(campaignId, campaign.revision);
+  return campaign;
+}
+
 export async function archiveCampaign(campaignId: string): Promise<void> {
   const db = await database();
   const tx = db.transaction(['campaigns', 'settings'], 'readwrite');

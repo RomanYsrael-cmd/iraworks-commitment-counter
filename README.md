@@ -20,10 +20,10 @@ Open the local URL printed by Vite. No runtime account, backend, or API key is r
 ## Features
 
 - Create, edit, select, and archive campaigns. PHP is the default currency; supported two-decimal currencies are PHP, USD, EUR, GBP, CAD, AUD, NZD, and SGD. Changing currency relabels amounts and does not convert them.
-- Add, edit, and delete anonymous commitment entries with Once, Weekly, Monthly, or Per Service frequency. Counts and projections follow the approved inclusive calendar rules in [the calculation specification](docs/04-calculations.md).
+- Add, edit, and delete anonymous commitment entries with Once, Weekly, Monthly, or Per Service frequency. While Amount is focused, arrow keys cycle frequencies; Enter saves; the last successful frequency stays selected for the next entry. Counts and projections follow the approved inclusive calendar rules in [the calculation specification](docs/04-calculations.md).
 - Persist campaigns and entries in the current browser profile's IndexedDB. Dashboard and read-only display windows on the same device and browser profile re-read the committed data after revision notifications.
-- Open the live display in a separate window and fullscreen it for a projector. It shows aggregate amounts and optional aggregate count/frequency breakdown, never entry notes.
-- Export a three-sheet `.xlsx` report (Summary, Commitment Entries, Campaign Settings) and a separate, versioned `.json` backup. Validate a backup and preview it before importing as a copy or explicitly replacing local data.
+- Open the live display in a separate window and fullscreen it for a projector. It shows aggregate amounts and optional aggregate count/frequency breakdown, never entry notes. Campaign Settings can upload, preview, replace, and remove a local background image; a darkened image and high-contrast content panel keep the display readable.
+- Export a three-sheet `.xlsx` report (Summary, Commitment Entries, Campaign Settings) and a separate, versioned `.json` backup. Backups include campaign display backgrounds. Validate a backup and preview it before importing as a copy or explicitly replacing local data.
 - Responsive layouts, keyboard-operable forms and dialogs, focus handling, reduced-motion controls, semantic live announcements, and Playwright axe checks.
 
 ## Quality commands
@@ -41,7 +41,7 @@ The browser suite uses Playwright Chromium; the workflow is also defined in `.gi
 
 ## Data and backup
 
-Commitments are stored only in IndexedDB for the browser profile and origin in use. There is no login, server database, cross-device sync, or cloud backup. Browser storage may be cleared or evicted; private browsing may discard it. Download a JSON backup after each event and keep it somewhere safe. Excel is a report, not a restorable backup. Do not enter donor identities or sensitive information in notes.
+Commitments and optimized campaign backgrounds are stored only in IndexedDB for the browser profile and origin in use. Backgrounds accept JPEG, PNG, or WebP up to 5 MB and are stored as JPEG at up to 1920 × 1080 and 1 MB each; SVG and animated GIF are rejected. JSON backups are limited to 50 MB with up to 12 MB of combined background images, and old V1 backups without images remain supported. There is no login, server database, cross-device sync, or cloud backup. Browser storage may be cleared or evicted; private browsing may discard it. Download a JSON backup after each event and keep it somewhere safe. Excel is a report, not a restorable backup. Do not enter donor identities or sensitive information in notes.
 
 The app currently does not cache its static shell with a service worker. Once the app is already loaded, entry and display workflows use local browser data; a fresh load or reload still needs the site assets to be available from the host.
 

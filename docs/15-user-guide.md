@@ -11,10 +11,12 @@ Enter the pledged amount and choose:
 - **Monthly:** pledged on the day-of-month of campaign start, with month-end fallback.
 - **Per Service:** pledged each Sunday plus the selected midweek service day.
 
-Press **Add commitment**. The dashboard updates after the IndexedDB save completes. You do **not** need to record member names. Each row is a commitment entry, not necessarily a distinct person.
+Press **Add commitment** or press **Enter** while Amount is focused. Use **ArrowUp/ArrowLeft** for the previous frequency and **ArrowDown/ArrowRight** for the next one without leaving Amount. After a successful save, Amount and Note clear, Amount stays focused, and the selected frequency remains ready for the next entry. The dashboard updates after the IndexedDB save completes. You do **not** need to record member names. Each row is a commitment entry, not necessarily a distinct person.
 
 ## 3. Use a projector / TV
 Connect your projector or TV as an **extended desktop**. Click **Open live display**, move its separate window to the projector, and choose fullscreen. Leave the dashboard on the operator's screen. The display shows aggregate projected commitments and the optional aggregate entry count/frequency breakdown; it never shows individual entries or notes. Both windows must use the same device, browser profile, and app origin. If the browser blocks popups, allow the popup and try again.
+
+To add a campaign image, open **Settings → Live display background**, choose a JPEG, PNG, or WebP file up to 5 MB, and use **Preview live display**. Save the background changes to share it with an already-open display. The app scales and compresses it locally to at most 1920 × 1080 and 1 MB; a dark overlay and text panel keep the projected total readable. Remove the background and save to return to the IraWorks green display. Images are campaign-specific and included in JSON backups.
 
 ## 4. Correct an entry
 Choose Edit or Delete from the entry history. Verify the amount and frequency. Totals and live screen should update after successful save. Changing campaign dates or service day also recalculates recurring projections.
@@ -31,6 +33,7 @@ Click **Download JSON backup** after each event. Keep a secure copy outside the 
 - A second screen works when both windows share the same browser profile on one device. Separate TV/browser devices require a future online feature.
 - The current build has no service worker. After initial load, its open tabs use local data; loading or refreshing the app requires the hosted app files to be reachable.
 - The app is tested with automated Chromium browser checks. Other browser families and physical projector/TV setups have not been verified for this release candidate.
+- Live backgrounds are stored in IndexedDB. JSON backups allow up to 50 MB, with a 12 MB combined image-data limit; older V1 backups without backgrounds remain supported.
 - This app does not collect payments or verify pledge fulfillment. Do not report projected total as donations received.
 - Do not include donor personal information in optional notes.
 

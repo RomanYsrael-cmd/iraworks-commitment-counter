@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { deleteDB } from 'idb';
-import { archiveCampaign, backupEnvelope, closeDatabaseForTests, createCampaign, deleteEntry, getCampaignSnapshot, getSnapshot, importAsCopy, replaceAllData, saveEntry, STORAGE_DATABASE_NAME, updateCampaign } from './database';
+import { archiveCampaign, backupEnvelope, closeDatabaseForTests, createCampaign, deleteEntry, getCampaignSnapshot, getSnapshot, importAsCopy, replaceAllData, saveCampaignBanner, saveEntry, STORAGE_DATABASE_NAME, updateCampaign } from './database';
 import { validateBackup } from '../domain/validation';
 
 async function newCampaign() {
@@ -32,12 +32,16 @@ describe('IndexedDB repository', () => {
 
   it('restores a versioned backup and can import it as a separate copy', async () => {
     const original = await newCampaign();
+    const banner = 'data:image/jpeg;base64,/9j/2Q==';
+    await saveCampaignBanner(original.id, banner);
     await saveEntry({ campaignId: original.id, amountMinor: 5000, frequency: 'PER_SERVICE' });
     const backup = validateBackup(await backupEnvelope());
+    expect(backup.campaigns[0]?.liveBannerDataUrl).toBe(banner);
     await newCampaign();
     await replaceAllData(backup);
     const replaced = await getSnapshot();
     expect(replaced.campaigns).toHaveLength(1);
+    expect(replaced.campaigns[0]?.liveBannerDataUrl).toBe(banner);
     expect(replaced.entries).toHaveLength(1);
     expect(replaced.settings.activeCampaignId).toBe(original.id);
     expect(await importAsCopy(backup)).toBe(1);
@@ -45,6 +49,27 @@ describe('IndexedDB repository', () => {
     expect(copied.campaigns).toHaveLength(2);
     expect(copied.entries).toHaveLength(2);
     expect(copied.campaigns.some((campaign) => campaign.title === 'Local test (imported)')).toBe(true);
+    expect(copied.campaigns.every((campaign) => campaign.liveBannerDataUrl === banner)).toBe(true);
+  });
+
+  it('removes a saved banner only after a successful campaign write', async () => {
+    const campaign = await newCampaign();
+    const banner = 'data:image/jpeg;base64,/9j/2Q==';
+    await saveCampaignBanner(campaign.id, banner);
+    await expect(saveCampaignBanner(campaign.id, 'data:image/svg+xml;base64,PHN2Zz4=')).rejects.toThrow();
+    expect((await getCampaignSnapshot(campaign.id)).campaign?.liveBannerDataUrl).toBe(banner);
+    const removed = await saveCampaignBanner(campaign.id);
+    expect(removed.liveBannerDataUrl).toBeUndefined();
+    expect((await getCampaignSnapshot(campaign.id)).campaign?.revision).toBe(2);
+  });
+
+  it('keeps display backgrounds isolated by campaign ID', async () => {
+    const first = await newCampaign();
+    const second = await newCampaign();
+    const banner = 'data:image/jpeg;base64,/9j/2Q==';
+    await saveCampaignBanner(first.id, banner);
+    expect((await getCampaignSnapshot(first.id)).campaign?.liveBannerDataUrl).toBe(banner);
+    expect((await getCampaignSnapshot(second.id)).campaign?.liveBannerDataUrl).toBeUndefined();
   });
 
   it('rejects a corrupt backup before replacing existing local data', async () => {

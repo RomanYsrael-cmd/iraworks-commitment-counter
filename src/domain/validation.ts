@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { calculateCampaign } from './calculations';
 import { CURRENCIES, FREQUENCIES } from './types';
 import { validateCampaignDates } from './dates';
+import { LIVE_BANNER_DATA_URL_PREFIX, MAX_LIVE_BANNER_STORED_BYTES, MAX_TOTAL_LIVE_BANNER_BYTES, liveBannerByteLength } from './banner';
 import type { BackupEnvelope, Campaign, CommitmentEntry } from './types';
 
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine((value) => {
@@ -10,6 +11,11 @@ const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine((value) => {
   return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
 }, 'Must be a real ISO calendar date.');
 const timestamp = z.string().datetime({ offset: true });
+const liveBannerDataUrlSchema = z.string()
+  .max(LIVE_BANNER_DATA_URL_PREFIX.length + Math.ceil(MAX_LIVE_BANNER_STORED_BYTES / 3) * 4)
+  .regex(/^data:image\/jpeg;base64,\/9j\/[A-Za-z0-9+/]*={0,2}$/, 'Live display backgrounds must be valid JPEG data.')
+  .refine((value) => value.slice(LIVE_BANNER_DATA_URL_PREFIX.length).length % 4 === 0, 'Live display background data is incomplete.')
+  .refine((value) => liveBannerByteLength(value) <= MAX_LIVE_BANNER_STORED_BYTES, 'Live display backgrounds must be 1 MB or smaller.');
 
 export const campaignSchema = z.object({
   id: z.string().uuid(),
@@ -20,6 +26,7 @@ export const campaignSchema = z.object({
   midweekDay: z.number().int().min(1).max(6),
   archived: z.boolean(),
   revision: z.number().int().nonnegative().safe(),
+  liveBannerDataUrl: liveBannerDataUrlSchema.optional(),
   createdAt: timestamp,
   updatedAt: timestamp,
 }).superRefine((campaign, context) => {
@@ -57,10 +64,13 @@ export const backupSchema = z.object({
   const entryIds = new Set<string>();
   const campaignIdSet = new Set<string>();
   const entriesByCampaign = new Map<string, CommitmentEntry[]>();
+  let totalBannerBytes = 0;
   for (const campaign of backup.campaigns) {
     if (campaignIdSet.has(campaign.id)) context.addIssue({ code: 'custom', path: ['campaigns'], message: 'Campaign IDs must be unique.' });
     campaignIdSet.add(campaign.id);
+    if (campaign.liveBannerDataUrl) totalBannerBytes += liveBannerByteLength(campaign.liveBannerDataUrl);
   }
+  if (totalBannerBytes > MAX_TOTAL_LIVE_BANNER_BYTES) context.addIssue({ code: 'custom', path: ['campaigns'], message: 'Combined live display backgrounds exceed the 12 MB backup limit.' });
   for (const entry of backup.entries) {
     if (!campaignIds.has(entry.campaignId)) context.addIssue({ code: 'custom', path: ['entries'], message: 'Backup contains an entry without a campaign.' });
     if (entryIds.has(entry.id)) context.addIssue({ code: 'custom', path: ['entries'], message: 'Entry IDs must be unique.' });

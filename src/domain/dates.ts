@@ -47,6 +47,17 @@ export function addMonthsAnchored(startDate: string, monthOffset: number): strin
   return fromDayNumber(Math.floor(Date.UTC(targetYear, targetMonth - 1, Math.min(day, daysInMonth(targetYear, targetMonth))) / 86_400_000));
 }
 
+const MONTH_ABBREVIATIONS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as const;
+
+export function formatCampaignDate(isoDate: string): string {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate);
+  if (!match) return isoDate;
+  const [, year, month, day] = match;
+  const monthLabel = MONTH_ABBREVIATIONS[Number(month) - 1];
+  if (!monthLabel) return isoDate;
+  return `${monthLabel}-${day}-${year}`;
+}
+
 export function validateCampaignDates(startDate: string, endDate: string): void {
   const span = daysInclusive(startDate, endDate);
   if (span > 5 * 366) throw new Error('Campaigns can be up to five years long.');
